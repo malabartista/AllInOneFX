@@ -2,7 +2,7 @@ package com.allinonefx;
 
 import com.jfoenix.controls.JFXDecorator;
 import com.jfoenix.svg.SVGGlyphLoader;
-import com.allinonefx.gui.main.MainController;
+import com.allinonefx.controllers.MainController;
 import io.datafx.controller.flow.Flow;
 import io.datafx.controller.flow.container.DefaultFlowContainer;
 import io.datafx.controller.flow.context.FXMLViewFlowContext;

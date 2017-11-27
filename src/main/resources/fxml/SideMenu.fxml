@@ -27,5 +27,9 @@
         <Label fx:id="pickers">Pickers</Label>
         <Label fx:id="svgLoader">SVG Loader</Label>
         <Label fx:id="masonry">Masonry Layout</Label>
+        <Label fx:id="calendarfx">CalendarFX</Label>
+        <Label fx:id="gmapsfx">GMapsFX</Label>
+        <Label fx:id="tilesfx">TilesFX</Label>
+        <Label fx:id="video">Video</Label>
     </JFXListView>
 </StackPane>
