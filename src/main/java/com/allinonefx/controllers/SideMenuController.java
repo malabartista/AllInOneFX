@@ -1,5 +1,6 @@
 package com.allinonefx.controllers;
 
+import com.allinonefx.gui.uicomponents.AnchorFXController;
 import com.allinonefx.gui.uicomponents.ButtonController;
 import com.allinonefx.gui.uicomponents.CalendarFXController;
 import com.allinonefx.gui.uicomponents.CheckboxController;
@@ -95,6 +96,9 @@ public class SideMenuController {
     @ActionTrigger("masonry")
     private Label masonry;
     @FXML
+    @ActionTrigger("anchorfx")
+    private Label anchorfx;
+    @FXML
     @ActionTrigger("calendarfx")
     private Label calendarfx;
     @FXML
@@ -154,6 +158,7 @@ public class SideMenuController {
         bindNodeToController(pickers, PickersController.class, contentFlow, contentFlowHandler);
         bindNodeToController(masonry, MasonryPaneController.class, contentFlow, contentFlowHandler);
         bindNodeToController(scrollpane, ScrollPaneController.class, contentFlow, contentFlowHandler);
+        bindNodeToController(anchorfx, AnchorFXController.class, contentFlow, contentFlowHandler);
         bindNodeToController(calendarfx, CalendarFXController.class, contentFlow, contentFlowHandler);
         bindNodeToController(gmapsfx, GMapsFXController.class, contentFlow, contentFlowHandler);
         bindNodeToController(tilesfx, TilesFXController.class, contentFlow, contentFlowHandler);
