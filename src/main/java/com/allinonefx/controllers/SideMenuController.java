@@ -18,6 +18,7 @@ import com.allinonefx.gui.uicomponents.RadioButtonController;
 import com.allinonefx.gui.uicomponents.SVGLoaderController;
 import com.allinonefx.gui.uicomponents.ScrollPaneController;
 import com.allinonefx.gui.uicomponents.SliderController;
+import com.allinonefx.gui.uicomponents.SmartCSVController;
 import com.allinonefx.gui.uicomponents.SpinnerController;
 import com.allinonefx.gui.uicomponents.TextFieldController;
 import com.allinonefx.gui.uicomponents.TilesFXController;
@@ -33,10 +34,13 @@ import io.datafx.controller.flow.context.FXMLViewFlowContext;
 import io.datafx.controller.flow.context.ViewFlowContext;
 import io.datafx.controller.util.VetoException;
 import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 import javax.annotation.PostConstruct;
 
 @ViewController(value = "/fxml/SideMenu.fxml", title = "Material Design Example")
@@ -105,6 +109,9 @@ public class SideMenuController {
     @ActionTrigger("gmapsfx")
     private Label gmapsfx;
     @FXML
+    @ActionTrigger("smartcsvfx")
+    private Label smartcsvfx;
+    @FXML
     @ActionTrigger("tilesfx")
     private Label tilesfx;
     @FXML
@@ -161,11 +168,25 @@ public class SideMenuController {
         bindNodeToController(anchorfx, AnchorFXController.class, contentFlow, contentFlowHandler);
         bindNodeToController(calendarfx, CalendarFXController.class, contentFlow, contentFlowHandler);
         bindNodeToController(gmapsfx, GMapsFXController.class, contentFlow, contentFlowHandler);
+        bindNodeToController(smartcsvfx, SmartCSVController.class, contentFlow, contentFlowHandler);
         bindNodeToController(tilesfx, TilesFXController.class, contentFlow, contentFlowHandler);
         bindNodeToController(video, MediaViewController.class, contentFlow, contentFlowHandler);
+        Platform.runLater(new Runnable() {
+            public void run() {
+                try {
+                    new DashBoard().start(new Stage());
+                } catch (Exception ex) {
+                    Logger.getLogger(SideMenuController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
     }
 
     private void bindNodeToController(Node node, Class<?> controllerClass, Flow flow, FlowHandler flowHandler) {
+        flow.withGlobalLink(node.getId(), controllerClass);
+    }
+
+    private void bindNodeToApplication(Node node, Class<?> controllerClass, Flow flow, FlowHandler flowHandler) {
         flow.withGlobalLink(node.getId(), controllerClass);
     }
 

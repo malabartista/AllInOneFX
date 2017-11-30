@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXProgressBar?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXSpinner?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXToggleButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="713.0" prefWidth="1219.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Label layoutX="19.0" layoutY="17.0" prefHeight="30.0" prefWidth="392.0" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: #7387A8;" text="Basic controls from jfoenix library" />
+      <Separator layoutX="3.0" layoutY="55.0" prefHeight="4.0" prefWidth="1213.0" />
+      <Label layoutX="35.0" layoutY="97.0" prefHeight="30.0" prefWidth="128.0" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #7387A8;" text="Flat buttons" />
+      <HBox layoutX="57.0" layoutY="137.0" spacing="10.0">
+         <children>
+            <JFXButton prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #00C0EF;" textFill="WHITE">
+               <font>
+                  <Font name="Roboto Medium" size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #00A65A;" textFill="WHITE">
+               <font>
+                  <Font name="Roboto Medium" size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #F39C12;" textFill="WHITE">
+               <font>
+                  <Font name="Roboto Medium" size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #DD4B39;" textFill="WHITE">
+               <font>
+                  <Font name="Roboto Medium" size="14.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </HBox>
+      <Label layoutX="35.0" layoutY="177.0" prefHeight="30.0" prefWidth="128.0" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #7387A8;" text="Flat buttons" />
+      <HBox layoutX="57.0" layoutY="217.0" spacing="10.0">
+         <children>
+            <JFXButton buttonType="RAISED" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #00C0EF;" textFill="WHITE">
+               <font>
+                  <Font name="Roboto Medium" size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton buttonType="RAISED" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #00A65A;" textFill="WHITE">
+               <font>
+                  <Font name="Roboto Medium" size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton buttonType="RAISED" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #F39C12;" textFill="WHITE">
+               <font>
+                  <Font name="Roboto Medium" size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton buttonType="RAISED" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #DD4B39;" textFill="WHITE">
+               <font>
+                  <Font name="Roboto Medium" size="14.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </HBox>
+      <Label layoutX="35.0" layoutY="272.0" prefHeight="30.0" prefWidth="300.0" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #7387A8;" text="Textfields and password fields" />
+      <JFXTextField labelFloat="true" layoutX="74.0" layoutY="326.0" maxWidth="370.0" minWidth="370.0" prefHeight="31.0" prefWidth="370.0" promptText="This is textfield" />
+      <JFXPasswordField labelFloat="true" layoutX="69.0" layoutY="374.0" maxWidth="370.0" minWidth="357.0" prefHeight="31.0" prefWidth="370.0" promptText="This is password field" />
+      <JFXTextArea labelFloat="true" layoutX="74.0" layoutY="418.0" maxWidth="370.0" minWidth="370.0" prefHeight="101.0" prefWidth="370.0" promptText="This is text area" />
+      <Pane layoutX="74.0" layoutY="536.0" prefHeight="131.0" prefWidth="370.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;">
+         <children>
+            <Label layoutX="35.0" layoutY="36.0" prefHeight="30.0" prefWidth="300.0" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #7387A8;" text="This is a card" />
+         </children>
+      </Pane>
+      <JFXTabPane layoutX="491.0" layoutY="108.0" prefHeight="561.0" prefWidth="696.0">
+         <tabs>
+            <Tab text="Others">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="696.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;">
+                     <children>
+                        <GridPane layoutX="87.0" layoutY="51.0" prefHeight="415.0" prefWidth="518.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="85.0" minHeight="10.0" prefHeight="59.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="87.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="110.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="111.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="98.0" minHeight="10.0" prefHeight="29.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="90.0" minHeight="0.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label prefHeight="27.0" prefWidth="230.0" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #7387A8;" text="Pick a date" />
+                              <Label prefHeight="27.0" prefWidth="230.0" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #7387A8;" text="Select gender" GridPane.rowIndex="2" />
+                              <JFXDatePicker GridPane.columnIndex="1" />
+                              <JFXRadioButton text="Male" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <JFXRadioButton text="Female" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <Label prefHeight="27.0" prefWidth="230.0" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #7387A8;" text="Check Boxes" GridPane.rowIndex="4" />
+                              <JFXCheckBox text="Daily" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <JFXCheckBox text="Weekly" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                              <JFXCheckBox text="Monthly" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                              <JFXToggleButton text="Yes" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <JFXToggleButton text="Turn On" GridPane.rowIndex="1" />
+                           </children>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Untitled Tab">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <JFXProgressBar layoutX="57.0" layoutY="51.0" />
+                        <JFXSpinner layoutX="305.0" layoutY="247.0" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+         </tabs>
+      </JFXTabPane>
+      
+    </children>
+    
+</AnchorPane>

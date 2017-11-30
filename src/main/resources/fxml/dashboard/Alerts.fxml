@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="AnchorPane" prefHeight="713.0" prefWidth="1219.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111">
+    <children>
+        <Label layoutX="19.0" layoutY="17.0" prefHeight="30.0" prefWidth="292.0" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: #7387A8;" text="Alerts and Notifications" />
+      <Separator layoutX="3.0" layoutY="55.0" prefHeight="4.0" prefWidth="1213.0" />
+      <AnchorPane layoutX="21.0" layoutY="72.0" prefHeight="93.0" prefWidth="1179.0" style="-fx-background-color: #00C0EF; -fx-border-radius: 4; -fx-background-radius: 4; -fx-border-color: #009ABF; -fx-border-width: 0 0 0 4;">
+         <children>
+            <Label layoutX="39.0" layoutY="7.0" prefHeight="30.0" prefWidth="292.0" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: white;" text="Reminder !" />
+            <Label layoutX="39.0" layoutY="44.0" prefHeight="30.0" prefWidth="1119.0" style="-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: white;" text="This is one biiig notification that spans the full width of its parent container.Subscribe to my channel for  more of these amazing material design interfaces." />
+         </children>
+      </AnchorPane>
+      <VBox layoutX="63.0" layoutY="196.0" prefHeight="476.0" prefWidth="465.0" spacing="47.0">
+         <children>
+            <AnchorPane prefHeight="72.0" prefWidth="465.0" style="-fx-background-color: #00C0EF; -fx-border-radius: 4; -fx-background-radius: 4; -fx-border-color: #009ABF; -fx-border-width: 0 0 0 4;">
+               <children>
+                  <Label layoutX="14.0" layoutY="14.0" prefHeight="30.0" prefWidth="137.0" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: white;" text="Reminder !" />
+                  <Label layoutX="14.0" layoutY="37.0" prefHeight="30.0" prefWidth="361.0" style="-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: white;" text="This is danger reminder" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="72.0" prefWidth="465.0" style="-fx-background-color: #DD4B39; -fx-border-radius: 4; -fx-background-radius: 4; -fx-border-color: #B03C2D; -fx-border-width: 0 0 0 4;">
+               <children>
+                  <Label layoutX="14.0" layoutY="14.0" prefHeight="30.0" prefWidth="137.0" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: white;" text="Reminder !" />
+                  <Label layoutX="14.0" layoutY="37.0" prefHeight="30.0" prefWidth="361.0" style="-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: white;" text="This is danger reminder" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="72.0" prefWidth="465.0" style="-fx-background-color: #F39C12; -fx-border-radius: 4; -fx-background-radius: 4; -fx-border-color: #C27C0E; -fx-border-width: 0 0 0 4;">
+               <children>
+                  <Label layoutX="14.0" layoutY="14.0" prefHeight="30.0" prefWidth="137.0" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: white;" text="Reminder !" />
+                  <Label layoutX="14.0" layoutY="37.0" prefHeight="30.0" prefWidth="361.0" style="-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: white;" text="This is warning reminder" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="72.0" prefWidth="465.0" style="-fx-background-color: #00A65A; -fx-border-radius: 4; -fx-background-radius: 4; -fx-border-color: #008448; -fx-border-width: 0 0 0 4;">
+               <children>
+                  <Label layoutX="14.0" layoutY="14.0" prefHeight="30.0" prefWidth="137.0" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: white;" text="Reminder !" />
+                  <Label layoutX="14.0" layoutY="37.0" prefHeight="30.0" prefWidth="361.0" style="-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: white;" text="This is success reminder" />
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+      <VBox layoutX="681.0" layoutY="196.0" prefHeight="453.0" prefWidth="465.0" spacing="48.0">
+         <children>
+            <AnchorPane prefHeight="72.0" prefWidth="465.0" style="-fx-background-color: #00C0EF; -fx-border-radius: 4; -fx-background-radius: 4; -fx-border-color: #009ABF; -fx-border-width: 0 0 0 4;">
+               <children>
+                  <Label layoutX="14.0" layoutY="10.0" prefHeight="30.0" prefWidth="137.0" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: white;" text="Alert" />
+                  <Label layoutX="14.0" layoutY="32.0" prefHeight="30.0" prefWidth="438.0" style="-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: white;" text="Info alert preview. This alert is dismissable" />
+                  <FontAwesomeIconView fill="#009abf" glyphName="CLOSE" layoutX="440.0" layoutY="30.0" size="16.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="72.0" prefWidth="465.0" style="-fx-background-color: #DD4B39; -fx-border-radius: 4; -fx-background-radius: 4; -fx-border-color: #B03C2D; -fx-border-width: 0 0 0 4;">
+               <children>
+                  <Label layoutX="14.0" layoutY="10.0" prefHeight="30.0" prefWidth="137.0" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: white;" text="Alert" />
+                  <Label layoutX="14.0" layoutY="32.0" prefHeight="30.0" prefWidth="438.0" style="-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: white;" text="Danger alert preview. This alert is dismissable" />
+                  <FontAwesomeIconView fill="#b03c2d" glyphName="CLOSE" layoutX="440.0" layoutY="30.0" size="16.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="72.0" prefWidth="465.0" style="-fx-background-color: #F39C12; -fx-border-radius: 4; -fx-background-radius: 4; -fx-border-color: #C27C0E; -fx-border-width: 0 0 0 4;">
+               <children>
+                  <Label layoutX="14.0" layoutY="10.0" prefHeight="30.0" prefWidth="137.0" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: white;" text="Alert" />
+                  <Label layoutX="14.0" layoutY="32.0" prefHeight="30.0" prefWidth="438.0" style="-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: white;" text="Success alert preview. This alert is dismissable" />
+                  <FontAwesomeIconView fill="#c27c0e" glyphName="CLOSE" layoutX="440.0" layoutY="30.0" size="16.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="72.0" prefWidth="465.0" style="-fx-background-color: #00A65A; -fx-border-radius: 4; -fx-background-radius: 4; -fx-border-color: #008448; -fx-border-width: 0 0 0 4;">
+               <children>
+                  <Label layoutX="14.0" layoutY="10.0" prefHeight="30.0" prefWidth="137.0" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: white;" text="Alert" />
+                  <Label layoutX="14.0" layoutY="32.0" prefHeight="30.0" prefWidth="438.0" style="-fx-font-size: 14; -fx-font-weight: bold; -fx-text-fill: white;" text="Warning alert preview. This alert is dismissable" />
+                  <FontAwesomeIconView fill="#008448" glyphName="CLOSE" layoutX="440.0" layoutY="30.0" size="16.0" />
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+    </children>
+    
+</AnchorPane>

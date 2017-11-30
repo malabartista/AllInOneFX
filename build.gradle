@@ -19,8 +19,8 @@ repositories {
     mavenCentral()
     maven { url 'http://sevntu-checkstyle.github.com/sevntu.checkstyle/maven2' }
     flatDir {
-       dirs 'libs'
-   }
+        dirs 'libs'
+    }
     // You may define additional repositories, or even remove "mavenCentral()".
     // Read more about repositories here:
     //   http://www.gradle.org/docs/current/userguide/dependency_management.html#sec:repositories
@@ -32,16 +32,32 @@ dependencies {
     //   http://www.gradle.org/docs/current/userguide/dependency_management.html#sec:how_to_declare_your_dependencies
     testCompile group: 'junit', name: 'junit', version: '4.10'
     
-    compile group: 'com.jfoenix', name: 'jfoenix', version: '1.10.0'
-    compile group: 'com.lynden', name: 'GMapsFX', version: '2.12.0'
-    compile group: 'eu.hansolo', name: 'tilesfx', version: '1.5.2'
-    //compile group: 'de.jensd', name: 'fontawesomefx', version: '8.9'
-    compile group: 'org.controlsfx', name: 'controlsfx', version: '8.40.14'
-    compile 'de.jensd:fontawesomefx-fontawesome:4.7.0-5'
+    // maven
     compile 'io.datafx:datafx:8.0.1'
     compile 'io.datafx:flow:8.0.1'
+    compile group: 'com.jfoenix', name: 'jfoenix', version: '1.10.0'
+    compile group: 'com.lynden', name: 'GMapsFX', version: '2.12.0'
+    compile group: 'de.jensd', name: 'fontawesomefx-commons', version: '8.15'
+    compile group: 'de.jensd', name: 'fontawesomefx-fontawesome', version: '4.7.0-5'
+    compile group: 'de.jensd', name: 'fontawesomefx-materialdesignfont', version: '1.7.22-4'
+    compile group: 'de.jensd', name: 'fontawesomefx-materialicons', version: '2.2.0-5'
+    //compile group: 'de.jensd', name: 'fontawesomefx', version: '8.9'
+    //compile 'de.jensd:fontawesomefx-fontawesome:4.7.0-5'
+    compile group: 'eu.hansolo', name: 'tilesfx', version: '1.5.2'
+    compile group: 'org.controlsfx', name: 'controlsfx', version: '8.40.14'
+    compile group: 'org.jacpfx', name: 'jacpfx.JavaFXSpring', version: '2.1'
+    compile group: 'org.springframework', name: 'spring-context', version: '4.3.7.RELEASE'
+    compile group: 'org.springframework', name: 'spring-core', version: '4.3.7.RELEASE'
+    compile group: 'org.springframework', name: 'spring-beans', version: '4.3.7.RELEASE'
+    compile group: 'org.springframework', name: 'spring-aop', version: '4.3.7.RELEASE'
+    compile group: 'org.springframework', name: 'spring-expression', version: '4.3.7.RELEASE'
+    compile group: 'net.sf.supercsv', name: 'super-csv', version: '2.4.0'
+    
+    // libs
     compile name: 'anchorfx-0.1'
     compile name: 'calendarfx-view-8.4.1'
     compile name: 'calendarfx-recurrence-8.4.1'
+    compile name: 'SmartCSV.fx-0.9'
+    
 
 }

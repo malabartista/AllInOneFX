@@ -5,12 +5,15 @@ import com.allinonefx.gui.uicomponents.ButtonController;
 import com.jfoenix.controls.*;
 import com.jfoenix.controls.JFXPopup.PopupHPosition;
 import com.jfoenix.controls.JFXPopup.PopupVPosition;
+import io.datafx.controller.ViewConfiguration;
 import io.datafx.controller.ViewController;
 import io.datafx.controller.flow.Flow;
 import io.datafx.controller.flow.FlowHandler;
 import static io.datafx.controller.flow.container.ContainerAnimations.SWIPE_LEFT;
 import io.datafx.controller.flow.context.FXMLViewFlowContext;
 import io.datafx.controller.flow.context.ViewFlowContext;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import javafx.animation.Transition;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -79,12 +82,18 @@ public final class MainController {
                 -12,
                 15));
 
+        //set language
+        ViewConfiguration viewConfig = new ViewConfiguration();
+        Locale locale = new Locale("es", "ES");
+        viewConfig.setResources(ResourceBundle.getBundle("smartcsv", locale));
+
         // create the inner flow and content
         context = new ViewFlowContext();
         // set the default controller
-        Flow innerFlow = new Flow(ButtonController.class);
+        Flow innerFlow = new Flow(ButtonController.class, viewConfig);
 
-        final FlowHandler flowHandler = innerFlow.createHandler(context);
+        //final FlowHandler flowHandler = innerFlow.createHandler(context);
+        FlowHandler flowHandler = new FlowHandler(innerFlow, context, viewConfig);
         context.register("ContentFlowHandler", flowHandler);
         context.register("ContentFlow", innerFlow);
         final Duration containerAnimationDuration = Duration.millis(320);

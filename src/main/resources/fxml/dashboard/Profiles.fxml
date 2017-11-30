@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="713.0" prefWidth="1219.0" stylesheets="@custom.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Label layoutX="19.0" layoutY="17.0" prefHeight="29.0" prefWidth="207.0" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: #7387A8;" text="Common Profiles" />
+      <Separator layoutX="3.0" layoutY="55.0" prefHeight="4.0" prefWidth="1213.0" />
+      <AnchorPane layoutX="26.0" layoutY="69.0" prefHeight="361.0" prefWidth="270.0" style="-fx-background-color: white; -fx-background-radius: 3; -fx-border-color: #3C8DBC; -fx-border-radius: 3; -fx-border-width: 4 0 0 0; -fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-padding: 4;">
+         <children>
+            <Circle fill="#d7dadd" layoutX="135.0" layoutY="61.0" radius="47.0" stroke="#a49f9f" strokeType="INSIDE" />
+            <Separator layoutX="13.0" layoutY="184.0" prefHeight="4.0" prefWidth="244.0" />
+            <Label layoutX="41.0" layoutY="127.0" prefHeight="17.0" prefWidth="189.0" style="-fx-text-fill: #162E3B; -fx-font-size: 16; -fx-font-weight: bold; -fx-alignment: center;" text="Dan Mlayah" />
+            <Label layoutX="41.0" layoutY="153.0" prefHeight="17.0" prefWidth="189.0" style="-fx-text-fill: #A6A6A6; -fx-font-size: 14; -fx-alignment: center;" text="Software Developer" />
+            <Separator layoutX="13.0" layoutY="222.0" prefHeight="4.0" prefWidth="244.0" />
+            <Separator layoutX="14.0" layoutY="261.0" prefHeight="4.0" prefWidth="244.0" />
+            <Separator layoutX="14.0" layoutY="300.0" prefHeight="4.0" prefWidth="244.0" />
+            <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="106.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/profile1.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="14.0" layoutY="196.0" prefHeight="17.0" prefWidth="94.0" text="Followers">
+               <font>
+                  <Font name="Roboto Medium" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="235.0" prefHeight="17.0" prefWidth="94.0" text="Following">
+               <font>
+                  <Font name="Roboto Medium" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="274.0" prefHeight="17.0" prefWidth="94.0" text="Friends">
+               <font>
+                  <Font name="Roboto Medium" size="14.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="196.0" layoutY="196.0" prefHeight="17.0" prefWidth="60.0" text="1,344" textFill="#918dbc">
+               <font>
+                  <Font name="Roboto Medium" size="14.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER_RIGHT" layoutX="196.0" layoutY="235.0" prefHeight="17.0" prefWidth="60.0" text="543" textFill="#918dbc">
+               <font>
+                  <Font name="Roboto Medium" size="14.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER_RIGHT" layoutX="196.0" layoutY="274.0" prefHeight="17.0" prefWidth="60.0" text="13,753" textFill="#918dbc">
+               <font>
+                  <Font name="Roboto Medium" size="14.0" />
+               </font>
+            </Label>
+            <JFXButton layoutX="47.0" layoutY="311.0" prefHeight="30.0" prefWidth="176.0" style="-fx-background-color: #3C8DBC;" text="Follow" textFill="WHITE">
+               <font>
+                  <Font name="Roboto Medium" size="15.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="309.0" layoutY="69.0" prefHeight="579.0" prefWidth="270.0" style="-fx-background-color: white; -fx-background-radius: 3; -fx-border-color: #3C8DBC; -fx-border-radius: 3; -fx-border-width: 4 0 0 0; -fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-padding: 4;">
+         <children>
+            <Separator layoutX="13.0" layoutY="45.0" prefHeight="4.0" prefWidth="244.0" />
+            <Label layoutX="14.0" layoutY="14.0" prefHeight="17.0" prefWidth="189.0" style="-fx-text-fill: #162E3B; -fx-font-size: 16; -fx-font-weight: bold; -fx-alignment: left;" text="About me" />
+            <Separator layoutX="13.0" layoutY="154.0" prefHeight="4.0" prefWidth="244.0" />
+            <Separator layoutX="14.0" layoutY="235.0" prefHeight="4.0" prefWidth="244.0" />
+            <Separator layoutX="14.0" layoutY="363.0" prefHeight="4.0" prefWidth="244.0" />
+            <Label layoutX="13.0" layoutY="60.0" prefHeight="17.0" prefWidth="94.0" text="Education">
+               <font>
+                  <Font name="Roboto Medium" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="13.0" layoutY="161.0" prefHeight="17.0" prefWidth="94.0" text="Location">
+               <font>
+                  <Font name="Roboto Medium" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="254.0" prefHeight="17.0" prefWidth="94.0" text="Skills">
+               <font>
+                  <Font name="Roboto Medium" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="87.0" prefHeight="54.0" prefWidth="244.0" text="Bs in Computer Science from Kenyatta University in Nairobi" wrapText="true">
+               <font>
+                  <Font name="Roboto Light" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="13.0" layoutY="188.0" prefHeight="31.0" prefWidth="244.0" text="Nairobi , Kenya" wrapText="true">
+               <font>
+                  <Font name="Roboto Light" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="380.0" prefHeight="17.0" prefWidth="94.0" text="Notes">
+               <font>
+                  <Font name="Roboto Medium" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="19.0" layoutY="281.0" prefHeight="17.0" prefWidth="94.0" style="-fx-alignment: center; -fx-background-color: #DD4B39; -fx-background-radius: 6; -fx-text-fill: white; -fx-font-size: 12; -fx-font-weight: bold;" text="Javascript">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Label>
+            <Label layoutX="120.0" layoutY="281.0" prefHeight="17.0" prefWidth="49.0" style="-fx-alignment: center; -fx-background-color: #00A65A; -fx-background-radius: 6; -fx-text-fill: white; -fx-font-size: 12; -fx-font-weight: bold;" text="javafx">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Label>
+            <Label layoutX="189.0" layoutY="281.0" prefHeight="17.0" prefWidth="70.0" style="-fx-alignment: center; -fx-background-color: #00C0EF; -fx-background-radius: 6; -fx-text-fill: white; -fx-font-size: 12; -fx-font-weight: bold;" text="UI Design">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Label>
+            <Label layoutX="50.0" layoutY="320.0" prefHeight="17.0" prefWidth="70.0" style="-fx-alignment: center; -fx-background-color: #F39C12; -fx-background-radius: 6; -fx-text-fill: white; -fx-font-size: 12; -fx-font-weight: bold;" text="Coding">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Label>
+            <Label layoutX="137.0" layoutY="320.0" prefHeight="20.0" prefWidth="87.0" style="-fx-alignment: center; -fx-background-color: #3C8DBC; -fx-background-radius: 6; -fx-text-fill: white; -fx-font-size: 12; -fx-font-weight: bold;" text="Networking">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Label>
+            <Label layoutX="23.0" layoutY="407.0" prefHeight="150.0" prefWidth="235.0" text="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi" wrapText="true">
+               <font>
+                  <Font name="Roboto Light" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="26.0" layoutY="427.0" prefHeight="268.0" prefWidth="271.0" style="-fx-background-color: white; -fx-background-radius: 3; -fx-border-radius: 3; -fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5);">
+         <children>
+            <Separator layoutX="13.0" layoutY="167.0" prefHeight="4.0" prefWidth="244.0" />
+            <Separator layoutX="13.0" layoutY="197.0" prefHeight="4.0" prefWidth="244.0" />
+            <Separator layoutX="14.0" layoutY="227.0" prefHeight="4.0" prefWidth="244.0" />
+            <Label layoutX="14.0" layoutY="171.0" prefHeight="17.0" prefWidth="94.0" text="Tasks">
+               <font>
+                  <Font name="Roboto Light" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="201.0" prefHeight="20.0" prefWidth="124.0" text="Completed">
+               <font>
+                  <Font name="Roboto Light" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="230.0" prefHeight="17.0" prefWidth="94.0" text="Followers">
+               <font>
+                  <Font name="Roboto Light" size="14.0" />
+               </font>
+            </Label>
+            <Pane layoutY="-3.0" prefHeight="131.0" prefWidth="271.0" style="-fx-background-color: #F39C12;">
+               <children>
+                  <Circle layoutX="55.0" layoutY="64.0" radius="41.0" stroke="#a49f9f" strokeType="INSIDE">
+                     <fill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop color="#8a765a" />
+                              <Stop color="WHITE" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </fill>
+                  </Circle>
+                  <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="25.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/profile1.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="120.0" layoutY="31.0" prefHeight="30.0" prefWidth="143.0" text="Dan Mlayah" textFill="#fffefe">
+                     <font>
+                        <Font name="Roboto Medium" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="120.0" layoutY="66.0" prefHeight="25.0" prefWidth="124.0" text="Lead developer" textFill="WHITE">
+                     <font>
+                        <Font name="Roboto Medium" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Label layoutX="12.0" layoutY="141.0" prefHeight="17.0" prefWidth="94.0" text="Projects">
+               <font>
+                  <Font name="Roboto Light" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="224.0" layoutY="139.0" prefHeight="20.0" prefWidth="29.0" style="-fx-alignment: center; -fx-background-color: #3C8DBC; -fx-background-radius: 6; -fx-text-fill: white; -fx-font-size: 12; -fx-font-weight: bold;" text="31">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Label>
+            <Label layoutX="216.0" layoutY="232.0" prefHeight="17.0" prefWidth="40.0" style="-fx-alignment: center; -fx-background-color: #DD4B39; -fx-background-radius: 6; -fx-text-fill: white; -fx-font-size: 12; -fx-font-weight: bold;" text="866">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Label>
+            <Label layoutX="230.0" layoutY="173.0" prefHeight="17.0" prefWidth="22.0" style="-fx-alignment: center; -fx-background-color: #00C0EF; -fx-background-radius: 6; -fx-text-fill: white; -fx-font-size: 12; -fx-font-weight: bold;" text="5">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Label>
+            <Label layoutX="230.0" layoutY="203.0" prefHeight="17.0" prefWidth="22.0" style="-fx-alignment: center; -fx-background-color: #00A65A; -fx-background-radius: 6; -fx-text-fill: white; -fx-font-size: 12; -fx-font-weight: bold;" text="12">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="597.0" layoutY="69.0" prefHeight="624.0" prefWidth="259.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;">
+         <children>
+            <ImageView fitHeight="232.0" fitWidth="244.0" layoutX="7.0" layoutY="5.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../icons/avatar.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="27.0" layoutY="223.0" prefHeight="29.0" prefWidth="207.0" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #6a7d9a;" text="Dan Mlayah" />
+            <VBox layoutX="42.0" layoutY="252.0" prefHeight="85.0" prefWidth="207.0">
+               <children>
+                  <Label prefHeight="29.0" prefWidth="207.0" style="-fx-font-size: 14; -fx-text-fill: #6a7d9a;" text="Nairobi,Kenya">
+                     <graphic>
+                        <MaterialDesignIconView fill="#7387a8" glyphName="MAP_MARKER" size="17.0" wrappingWidth="20.666631162166595" />
+                     </graphic>
+                  </Label>
+                  <Label prefHeight="29.0" prefWidth="207.0" style="-fx-font-size: 14; -fx-text-fill: #6a7d9a;" text="Software developer">
+                     <graphic>
+                        <MaterialDesignIconView fill="#7387a8" glyphName="SHOPPING" size="17.0" wrappingWidth="22.000005185604095" />
+                     </graphic>
+                  </Label>
+                  <Label prefHeight="29.0" prefWidth="207.0" style="-fx-font-size: 14; -fx-text-fill: #6a7d9a;" text="www.danmlayah.co.ke">
+                     <graphic>
+                        <MaterialDesignIconView fill="#7387a8" glyphName="LAUNCH" size="17.0" wrappingWidth="20.666692197322845" />
+                     </graphic>
+                  </Label>
+               </children>
+            </VBox>
+            <JFXButton layoutX="22.0" layoutY="339.0" prefHeight="31.0" prefWidth="149.0" style="-fx-background-color: #26B99A;" text="Edit Profile" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="EXTERNAL_LINK" size="16" wrappingWidth="25.0" />
+               </graphic>
+            </JFXButton>
+            <Label layoutX="26.0" layoutY="380.0" prefHeight="29.0" prefWidth="207.0" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #6a7d9a;" text="Skills" />
+            <VBox layoutX="37.0" layoutY="414.0" spacing="10.0">
+               <children>
+                  <VBox>
+                     <children>
+                        <Label prefHeight="20.0" prefWidth="149.0" style="-fx-font-size: 14; -fx-text-fill: #6a7d9a;" text="Web Design" />
+                        <ProgressBar minHeight="-Infinity" prefHeight="10.0" prefWidth="200.0" progress="0.81" styleClass="mprogress-bar" />
+                     </children>
+                  </VBox>
+                  <VBox>
+                     <children>
+                        <Label prefHeight="20.0" prefWidth="149.0" style="-fx-font-size: 14; -fx-text-fill: #6a7d9a;" text="Web Applications" />
+                        <ProgressBar minHeight="-Infinity" prefHeight="10.0" prefWidth="200.0" progress="0.58" styleClass="mprogress-bar" />
+                     </children>
+                  </VBox>
+                  <VBox>
+                     <children>
+                        <Label prefHeight="20.0" prefWidth="149.0" style="-fx-font-size: 14; -fx-text-fill: #6a7d9a;" text="Desktop Applications" />
+                        <ProgressBar minHeight="-Infinity" prefHeight="10.0" prefWidth="200.0" progress="0.68" styleClass="mprogress-bar" />
+                     </children>
+                  </VBox>
+                  <VBox>
+                     <children>
+                        <Label prefHeight="20.0" prefWidth="149.0" style="-fx-font-size: 14; -fx-text-fill: #6a7d9a;" text="Android dev" />
+                        <ProgressBar minHeight="-Infinity" prefHeight="10.0" prefWidth="200.0" progress="0.85" styleClass="mprogress-bar" />
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+    </children>
+</AnchorPane>

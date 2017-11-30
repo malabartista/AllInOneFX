@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.*?>
+<?import de.jensd.fx.glyphs.materialdesignicons.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<BorderPane fx:id="applicationPane" maxHeight="-Infinity" maxWidth="1000.0" minHeight="700.0" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.101" xmlns:fx="http://javafx.com/fxml/1">
+    <top>
+        <VBox id="background" prefWidth="100.0" BorderPane.alignment="CENTER">
+            <children>
+                <MenuBar useSystemMenuBar="true">
+                    <menus>
+                        <Menu mnemonicParsing="false" text="%menu.file">
+                            <items>
+                                <MenuItem mnemonicParsing="false" onAction="#openCsv">
+                                    <graphic>
+                                        <MaterialDesignIconView styleClass="open-icon" />
+                                    </graphic>
+                                </MenuItem>
+                                <MenuItem fx:id="saveMenuItem" disable="true" mnemonicParsing="false" onAction="#saveCsv" text="%menu.save">
+                                    <graphic>
+                                        <MaterialDesignIconView styleClass="save-icon" />
+                                    </graphic>
+                                </MenuItem>
+                                <MenuItem fx:id="saveAsMenuItem" disable="true" mnemonicParsing="false" onAction="#saveAsCsv" text="%menu.save.as">
+                                    <graphic>
+                                        <MaterialDesignIconView styleClass="save-icon" />
+                                    </graphic>
+                                </MenuItem>
+
+                                <SeparatorMenuItem mnemonicParsing="false" />
+                                <MenuItem fx:id="createConfigMenuItem" disable="true" mnemonicParsing="false" onAction="#createConfig" text="%menu.create.config">
+                                    <graphic>
+                                        <GlyphsStack>
+                                            <children>
+                                                <MaterialDesignIconView styleClass="config-icon" />
+                                                <MaterialDesignIconView style="-fx-opacity: 0.7;" styleClass="create-config-icon" />
+                                            </children>
+                                        </GlyphsStack>
+                                    </graphic>
+                                </MenuItem>
+                                <MenuItem fx:id="loadConfigMenuItem" disable="true" mnemonicParsing="false" onAction="#openConfig" text="%menu.open.config">
+                                    <graphic>
+                                        <GlyphsStack>
+                                            <children>
+                                                <MaterialDesignIconView styleClass="config-icon" />
+                                                <MaterialDesignIconView style="-fx-opacity: 0.7;" styleClass="load-config-icon" />
+                                            </children>
+                                        </GlyphsStack>
+                                    </graphic>
+                                </MenuItem>
+                                <MenuItem fx:id="saveConfigMenuItem" disable="true" mnemonicParsing="false" onAction="#saveConfig" text="%menu.save.config">
+                                    <graphic>
+                                        <GlyphsStack>
+                                            <children>
+                                                <MaterialDesignIconView styleClass="config-icon" />
+                                                <MaterialDesignIconView style="-fx-opacity: 0.7;" styleClass="save-config-icon" />
+                                            </children>
+                                        </GlyphsStack>
+                                    </graphic>
+                                </MenuItem>
+                                <MenuItem fx:id="saveAsConfigMenuItem" disable="true" mnemonicParsing="false" onAction="#saveAsConfig" text="%menu.save.as.config">
+                                    <graphic>
+                                        <GlyphsStack>
+                                            <children>
+                                                <MaterialDesignIconView styleClass="config-icon" />
+                                                <MaterialDesignIconView style="-fx-opacity: 0.7;" styleClass="save-config-icon" />
+                                            </children>
+                                        </GlyphsStack>
+                                    </graphic>
+                                </MenuItem>
+
+                                <SeparatorMenuItem mnemonicParsing="false" />
+                                <MenuItem mnemonicParsing="false" onAction="#preferences" text="%menu.preferences">
+                                    <graphic>
+                                        <MaterialDesignIconView styleClass="preferences-icon" />
+                                    </graphic>
+                                </MenuItem>
+                                <MenuItem fx:id="exportMenuItem" disable="true" mnemonicParsing="false" onAction="#export" text="%menu.export">
+                                    <graphic>
+                                        <MaterialDesignIconView styleClass="export-icon" />
+                                    </graphic>
+                                </MenuItem>
+                                <SeparatorMenuItem mnemonicParsing="false" />
+                                <MenuItem mnemonicParsing="false" onAction="#close" text="%menu.close">
+                                    <graphic>
+                                        <MaterialDesignIconView styleClass="exit-icon" />
+                                    </graphic>
+                                </MenuItem>
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="%menu.edit">
+                            <items>
+                                <MenuItem fx:id="deleteRowMenuItem" disable="true" mnemonicParsing="false" onAction="#deleteRow" text="%menu.delete.row">
+                                    <graphic>
+                                        <MaterialDesignIconView styleClass="delete-icon" />
+                                    </graphic>
+                                </MenuItem>
+                                <MenuItem fx:id="addRowMenuItem" disable="true" mnemonicParsing="false" onAction="#addRow" text="%menu.add.row">
+                                    <graphic>
+                                        <MaterialDesignIconView styleClass="add-icon" />
+                                    </graphic>
+                                </MenuItem>
+                                <SeparatorMenuItem mnemonicParsing="false" />
+                                <MenuItem fx:id="gotoLineMenuItem" disable="true" mnemonicParsing="false" onAction="#gotoLine" text="%menu.goto.line">
+                                    <graphic>
+                                        <MaterialDesignIconView styleClass="goto-icon" />
+                                    </graphic>
+                                </MenuItem>
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="%menu.help">
+                            <items>
+                                <MenuItem mnemonicParsing="false" onAction="#about" text="%menu.about">
+                                    <graphic>
+                                        <MaterialDesignIconView styleClass="info-icon" />
+                                    </graphic>
+                                </MenuItem>
+                            </items>
+                        </Menu>
+                    </menus>
+                </MenuBar>
+            <ToolBar prefHeight="40.0" prefWidth="200.0">
+                <HBox styleClass="segmented-button-bar">
+                <Button mnemonicParsing="false" onAction="#openCsv" styleClass="first">
+                    <tooltip>
+                        <Tooltip text="%menu.open.csv" />
+                    </tooltip>
+                    <graphic>
+                        <MaterialDesignIconView styleClass="open-icon" />
+                    </graphic>
+                </Button>
+                  <Button fx:id="saveButton" disable="true" mnemonicParsing="false" onAction="#saveCsv">
+                      <tooltip>
+                          <Tooltip text="%menu.save" />
+                      </tooltip>
+                      <graphic>
+                          <MaterialDesignIconView styleClass="save-icon" />
+                      </graphic>
+                  </Button>
+                    <Button fx:id="saveAsButton" disable="true" mnemonicParsing="false" onAction="#saveAsCsv" styleClass="last" text="...">
+                        <tooltip>
+                            <Tooltip text="%menu.save.as" />
+                        </tooltip>
+                        <graphic>
+                            <MaterialDesignIconView styleClass="save-icon" />
+                        </graphic>
+                    </Button>
+              </HBox>
+                <Region styleClass="spacer" />
+                <HBox styleClass="segmented-button-bar">
+                    <Button fx:id="createConfigButton" disable="true" mnemonicParsing="false" onAction="#createConfig">
+                        <tooltip>
+                            <Tooltip text="%menu.create.config" />
+                        </tooltip>
+                        <graphic>
+                            <GlyphsStack>
+                                <children>
+                                    <MaterialDesignIconView styleClass="config-icon" />
+                                    <MaterialDesignIconView style="-fx-opacity: 0.7;" styleClass="create-config-icon" />
+                                </children>
+                            </GlyphsStack>
+                        </graphic>
+                    </Button>
+                    <Button fx:id="loadConfigButton" disable="true" mnemonicParsing="false" onAction="#openConfig">
+                        <tooltip>
+                            <Tooltip text="%menu.open.config" />
+                        </tooltip>
+                        <graphic>
+                            <GlyphsStack>
+                                <children>
+                                    <MaterialDesignIconView styleClass="config-icon" />
+                                    <MaterialDesignIconView style="-fx-opacity: 0.7;" styleClass="load-config-icon" />
+                                </children>
+                            </GlyphsStack>
+                        </graphic>
+                    </Button>
+                    <Button fx:id="saveConfigButton" disable="true" mnemonicParsing="false" onAction="#saveConfig">
+                        <tooltip>
+                            <Tooltip text="%menu.save.config" />
+                        </tooltip>
+                        <graphic>
+                            <GlyphsStack>
+                                <children>
+                                    <MaterialDesignIconView styleClass="config-icon" />
+                                    <MaterialDesignIconView style="-fx-opacity: 0.7;" styleClass="save-config-icon" />
+                                </children>
+                            </GlyphsStack>
+                        </graphic>
+                    </Button>
+                    <Button fx:id="saveAsConfigButton" disable="true" mnemonicParsing="false" onAction="#saveAsConfig" styleClass="last" text="...">
+                        <tooltip>
+                            <Tooltip text="%menu.save.as.config" />
+                        </tooltip>
+                        <graphic>
+                            <GlyphsStack>
+                                <children>
+                                    <MaterialDesignIconView styleClass="config-icon" />
+                                    <MaterialDesignIconView style="-fx-opacity: 0.7;" styleClass="save-config-icon" />
+                                </children>
+                            </GlyphsStack>
+
+                        </graphic>
+                    </Button>
+                </HBox>
+                <Region styleClass="spacer" />
+                <HBox styleClass="segmented-button-bar">
+                    <Button fx:id="deleteRowButton" disable="true" mnemonicParsing="false" onAction="#deleteRow" styleClass="first">
+                        <tooltip>
+                            <Tooltip text="%menu.delete.row" />
+                        </tooltip>
+                        <graphic>
+                            <MaterialDesignIconView styleClass="delete-icon" />
+                        </graphic>
+                    </Button>
+                    <Button fx:id="addRowButton" disable="true" mnemonicParsing="false" onAction="#addRow" styleClass="last">
+                        <tooltip>
+                            <Tooltip text="%menu.add.row" />
+                        </tooltip>
+                        <graphic>
+                            <MaterialDesignIconView styleClass="add-icon" />
+                        </graphic>
+                    </Button>
+                </HBox>
+                <Region styleClass="spacer" />
+                <HBox styleClass="segmented-button-bar">
+                    <Button mnemonicParsing="false" onAction="#preferences" styleClass="first">
+                        <tooltip>
+                            <Tooltip text="%menu.preferences" />
+                        </tooltip>
+                        <graphic>
+                            <MaterialDesignIconView styleClass="preferences-icon" />
+                        </graphic>
+                    </Button>
+                    <Button fx:id="exportButton" disable="true" mnemonicParsing="false" onAction="#export">
+                        <tooltip>
+                            <Tooltip text="%menu.export" />
+                        </tooltip>
+                        <graphic>
+                            <MaterialDesignIconView styleClass="export-icon" />
+                        </graphic>
+                    </Button>
+                    <Button mnemonicParsing="false" onAction="#close" styleClass="last">
+                        <tooltip>
+                            <Tooltip text="%menu.close" />
+                        </tooltip>
+                        <graphic>
+                            <MaterialDesignIconView styleClass="exit-icon" />
+                        </graphic>
+                    </Button>
+                </HBox>
+            </ToolBar>
+            </children>
+        </VBox>
+    </top>
+    <center>
+        <AnchorPane fx:id="tableWrapper">
+            <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" BorderPane.alignment="CENTER">
+                <columns>
+                </columns>
+            </TableView>
+        </AnchorPane>
+    </center>
+    <left>
+    </left>
+    <stylesheets>
+        <URL value="@/ninja/javafx/smartcsv/fx/smartcsv.css" />
+    </stylesheets>
+    <bottom>
+        <GridPane hgap="8.0" BorderPane.alignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints hgrow="NEVER" minWidth="10.0" />
+                <ColumnConstraints hgrow="NEVER" minWidth="10.0" />
+                <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="NEVER" minWidth="10.0" />
+                <ColumnConstraints hgrow="NEVER" minWidth="10.0" />
+                <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" />
+                <ColumnConstraints hgrow="NEVER" minWidth="10.0" />
+                <ColumnConstraints fillWidth="false" halignment="RIGHT" hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <MaterialDesignIconView styleClass="file-document-icon" GridPane.hgrow="NEVER" />
+                <Label text="%stateline.csv" GridPane.columnIndex="1" GridPane.hgrow="NEVER" />
+                <Label fx:id="csvName" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" />
+                <MaterialDesignIconView styleClass="config-check-icon" GridPane.columnIndex="3" GridPane.hgrow="NEVER" />
+                <Label text="%stateline.configuration" GridPane.columnIndex="4" GridPane.hgrow="NEVER" />
+                <Label fx:id="configurationName" GridPane.columnIndex="5" GridPane.hgrow="ALWAYS" />
+                <Label text="%lineNumber" GridPane.columnIndex="7" />
+                <Label fx:id="currentLineNumber" text="" GridPane.columnIndex="8" />
+            </children>
+            <BorderPane.margin>
+                <Insets bottom="4.0" left="8.0" right="8.0" top="4.0" />
+            </BorderPane.margin>
+        </GridPane>
+    </bottom>
+</BorderPane>
