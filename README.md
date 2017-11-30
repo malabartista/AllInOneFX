@@ -1,4 +1,4 @@
-# AllInOneFX
+# AllInOneFX [![Github All Releases](https://img.shields.io/github/downloads/atom/atom/total.svg)]()
 
 JavaFX Application with [a curated list of awesome JavaFX libraries, frameworks](https://github.com/guigarage/AwesomeJavaFX)
 
