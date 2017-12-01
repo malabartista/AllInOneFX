@@ -100,6 +100,9 @@ public class SideMenuController {
     @ActionTrigger("masonry")
     private Label masonry;
     @FXML
+    @ActionTrigger("register")
+    private Label register;
+    @FXML
     @ActionTrigger("anchorfx")
     private Label anchorfx;
     @FXML
@@ -165,6 +168,7 @@ public class SideMenuController {
         bindNodeToController(pickers, PickersController.class, contentFlow, contentFlowHandler);
         bindNodeToController(masonry, MasonryPaneController.class, contentFlow, contentFlowHandler);
         bindNodeToController(scrollpane, ScrollPaneController.class, contentFlow, contentFlowHandler);
+        bindNodeToController(register, RegisterController.class, contentFlow, contentFlowHandler);
         bindNodeToController(anchorfx, AnchorFXController.class, contentFlow, contentFlowHandler);
         bindNodeToController(calendarfx, CalendarFXController.class, contentFlow, contentFlowHandler);
         bindNodeToController(gmapsfx, GMapsFXController.class, contentFlow, contentFlowHandler);
