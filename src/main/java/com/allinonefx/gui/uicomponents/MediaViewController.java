@@ -3,8 +3,10 @@ package com.allinonefx.gui.uicomponents;
 import io.datafx.controller.ViewController;
 import java.io.File;
 import java.net.MalformedURLException;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.DoubleProperty;
 import javafx.fxml.FXML;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
@@ -14,7 +16,9 @@ import javax.annotation.PostConstruct;
 public class MediaViewController {
 
     @FXML
-    private StackPane root;
+    private AnchorPane root;
+    @FXML
+    private MediaView mediaView;
 
     /**
      * init fxml when loaded.
@@ -25,7 +29,17 @@ public class MediaViewController {
         final Media m = new Media(f.toURI().toURL().toString());
         final MediaPlayer mp = new MediaPlayer(m);
         final MediaView mv = new MediaView(mp);
-        mv.setPreserveRatio(true);
+        
+        mediaView.setMediaPlayer(mp);
+        
+        DoubleProperty mvw = mv.fitWidthProperty();
+        DoubleProperty mvh = mv.fitHeightProperty();
+        mvw.bind(Bindings.selectDouble(mediaView.sceneProperty(), "width"));
+        mvh.bind(Bindings.selectDouble(mediaView.sceneProperty(), "height"));
+        
+        
+
+//        mv.setPreserveRatio(true);
         mp.play();
         mp.setOnEndOfMedia(new Runnable() {
             public void run() {
