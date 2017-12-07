@@ -1,6 +1,6 @@
 package com.allinonefx;
 
-import com.allinonefx.controllers.MainController;
+import com.allinonefx.controllers.LoginController;
 import com.jfoenix.controls.JFXDecorator;
 import com.jfoenix.svg.SVGGlyphLoader;
 import io.datafx.controller.ViewConfiguration;
@@ -55,7 +55,8 @@ public class MainDemo extends Application {
         Locale locale = new Locale("es", "ES");
         viewConfig.setResources(ResourceBundle.getBundle("application", locale));
 
-        Flow flow = new Flow(MainController.class, viewConfig);
+        //set controller
+        Flow flow = new Flow(LoginController.class, viewConfig);
         DefaultFlowContainer container = new DefaultFlowContainer();
         flowContext = new ViewFlowContext();
         flowContext.register("Stage", stage);
@@ -70,8 +71,10 @@ public class MainDemo extends Application {
         double height = 600;
         try {
             Rectangle2D bounds = Screen.getScreens().get(0).getBounds();
-            width = bounds.getWidth() / 2.5;
-            height = bounds.getHeight() / 1.35;
+//            width = bounds.getWidth() / 2.5;
+//            height = bounds.getHeight() / 1.35;
+            width = bounds.getWidth() / 1.5;
+            height = bounds.getHeight() / 1.15;
         } catch (Exception e) {
         }
 
