@@ -1,28 +1,12 @@
 package com.allinonefx.controllers;
 
 import com.allinonefx.gui.uicomponents.AnchorFXController;
-import com.allinonefx.gui.uicomponents.ButtonController;
 import com.allinonefx.gui.uicomponents.CalendarFXController;
-import com.allinonefx.gui.uicomponents.CheckboxController;
-import com.allinonefx.gui.uicomponents.ComboBoxController;
-import com.allinonefx.gui.uicomponents.DialogController;
 import com.allinonefx.gui.uicomponents.GMapsFXController;
-import com.allinonefx.gui.uicomponents.IconsController;
-import com.allinonefx.gui.uicomponents.ListViewController;
-import com.allinonefx.gui.uicomponents.MasonryPaneController;
+import com.allinonefx.gui.uicomponents.JFoenixController;
 import com.allinonefx.gui.uicomponents.MediaViewController;
-import com.allinonefx.gui.uicomponents.PickersController;
-import com.allinonefx.gui.uicomponents.PopupController;
-import com.allinonefx.gui.uicomponents.ProgressBarController;
-import com.allinonefx.gui.uicomponents.RadioButtonController;
-import com.allinonefx.gui.uicomponents.SVGLoaderController;
-import com.allinonefx.gui.uicomponents.ScrollPaneController;
-import com.allinonefx.gui.uicomponents.SliderController;
 import com.allinonefx.gui.uicomponents.SmartCSVController;
-import com.allinonefx.gui.uicomponents.SpinnerController;
-import com.allinonefx.gui.uicomponents.TextFieldController;
 import com.allinonefx.gui.uicomponents.TilesFXController;
-import com.allinonefx.gui.uicomponents.ToggleButtonController;
 import com.allinonefx.gui.uicomponents.TreeTableViewController;
 import com.jfoenix.controls.JFXListView;
 import io.datafx.controller.ViewController;
@@ -34,13 +18,10 @@ import io.datafx.controller.flow.context.FXMLViewFlowContext;
 import io.datafx.controller.flow.context.ViewFlowContext;
 import io.datafx.controller.util.VetoException;
 import java.util.Objects;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.stage.Stage;
 import javax.annotation.PostConstruct;
 
 @ViewController(value = "/fxml/SideMenu.fxml", title = "Material Design Example")
@@ -48,6 +29,7 @@ public class SideMenuController {
 
     @FXMLViewFlowContext
     private ViewFlowContext context;
+    /*
     @FXML
     @ActionTrigger("buttons")
     private Label button;
@@ -66,9 +48,6 @@ public class SideMenuController {
     @FXML
     @ActionTrigger("listview")
     private Label listview;
-    @FXML
-    @ActionTrigger("treetableview")
-    private Label treetableview;
     @FXML
     @ActionTrigger("progressbar")
     private Label progressbar;
@@ -99,6 +78,13 @@ public class SideMenuController {
     @FXML
     @ActionTrigger("masonry")
     private Label masonry;
+    */
+    @FXML
+    @ActionTrigger("jfoenix")
+    private Label jfoenix;
+    @FXML
+    @ActionTrigger("treetableview")
+    private Label treetableview;
     @FXML
     @ActionTrigger("register")
     private Label register;
@@ -150,13 +136,13 @@ public class SideMenuController {
             }).start();
         });
         Flow contentFlow = (Flow) context.getRegisteredObject("ContentFlow");
+        /*
         bindNodeToController(button, ButtonController.class, contentFlow, contentFlowHandler);
         bindNodeToController(checkbox, CheckboxController.class, contentFlow, contentFlowHandler);
         bindNodeToController(combobox, ComboBoxController.class, contentFlow, contentFlowHandler);
         bindNodeToController(dialogs, DialogController.class, contentFlow, contentFlowHandler);
         bindNodeToController(icons, IconsController.class, contentFlow, contentFlowHandler);
         bindNodeToController(listview, ListViewController.class, contentFlow, contentFlowHandler);
-        bindNodeToController(treetableview, TreeTableViewController.class, contentFlow, contentFlowHandler);
         bindNodeToController(progressbar, ProgressBarController.class, contentFlow, contentFlowHandler);
         bindNodeToController(radiobutton, RadioButtonController.class, contentFlow, contentFlowHandler);
         bindNodeToController(slider, SliderController.class, contentFlow, contentFlowHandler);
@@ -168,6 +154,9 @@ public class SideMenuController {
         bindNodeToController(pickers, PickersController.class, contentFlow, contentFlowHandler);
         bindNodeToController(masonry, MasonryPaneController.class, contentFlow, contentFlowHandler);
         bindNodeToController(scrollpane, ScrollPaneController.class, contentFlow, contentFlowHandler);
+        */
+        bindNodeToController(jfoenix, JFoenixController.class, contentFlow, contentFlowHandler);
+        bindNodeToController(treetableview, TreeTableViewController.class, contentFlow, contentFlowHandler);
         bindNodeToController(register, RegisterController.class, contentFlow, contentFlowHandler);
         bindNodeToController(anchorfx, AnchorFXController.class, contentFlow, contentFlowHandler);
         bindNodeToController(calendarfx, CalendarFXController.class, contentFlow, contentFlowHandler);
@@ -175,15 +164,15 @@ public class SideMenuController {
         bindNodeToController(smartcsvfx, SmartCSVController.class, contentFlow, contentFlowHandler);
         bindNodeToController(tilesfx, TilesFXController.class, contentFlow, contentFlowHandler);
         bindNodeToController(video, MediaViewController.class, contentFlow, contentFlowHandler);
-        Platform.runLater(new Runnable() {
-            public void run() {
-                try {
-                    new DashBoard().start(new Stage());
-                } catch (Exception ex) {
-                    Logger.getLogger(SideMenuController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
+//        Platform.runLater(new Runnable() {
+//            public void run() {
+//                try {
+//                    new DashBoard().start(new Stage());
+//                } catch (Exception ex) {
+//                    Logger.getLogger(SideMenuController.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//            }
+//        });
     }
 
     private void bindNodeToController(Node node, Class<?> controllerClass, Flow flow, FlowHandler flowHandler) {

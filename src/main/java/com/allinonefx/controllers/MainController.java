@@ -1,7 +1,7 @@
 package com.allinonefx.controllers;
 
 import com.allinonefx.datafx.ExtendedAnimatedFlowContainer;
-import com.allinonefx.gui.uicomponents.ButtonController;
+import com.allinonefx.gui.uicomponents.JFoenixController;
 import com.jfoenix.controls.*;
 import com.jfoenix.controls.JFXPopup.PopupHPosition;
 import com.jfoenix.controls.JFXPopup.PopupVPosition;
@@ -90,7 +90,7 @@ public final class MainController {
         // create the inner flow and content
         context = new ViewFlowContext();
         // set the default controller
-        Flow innerFlow = new Flow(ButtonController.class, viewConfig);
+        Flow innerFlow = new Flow(JFoenixController.class, viewConfig);
 
         //final FlowHandler flowHandler = innerFlow.createHandler(context);
         FlowHandler flowHandler = new FlowHandler(innerFlow, context, viewConfig);

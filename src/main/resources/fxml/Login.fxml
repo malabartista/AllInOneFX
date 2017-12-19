@@ -17,7 +17,7 @@
    <children>
       <VBox prefHeight="200.0" prefWidth="100.0">
          <children>
-            <Pane prefHeight="224.0" prefWidth="850.0" style="-fx-background-color: rgb(140, 16, 34);" />
+            <Pane prefHeight="224.0" prefWidth="850.0" style="-fx-background-color: rgb(82, 100, 174);" />
             <Pane layoutX="10.0" layoutY="10.0" prefHeight="377.0" prefWidth="850.0" />
          </children>
       </VBox>

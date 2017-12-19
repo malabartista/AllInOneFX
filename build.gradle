@@ -31,7 +31,8 @@ dependencies {
     // You can read more about how to add dependency here:
     //   http://www.gradle.org/docs/current/userguide/dependency_management.html#sec:how_to_declare_your_dependencies
     testCompile group: 'junit', name: 'junit', version: '4.10'
-    
+//    runtime group: 'org.codehaus.griffon', name: 'griffon-guice', version: '2.13.0'
+
     // maven
     compile 'io.datafx:datafx:8.0.1'
     compile 'io.datafx:flow:8.0.1'
@@ -45,8 +46,14 @@ dependencies {
     //compile 'de.jensd:fontawesomefx-fontawesome:4.7.0-5'
     compile group: 'eu.hansolo', name: 'tilesfx', version: '1.5.2'
     compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.18'
+//    compile group: 'org.codehaus.griffon', name: 'griffon-core', version: '2.13.0'
+//    compile group: 'org.codehaus.griffon', name: 'griffon-core-compile', version: '2.13.0'
+//    compile group: 'org.codehaus.griffon', name: 'griffon-javafx', version: '2.12.0'
+//    compile group: 'org.codehaus.griffon', name: 'griffon-rt', version: '1.4.0'    
+//    compile group: 'org.codehaus.griffon.plugins', name: 'griffon-mybatis-core', version: '2.1.0'
     compile group: 'org.controlsfx', name: 'controlsfx', version: '8.40.14'
-    compile group: 'org.jacpfx', name: 'jacpfx.JavaFXSpring', version: '2.1'
+//    compile group: 'org.jacpfx', name: 'jacpfx.JavaFXSpring', version: '2.1'
+//    compile group: 'org.mybatis', name: 'mybatis', version: '3.4.5'
     compile group: 'org.springframework', name: 'spring-context', version: '4.3.7.RELEASE'
     compile group: 'org.springframework', name: 'spring-core', version: '4.3.7.RELEASE'
     compile group: 'org.springframework', name: 'spring-beans', version: '4.3.7.RELEASE'
@@ -54,7 +61,7 @@ dependencies {
     compile group: 'org.springframework', name: 'spring-expression', version: '4.3.7.RELEASE'
     compile group: 'net.sf.supercsv', name: 'super-csv', version: '2.4.0'
     
-    // libs
+    // libs directory
     compile name: 'anchorfx-0.1'
     compile name: 'calendarfx-view-8.4.1'
     compile name: 'calendarfx-recurrence-8.4.1'

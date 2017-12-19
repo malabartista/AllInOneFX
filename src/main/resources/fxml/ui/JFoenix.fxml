@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import com.jfoenix.transitions.hamburger.HamburgerSlideCloseTransition?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane fx:id="root" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+    <GridPane prefHeight="1514.0" prefWidth="1285.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+        <children>
+            <VBox spacing="10">
+                <Label styleClass="title-label">Flat Buttons</Label>
+                <HBox spacing="20" style="-fx-padding: 0 0 0 50;">
+                    <JFXButton buttonType="FLAT" prefHeight="40" prefWidth="100" style="-fx-font-size:14px;" text="BUTTON" />
+                    <JFXButton buttonType="FLAT" prefHeight="40" prefWidth="100" style="-fx-text-fill:#5264AE;-fx-font-size:14px;" text="COLORED" />
+                    <JFXButton buttonType="FLAT" disable="true" prefHeight="40" prefWidth="100" style="-fx-font-size:14px;" text="DISABLED" />
+                </HBox>
+      
+                <Label styleClass="title-label">Raised Buttons</Label>
+                <HBox spacing="40" style="-fx-padding: 0 0 0 50;">
+                    <JFXButton buttonType="RAISED" prefHeight="40" prefWidth="100" style="-fx-font-size:14px;-fx-background-color:WHITE;" text="BUTTON" />
+                    <JFXButton buttonType="RAISED" prefHeight="40" prefWidth="100" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="COLORED" />
+                    <JFXButton buttonType="RAISED" disable="true" prefHeight="40" prefWidth="100" style="-fx-background-color:WHITE;-fx-font-size:14px;" text="DISABLED" />
+                    <JFXButton buttonType="RAISED" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" styleClass="rounded-button" text="+" />
+                </HBox>
+      
+                <Label styleClass="title-label">Styling Options</Label>
+                <HBox spacing="20" style="-fx-padding: 0 0 0 50;">
+                    <JFXButton buttonType="RAISED" prefHeight="40" prefWidth="100" styleClass="custom-jfx-button-raised" text="CUSTOM RIPPLER" />
+                </HBox>
+                <Label styleClass="title-label" text="Check &amp; Combo Box" />
+                <HBox spacing="20" style="-fx-padding: 0 0 0 50;">
+                    <children>
+                        <JFXCheckBox text="CheckBox" />
+                        <JFXComboBox fx:id="jfxComboBox">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <Label>
+                                        Item 1
+                                        <graphic>
+                                            <StackPane styleClass="custom-jfx-list-view-icon-container">
+                                                <FontAwesomeIconView glyphName="STAR" size="1.5em" styleClass="custom-jfx-list-view-icon" />
+                                            </StackPane>
+                                        </graphic>
+                                    </Label>
+                                    <Label>
+                                        Item 2
+                                        <graphic>
+                                            <StackPane styleClass="custom-jfx-list-view-icon-container">
+                                                <FontAwesomeIconView glyphName="HEART" size="1.5em" styleClass="custom-jfx-list-view-icon" />
+                                            </StackPane>
+                                        </graphic>
+                                    </Label>
+                                    <Label>
+                                        Item 3
+                                        <graphic>
+                                            <StackPane styleClass="custom-jfx-list-view-icon-container">
+                                                <FontAwesomeIconView glyphName="WARNING" size="1.5em" styleClass="custom-jfx-list-view-icon" />
+                                            </StackPane>
+                                        </graphic>
+                                    </Label>
+                                    <Label>
+                                        Item 4
+                                        <graphic>
+                                            <StackPane styleClass="custom-jfx-list-view-icon-container">
+                                                <FontAwesomeIconView glyphName="UNIVERSITY" size="1.5em" styleClass="custom-jfx-list-view-icon" />
+                                            </StackPane>
+                                        </graphic>
+                                    </Label>
+                                    <Label>
+                                        Item 5
+                                        <graphic>
+                                            <StackPane styleClass="custom-jfx-list-view-icon-container">
+                                                <FontAwesomeIconView glyphName="TABLET" size="1.5em" styleClass="custom-jfx-list-view-icon" />
+                                            </StackPane>
+                                        </graphic>
+                                    </Label>
+                                </FXCollections>
+                            </items>
+                        </JFXComboBox>
+                    </children>
+                </HBox>
+                <Label styleClass="title-label" text="Dialogs" />
+                <HBox spacing="20" style="-fx-padding: 0 0 0 50;">
+                    <children>
+                        <JFXButton fx:id="dialogButton" prefHeight="30" prefWidth="220" styleClass="dialog-trigger" text="Dialog" />
+                    </children>
+                </HBox>
+                <Label styleClass="title-label">Pickers</Label>
+                <HBox spacing="20" style="-fx-padding: 0 0 0 50;">
+                    <children>
+                        <JFXColorPicker minWidth="100"/>
+                        <JFXDatePicker/>
+                        <JFXTimePicker/>
+                    </children>
+                </HBox>
+            </VBox>
+            <VBox spacing="10" GridPane.columnIndex="1">
+                <Label styleClass="title-label">Font Awesome Icons</Label>
+                <HBox spacing="20" style="-fx-padding: 0 0 0 50;">
+                    <children>
+                        <JFXRippler position="BACK" styleClass="icons-rippler">
+                            <StackPane style="-fx-padding: 10;">
+                                <FontAwesomeIconView glyphName="STAR" size="2em"
+                                                     styleClass="icon"/>
+                            </StackPane>
+                        </JFXRippler>
+
+                        <JFXRippler position="BACK" styleClass="icons-rippler1">
+                            <StackPane style="-fx-padding: 10;">
+                                <FontAwesomeIconView glyphName="HEART" size="2em"
+                                                     styleClass="icon"/>
+                            </StackPane>
+                        </JFXRippler>
+                        <JFXHamburger fx:id="burger1" style="-fx-padding:20;">
+                            <HamburgerSlideCloseTransition/>
+                        </JFXHamburger>
+                        <JFXBadge fx:id="badge1" position="TOP_RIGHT" text="1"
+                                  styleClass="icons-badge">
+                            <StackPane style="-fx-padding: 10;">
+                                <FontAwesomeIconView glyphName="STAR" size="2em"
+                                                     styleClass="icon"/>
+                            </StackPane>
+                        </JFXBadge>
+                    </children>
+                </HBox>
+                <Label styleClass="title-label">ProgressBar</Label>
+                <HBox spacing="20" style="-fx-padding: 0 0 0 50;">
+                    <children>
+                        <JFXProgressBar fx:id="progress1" progress="100"></JFXProgressBar>
+                    </children>
+                </HBox>
+                <HBox spacing="20" style="-fx-padding: 0 0 0 50;">
+                    <children>
+                        <JFXProgressBar fx:id="progress2" styleClass="custom-jfx-progress-bar" progress="100"></JFXProgressBar>
+                    </children>
+                </HBox>
+                <Label styleClass="title-label">Radio Buttons</Label>
+                <HBox spacing="20" style="-fx-padding: 0 0 0 50;">
+                    <children>
+                        <JFXRadioButton fx:id="radio_1" selected="true" text="Radio 1" styleClass="custom-jfx-radio-button">
+                            <toggleGroup>
+                                <ToggleGroup fx:id="toggleGroup"/>
+                            </toggleGroup>
+                        </JFXRadioButton>
+                        <JFXRadioButton fx:id="radio_2" selected="false"
+                                        text="Radio 2" toggleGroup="$toggleGroup" styleClass="custom-jfx-radio-button"/>
+                        <JFXRadioButton fx:id="radio_3" selected="false"
+                                        text="Radio 3" toggleGroup="$toggleGroup" styleClass="custom-jfx-radio-button"/>
+                    </children>
+                </HBox>
+                <Label styleClass="title-label">Toggle Buttons</Label>
+                <HBox spacing="20" style="-fx-padding: 0 0 0 50;">
+                    <children>
+                        <JFXToggleButton styleClass="custom-jfx-toggle-button" text="Bluetooth"/>
+                        <JFXToggleButton text="Wifi"/>
+                    </children>
+                </HBox>
+                <Label styleClass="title-label">Spinner</Label>
+                <HBox spacing="20" style="-fx-padding: 0 0 0 50;">
+                    <children>
+                        <JFXSpinner styleClass="blue-spinner" startingAngle="0" radius="13"/>
+                        <JFXSpinner styleClass="red-spinner" startingAngle="0" radius="13"/>
+                        <JFXSpinner styleClass="yellow-spinner" startingAngle="0" radius="13"/>
+                        <JFXSpinner styleClass="green-spinner" startingAngle="0" radius="13"/>
+                    </children>
+                </HBox>
+                <Label styleClass="title-label">Slider</Label>
+                <HBox spacing="20" style="-fx-padding: 0 0 0 50;">
+                    <children>
+                        <JFXSlider prefWidth="400"/>
+                        <JFXSlider styleClass="jfx-slider-style" maxWidth="300"/>
+                        <JFXSlider prefWidth="400" disable="true"/>
+                    </children>
+                </HBox>
+                
+            </VBox>
+            <VBox spacing="10" GridPane.columnIndex="2">
+                <Label styleClass="title-label">List View</Label>
+                <HBox spacing="20" style="-fx-padding: 0 0 0 50;">
+                    <children>
+                        <JFXListView fx:id="list1" styleClass="custom-jfx-list-view"
+                                     layoutY="50">
+                            <Label>Item 1</Label>
+                            <JFXListView fx:id="subList" styleClass="sublist">
+                                <groupnode>
+                                    <Label styleClass="sub-label">Item 2</Label>
+                                </groupnode>
+                                <Label>Item 2.1</Label>
+                                <Label>Item 2.2</Label>
+                            </JFXListView>
+                            <Label>Item 3</Label>
+                            <Label>Item 4</Label>
+                            <Label>Item 5</Label>
+                            <JFXListView fx:id="subList1" styleClass="sublist">
+                                <groupnode>
+                                    <Label styleClass="sub-label">Item 6</Label>
+                                </groupnode>
+                                <Label>Item 6.1</Label>
+                                <Label>Item 6.2</Label>
+                            </JFXListView>
+                            <Label>Item 7</Label>
+                            <Label>Item 8</Label>
+                            <Label>Item 9</Label>
+                        </JFXListView>
+                    </children>
+                </HBox>
+            </VBox>
+        </children>
+    </GridPane>
+    
+    <JFXDialog fx:id="dialog">
+        <JFXDialogLayout>
+            <heading>
+                <Label>JFoenix Dialog</Label>
+            </heading>
+            <body>
+                <Label>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                    enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                    nisi ut aliquip ex ea commodo consequat.
+                </Label>
+            </body>
+            <actions>
+                <JFXButton fx:id="acceptButton" styleClass="dialog-accept">ACCEPT
+                </JFXButton>
+            </actions>
+        </JFXDialogLayout>
+    </JFXDialog>
+    <JFXSnackbar fx:id="snackbar" prefWidth="300"/>
+</StackPane>

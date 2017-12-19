@@ -980,3 +980,17 @@
 .jfx-scroll-pane .condensed-header {
     -fx-background-image: url("../bg4.jpg");
 }
+
+/*******************************************************************************
+ *                                                                             *
+ * Rounded Button		                                                       *
+ *                                                                             *
+ ******************************************************************************/
+
+.rounded-button {
+    -fx-background-radius: 5em;  
+    -fx-min-width: 60px;  
+    -fx-min-height: 60px;  
+    -fx-max-width: 60px;  
+    -fx-max-height: 60px;
+}
