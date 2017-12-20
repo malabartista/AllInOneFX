@@ -103,6 +103,7 @@ public class RegisterController {
      */
     @PostConstruct
     public void init() throws IOException {
+        MainController.lblTitle.setText("Register");
         handler = new DbHandler();
         updateProgress();
         setDepartmentsToCombo();

@@ -50,7 +50,7 @@
             </JFXTreeTableView>
         </children>
     </VBox>
-   <JFXButton StackPane.alignment="BOTTOM_RIGHT" styleClass="rounded-button" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:24px;" text="+" />
+   <JFXButton fx:id="addRegister" StackPane.alignment="BOTTOM_RIGHT" styleClass="rounded-button" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:24px;" text="+" />
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" />
    </padding>

@@ -1,11 +1,25 @@
 package com.allinonefx.gui.uicomponents;
 
+import com.allinonefx.controllers.MainController;
+import com.allinonefx.controllers.RegisterController;
 import com.jfoenix.controls.*;
 import com.jfoenix.controls.cells.editors.IntegerTextFieldEditorBuilder;
 import com.jfoenix.controls.cells.editors.TextFieldEditorBuilder;
 import com.jfoenix.controls.cells.editors.base.GenericEditableTreeTableCell;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import io.datafx.controller.ViewController;
+import io.datafx.controller.flow.Flow;
+import io.datafx.controller.flow.FlowException;
+import io.datafx.controller.flow.FlowHandler;
+import io.datafx.controller.flow.action.ActionTrigger;
+import io.datafx.controller.flow.context.FXMLViewFlowContext;
+import io.datafx.controller.flow.context.ViewFlowContext;
+import io.datafx.controller.util.VetoException;
+import java.security.SecureRandom;
+import java.util.Random;
+import java.util.function.Function;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -19,18 +33,21 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableColumn.CellEditEvent;
-
 import javax.annotation.PostConstruct;
-import java.security.SecureRandom;
-import java.util.Random;
-import java.util.function.Function;
 
 @ViewController(value = "/fxml/ui/TreeTableView.fxml", title = "Material Design Example")
 public class TreeTableViewController {
 
     private static final String PREFIX = "( ";
     private static final String POSTFIX = " )";
+    
+    @FXMLViewFlowContext
+    private ViewFlowContext context;
 
+    @FXML
+    @ActionTrigger("addRegister")
+    private JFXButton addRegister;
+    
     // readonly table view
     @FXML
     private JFXTreeTableView<Person> treeTableView;
@@ -74,8 +91,24 @@ public class TreeTableViewController {
      */
     @PostConstruct
     public void init() {
+        //title
+        MainController.lblTitle.setText("Tree Table View");
+        // setup tables
         setupReadOnlyTableView();
         setupEditableTableView();
+        // flow: add register
+        FlowHandler contentFlowHandler = (FlowHandler) context.getRegisteredObject("ContentFlowHandler");
+        Flow contentFlow = (Flow) context.getRegisteredObject("ContentFlow");
+        addRegister.setOnMouseClicked((e) -> {
+            try {
+                contentFlowHandler.handle("addRegister");
+            } catch (VetoException ex) {
+                Logger.getLogger(TreeTableViewController.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (FlowException ex) {
+                Logger.getLogger(TreeTableViewController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        contentFlow.withGlobalLink(addRegister.getId(), RegisterController.class);
     }
 
     private <T> void setupCellValueFactory(JFXTreeTableColumn<Person, T> column, Function<Person, ObservableValue<T>> mapper) {
