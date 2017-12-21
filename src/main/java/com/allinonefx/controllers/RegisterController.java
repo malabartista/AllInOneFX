@@ -6,12 +6,19 @@
 package com.allinonefx.controllers;
 
 import com.allinonefx.config.DbHandler;
+import com.allinonefx.gui.uicomponents.TreeTableViewController;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXSnackbar;
 import com.jfoenix.controls.JFXTextField;
 import io.datafx.controller.ViewController;
+import io.datafx.controller.flow.Flow;
+import io.datafx.controller.flow.FlowException;
+import io.datafx.controller.flow.FlowHandler;
+import io.datafx.controller.flow.context.FXMLViewFlowContext;
+import io.datafx.controller.flow.context.ViewFlowContext;
+import io.datafx.controller.util.VetoException;
 import java.io.IOException;
 import java.math.RoundingMode;
 import java.sql.Connection;
@@ -97,7 +104,10 @@ public class RegisterController {
     private JFXButton btnSave;
     @FXML
     private AnchorPane parentPane;
-
+    private FlowHandler contentFlowHandler;
+    private Flow contentFlow;
+    @FXMLViewFlowContext
+    private ViewFlowContext context;
     /**
      * init fxml when loaded.
      */
@@ -107,6 +117,10 @@ public class RegisterController {
         handler = new DbHandler();
         updateProgress();
         setDepartmentsToCombo();
+        // flow
+        contentFlowHandler = (FlowHandler) context.getRegisteredObject("ContentFlowHandler");
+        contentFlow = (Flow) context.getRegisteredObject("ContentFlow");
+        contentFlow.withGlobalLink(btnSave.getId(), TreeTableViewController.class);
     }
 
     private void updateProgress() {
@@ -383,6 +397,14 @@ public class RegisterController {
             JFXSnackbar fXSnackbar = new JFXSnackbar(parentPane);
             fXSnackbar.show("New student saved successfully", 3000);
 
+        }
+
+        try {
+            contentFlowHandler.handle("btnSave");
+        } catch (VetoException ex) {
+            Logger.getLogger(TreeTableViewController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (FlowException ex) {
+            Logger.getLogger(TreeTableViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }

@@ -14,27 +14,10 @@
     <VBox spacing="10">
         <children>
             <HBox alignment="CENTER">
-                <Label styleClass="title-label">Read Only Tree Table View</Label>
-                <Label fx:id="treeTableViewCount" minWidth="80" styleClass="title-label" />
-                <JFXButton fx:id="treeTableViewAdd" buttonType="FLAT" text="+" />
-                <JFXButton fx:id="treeTableViewRemove" buttonType="FLAT" text="-" />
-                <StackPane HBox.hgrow="ALWAYS">
-                    <StackPane maxWidth="200" StackPane.alignment="CENTER_RIGHT">
-                        <JFXTextField fx:id="searchField" promptText="Search..." />
-                    </StackPane>
-                </StackPane>
-            </HBox>
-            <JFXTreeTableView fx:id="treeTableView">
-                <columns>
-                    <JFXTreeTableColumn fx:id="firstNameColumn" minWidth="133" prefWidth="133" resizable="false" text="First Name" />
-                    <JFXTreeTableColumn fx:id="lastNameColumn" minWidth="133" resizable="false" text="Last Name" />
-                    <JFXTreeTableColumn fx:id="ageColumn" minWidth="133" resizable="false" text="Age" />
-                </columns>
-            </JFXTreeTableView>
-
-            <HBox alignment="CENTER">
                 <Label styleClass="title-label">Editable Tree Table View</Label>
                 <Label fx:id="editableTreeTableViewCount" styleClass="title-label" />
+                <JFXButton fx:id="treeTableViewAdd" buttonType="FLAT" text="+" />
+                <JFXButton fx:id="treeTableViewRemove" buttonType="FLAT" text="-" />
                 <StackPane HBox.hgrow="ALWAYS">
                     <StackPane maxWidth="200" StackPane.alignment="CENTER_RIGHT">
                         <JFXTextField fx:id="searchField2" promptText="Search..." />
