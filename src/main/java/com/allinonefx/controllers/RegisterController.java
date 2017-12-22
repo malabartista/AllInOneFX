@@ -6,9 +6,11 @@
 package com.allinonefx.controllers;
 
 import com.allinonefx.config.DbHandler;
+import static com.allinonefx.gui.uicomponents.DialogController.CONTENT_PANE;
 import com.allinonefx.gui.uicomponents.TreeTableViewController;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXSnackbar;
 import com.jfoenix.controls.JFXTextField;
@@ -39,6 +41,7 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javax.annotation.PostConstruct;
 
 @ViewController(value = "/fxml/Register.fxml", title = "Register")
@@ -103,11 +106,18 @@ public class RegisterController {
     @FXML
     private JFXButton btnSave;
     @FXML
+    private JFXDialog dialog;
+    @FXML
+    private JFXButton dialogButton;
+    @FXML
+    private JFXButton acceptButton;
+    @FXML
     private AnchorPane parentPane;
     private FlowHandler contentFlowHandler;
     private Flow contentFlow;
     @FXMLViewFlowContext
     private ViewFlowContext context;
+
     /**
      * init fxml when loaded.
      */
@@ -121,6 +131,8 @@ public class RegisterController {
         contentFlowHandler = (FlowHandler) context.getRegisteredObject("ContentFlowHandler");
         contentFlow = (Flow) context.getRegisteredObject("ContentFlow");
         contentFlow.withGlobalLink(btnSave.getId(), TreeTableViewController.class);
+        // Dialog
+        parentPane.getChildren().remove(dialog);
     }
 
     private void updateProgress() {
@@ -135,10 +147,8 @@ public class RegisterController {
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 if (!newValue.isEmpty()) {
                     progress1 = 0.1;
-
                 } else {
                     progress1 = 0.0;
-
                 }
 
                 double sum = (progress10 + progress1 + progress2 + progress3 + progress4 + progress5 + progress6 + progress7 + progress8 + progress9);
@@ -152,10 +162,8 @@ public class RegisterController {
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 if (!newValue.isEmpty()) {
                     progress2 = 0.1;
-
                 } else {
                     progress2 = 0.0;
-
                 }
                 double sum = (progress10 + progress1 + progress2 + progress3 + progress4 + progress5 + progress6 + progress7 + progress8 + progress9);
                 progressPersonal.setProgress(sum);
@@ -341,7 +349,6 @@ public class RegisterController {
         } catch (SQLException ex) {
             Logger.getLogger(RegisterController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     private void validatetext() {
@@ -373,6 +380,8 @@ public class RegisterController {
     private void saveStudent(ActionEvent event) throws SQLException {
         // CHECK IF ALL FILEDS ARE FILLED UP
         if (progressPersonal.getProgress() < 0.9) {
+            dialog.setTransitionType(JFXDialog.DialogTransition.CENTER);
+            dialog.show((StackPane) context.getRegisteredObject(CONTENT_PANE));
             return;
         }
         String insert = "INSERT INTO students(fname,lname,location,gender,email,phone,"
