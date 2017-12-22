@@ -37,7 +37,7 @@
                     <JFXButton buttonType="RAISED" prefHeight="40" prefWidth="100" style="-fx-font-size:14px;-fx-background-color:WHITE;" text="BUTTON" />
                     <JFXButton buttonType="RAISED" prefHeight="40" prefWidth="100" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="COLORED" />
                     <JFXButton buttonType="RAISED" disable="true" prefHeight="40" prefWidth="100" style="-fx-background-color:WHITE;-fx-font-size:14px;" text="DISABLED" />
-                    <JFXButton buttonType="RAISED" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" styleClass="rounded-button" text="+" />
+                    <JFXButton buttonType="RAISED" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:28px;" styleClass="rounded-button" text="+" />
                 </HBox>
       
                 <Label styleClass="title-label">Styling Options</Label>
