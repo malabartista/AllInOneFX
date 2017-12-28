@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
+<?import com.jfoenix.controls.JFXBadge?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXColorPicker?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXDialog?>
+<?import com.jfoenix.controls.JFXDialogLayout?>
+<?import com.jfoenix.controls.JFXHamburger?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXProgressBar?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXRippler?>
+<?import com.jfoenix.controls.JFXSlider?>
+<?import com.jfoenix.controls.JFXSnackbar?>
+<?import com.jfoenix.controls.JFXSpinner?>
+<?import com.jfoenix.controls.JFXTimePicker?>
+<?import com.jfoenix.controls.JFXToggleButton?>
 <?import com.jfoenix.transitions.hamburger.HamburgerSlideCloseTransition?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.collections.FXCollections?>
@@ -33,7 +50,7 @@
                 </HBox>
       
                 <Label styleClass="title-label">Raised Buttons</Label>
-                <HBox spacing="40" style="-fx-padding: 0 0 0 50;">
+                <HBox spacing="20" style="-fx-padding: 0 0 0 50;">
                     <JFXButton buttonType="RAISED" prefHeight="40" prefWidth="100" style="-fx-font-size:14px;-fx-background-color:WHITE;" text="BUTTON" />
                     <JFXButton buttonType="RAISED" prefHeight="40" prefWidth="100" style="-fx-text-fill:WHITE;-fx-background-color:#5264AE;-fx-font-size:14px;" text="COLORED" />
                     <JFXButton buttonType="RAISED" disable="true" prefHeight="40" prefWidth="100" style="-fx-background-color:WHITE;-fx-font-size:14px;" text="DISABLED" />
@@ -105,9 +122,9 @@
                 <Label styleClass="title-label">Pickers</Label>
                 <HBox spacing="20" style="-fx-padding: 0 0 0 50;">
                     <children>
-                        <JFXColorPicker minWidth="100"/>
-                        <JFXDatePicker/>
-                        <JFXTimePicker/>
+                        <JFXColorPicker minWidth="100" />
+                        <JFXDatePicker />
+                        <JFXTimePicker />
                     </children>
                 </HBox>
             </VBox>
@@ -117,76 +134,70 @@
                     <children>
                         <JFXRippler position="BACK" styleClass="icons-rippler">
                             <StackPane style="-fx-padding: 10;">
-                                <FontAwesomeIconView glyphName="STAR" size="2em"
-                                                     styleClass="icon"/>
+                                <FontAwesomeIconView glyphName="STAR" size="2em" styleClass="icon" />
                             </StackPane>
                         </JFXRippler>
 
                         <JFXRippler position="BACK" styleClass="icons-rippler1">
                             <StackPane style="-fx-padding: 10;">
-                                <FontAwesomeIconView glyphName="HEART" size="2em"
-                                                     styleClass="icon"/>
+                                <FontAwesomeIconView glyphName="HEART" size="2em" styleClass="icon" />
                             </StackPane>
                         </JFXRippler>
                         <JFXHamburger fx:id="burger1" style="-fx-padding:20;">
-                            <HamburgerSlideCloseTransition/>
+                            <HamburgerSlideCloseTransition />
                         </JFXHamburger>
-                        <JFXBadge fx:id="badge1" position="TOP_RIGHT" text="1"
-                                  styleClass="icons-badge">
+                        <JFXBadge fx:id="badge1" position="TOP_RIGHT" styleClass="icons-badge" text="1">
                             <StackPane style="-fx-padding: 10;">
-                                <FontAwesomeIconView glyphName="STAR" size="2em"
-                                                     styleClass="icon"/>
+                                <FontAwesomeIconView glyphName="STAR" size="2em" styleClass="icon" />
                             </StackPane>
                         </JFXBadge>
                     </children>
                 </HBox>
-                <Label styleClass="title-label">ProgressBar</Label>
+                <Label styleClass="title-label" text="ProgressBar">ProgressBar</Label>
                 <HBox spacing="20" style="-fx-padding: 0 0 0 50;">
                     <children>
-                        <JFXProgressBar fx:id="progress1" progress="100"></JFXProgressBar>
+                        <JFXProgressBar fx:id="progress1" progress="100" />
                     </children>
                 </HBox>
                 <HBox spacing="20" style="-fx-padding: 0 0 0 50;">
                     <children>
-                        <JFXProgressBar fx:id="progress2" styleClass="custom-jfx-progress-bar" progress="100"></JFXProgressBar>
+                        <JFXProgressBar fx:id="progress2" progress="100" styleClass="custom-jfx-progress-bar" />
                     </children>
                 </HBox>
                 <Label styleClass="title-label">Radio Buttons</Label>
                 <HBox spacing="20" style="-fx-padding: 0 0 0 50;">
                     <children>
-                        <JFXRadioButton fx:id="radio_1" selected="true" text="Radio 1" styleClass="custom-jfx-radio-button">
+                        <JFXRadioButton fx:id="radio_1" selected="true" styleClass="custom-jfx-radio-button" text="Radio 1">
                             <toggleGroup>
-                                <ToggleGroup fx:id="toggleGroup"/>
+                                <ToggleGroup fx:id="toggleGroup" />
                             </toggleGroup>
                         </JFXRadioButton>
-                        <JFXRadioButton fx:id="radio_2" selected="false"
-                                        text="Radio 2" toggleGroup="$toggleGroup" styleClass="custom-jfx-radio-button"/>
-                        <JFXRadioButton fx:id="radio_3" selected="false"
-                                        text="Radio 3" toggleGroup="$toggleGroup" styleClass="custom-jfx-radio-button"/>
+                        <JFXRadioButton fx:id="radio_2" selected="false" styleClass="custom-jfx-radio-button" text="Radio 2" toggleGroup="$toggleGroup" />
+                        <JFXRadioButton fx:id="radio_3" selected="false" styleClass="custom-jfx-radio-button" text="Radio 3" toggleGroup="$toggleGroup" />
                     </children>
                 </HBox>
                 <Label styleClass="title-label">Toggle Buttons</Label>
                 <HBox spacing="20" style="-fx-padding: 0 0 0 50;">
                     <children>
-                        <JFXToggleButton styleClass="custom-jfx-toggle-button" text="Bluetooth"/>
-                        <JFXToggleButton text="Wifi"/>
+                        <JFXToggleButton styleClass="custom-jfx-toggle-button" text="Bluetooth" />
+                        <JFXToggleButton text="Wifi" />
                     </children>
                 </HBox>
                 <Label styleClass="title-label">Spinner</Label>
                 <HBox spacing="20" style="-fx-padding: 0 0 0 50;">
                     <children>
-                        <JFXSpinner styleClass="blue-spinner" startingAngle="0" radius="13"/>
-                        <JFXSpinner styleClass="red-spinner" startingAngle="0" radius="13"/>
-                        <JFXSpinner styleClass="yellow-spinner" startingAngle="0" radius="13"/>
-                        <JFXSpinner styleClass="green-spinner" startingAngle="0" radius="13"/>
+                        <JFXSpinner radius="13" startingAngle="0" styleClass="blue-spinner" />
+                        <JFXSpinner radius="13" startingAngle="0" styleClass="red-spinner" />
+                        <JFXSpinner radius="13" startingAngle="0" styleClass="yellow-spinner" />
+                        <JFXSpinner radius="13" startingAngle="0" styleClass="green-spinner" />
                     </children>
                 </HBox>
                 <Label styleClass="title-label">Slider</Label>
                 <HBox spacing="20" style="-fx-padding: 0 0 0 50;">
                     <children>
-                        <JFXSlider prefWidth="400"/>
-                        <JFXSlider styleClass="jfx-slider-style" maxWidth="300"/>
-                        <JFXSlider prefWidth="400" disable="true"/>
+                        <JFXSlider prefWidth="400" />
+                        <JFXSlider maxWidth="300" styleClass="jfx-slider-style" />
+                        <JFXSlider disable="true" prefWidth="400" />
                     </children>
                 </HBox>
                 
@@ -195,8 +206,7 @@
                 <Label styleClass="title-label">List View</Label>
                 <HBox spacing="20" style="-fx-padding: 0 0 0 50;">
                     <children>
-                        <JFXListView fx:id="list1" styleClass="custom-jfx-list-view"
-                                     layoutY="50">
+                        <JFXListView fx:id="list1" layoutY="50" styleClass="custom-jfx-list-view">
                             <Label>Item 1</Label>
                             <JFXListView fx:id="subList" styleClass="sublist">
                                 <groupnode>
@@ -243,5 +253,5 @@
             </actions>
         </JFXDialogLayout>
     </JFXDialog>
-    <JFXSnackbar fx:id="snackbar" prefWidth="300"/>
+    <JFXSnackbar fx:id="snackbar" prefWidth="300" />
 </StackPane>

@@ -10,7 +10,9 @@ import static com.allinonefx.gui.uicomponents.DialogController.CONTENT_PANE;
 import com.allinonefx.gui.uicomponents.TreeTableViewController;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXProgressBar;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXSnackbar;
 import com.jfoenix.controls.JFXTextField;
@@ -37,10 +39,8 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javax.annotation.PostConstruct;
 
@@ -68,7 +68,7 @@ public class RegisterController {
     private static double progress9 = 0;
     private static double progress10 = 0;
     @FXML
-    private ProgressBar progressPersonal;
+    private JFXProgressBar progressPersonal;
     @FXML
     private JFXRadioButton rdMale;
     @FXML
@@ -88,6 +88,8 @@ public class RegisterController {
     private JFXRadioButton rdCertificate;
     @FXML
     private TextField currentTimeTextfield;
+    @FXML
+    private JFXDatePicker currentTimeDatePicker;
     @FXML
     private JFXTextField txtAmount;
     @FXML
@@ -112,7 +114,7 @@ public class RegisterController {
     @FXML
     private JFXButton acceptButton;
     @FXML
-    private AnchorPane parentPane;
+    private StackPane root;
     private FlowHandler contentFlowHandler;
     private Flow contentFlow;
     @FXMLViewFlowContext
@@ -132,7 +134,9 @@ public class RegisterController {
         contentFlow = (Flow) context.getRegisteredObject("ContentFlow");
         contentFlow.withGlobalLink(btnSave.getId(), TreeTableViewController.class);
         // Dialog
-        parentPane.getChildren().remove(dialog);
+        root.getChildren().remove(dialog);
+        acceptButton.setOnMouseClicked((e) -> dialog.close());
+        progressPersonal.prefWidthProperty().bind(root.widthProperty());
     }
 
     private void updateProgress() {
@@ -403,7 +407,7 @@ public class RegisterController {
         int success = pst.executeUpdate();
         if (success == 1) {
             clearFields();
-            JFXSnackbar fXSnackbar = new JFXSnackbar(parentPane);
+            JFXSnackbar fXSnackbar = new JFXSnackbar(root);
             fXSnackbar.show("New student saved successfully", 3000);
 
         }
