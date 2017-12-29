@@ -32,9 +32,13 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableColumn.CellEditEvent;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javax.annotation.PostConstruct;
 
 @ViewController(value = "/fxml/ui/TreeTableView.fxml", title = "Material Design Example")
@@ -54,11 +58,25 @@ public class TreeTableViewController {
     @FXML
     private JFXTreeTableView<Person> editableTreeTableView;
     @FXML
+    private JFXTreeTableColumn<Person, ImageView> userPhotoEditableColumn;
+    @FXML
     private JFXTreeTableColumn<Person, String> firstNameEditableColumn;
     @FXML
     private JFXTreeTableColumn<Person, String> lastNameEditableColumn;
     @FXML
-    private JFXTreeTableColumn<Person, Integer> ageEditableColumn;
+    private JFXTreeTableColumn<Person, Integer> mobileEditableColumn;
+    @FXML
+    private JFXTreeTableColumn<Person, String> emailEditableColumn;
+    @FXML
+    private JFXTreeTableColumn<Person, String> locationEditableColumn;
+    @FXML
+    private JFXTreeTableColumn<Person, String> genderEditableColumn;
+    @FXML
+    private JFXTreeTableColumn<Person, String> levelEditableColumn;
+    @FXML
+    private JFXTreeTableColumn<Person, String> departmentEditableColumn;
+    @FXML
+    private JFXTreeTableColumn<Person, String> courseEditableColumn;
     @FXML
     private Label treeTableViewCount;
     @FXML
@@ -105,9 +123,21 @@ public class TreeTableViewController {
     }
 
     private void setupEditableTableView() {
+//        userPhotoEditableColumn.setCellValueFactory(Person::userPhotoProperty);
+//        userPhotoEditableColumn.setCellFactory(value);
+//        userPhotoEditableColumn.setCellValueFactory(new PropertyValueFactory<>("image"));
+//        userPhotoEditableColumn.setCellFactory(param -> new ImageTableCell<>());
+//        setupCellValueFactory(userPhotoEditableColumn, Person::userPhotoProperty);
         setupCellValueFactory(firstNameEditableColumn, Person::firstNameProperty);
         setupCellValueFactory(lastNameEditableColumn, Person::lastNameProperty);
-        setupCellValueFactory(ageEditableColumn, p -> p.age.asObject());
+//        setupCellValueFactory(mobileEditableColumn, Person::mobileProperty);
+        setupCellValueFactory(mobileEditableColumn, p -> p.mobile.asObject());
+        setupCellValueFactory(emailEditableColumn, Person::emailProperty);
+        setupCellValueFactory(locationEditableColumn, Person::locationProperty);
+        setupCellValueFactory(genderEditableColumn, Person::genderProperty);
+        setupCellValueFactory(levelEditableColumn, Person::levelProperty);
+        setupCellValueFactory(departmentEditableColumn, Person::departmentProperty);
+        setupCellValueFactory(courseEditableColumn, Person::courseProperty);
 
         // add editors
         firstNameEditableColumn.setCellFactory((TreeTableColumn<Person, String> param) -> {
@@ -130,15 +160,15 @@ public class TreeTableViewController {
                             .getRow())
                     .getValue().lastName.set(t.getNewValue());
         });
-        ageEditableColumn.setCellFactory((TreeTableColumn<Person, Integer> param) -> {
+        mobileEditableColumn.setCellFactory((TreeTableColumn<Person, Integer> param) -> {
             return new GenericEditableTreeTableCell<>(
                     new IntegerTextFieldEditorBuilder());
         });
-        ageEditableColumn.setOnEditCommit((CellEditEvent<Person, Integer> t) -> {
+        mobileEditableColumn.setOnEditCommit((CellEditEvent<Person, Integer> t) -> {
             t.getTreeTableView()
                     .getTreeItem(t.getTreeTablePosition()
                             .getRow())
-                    .getValue().age.set(t.getNewValue());
+                    .getValue().mobile.set(t.getNewValue());
         });
 
         // Data Table
@@ -149,16 +179,19 @@ public class TreeTableViewController {
             String SQL = "SELECT * FROM students ORDER BY fname";
             ResultSet rs = con.createStatement().executeQuery(SQL);
             while (rs.next()) {
-                Person p = new Person(rs.getString("fname"), rs.getString("lname"), rs.getInt("phone"));
-//                Image img = new Image("tailoring/UserPhoto/User" + cm.getUserId().toString() + ".jpg");
-//                ImageView mv = new ImageView();
-//                mv.setImage(img);
-//                mv.setFitWidth(70);
-//                mv.setFitHeight(80);
-//                p.userPhoto.set(mv);
-                p.firstName.set(rs.getString("fname"));
-                p.lastName.set(rs.getString("lname"));
-                p.age.set(rs.getInt("phone"));
+                Person p = new Person(rs.getString("fname"), rs.getString("lname"), rs.getInt("phone"), rs.getString("email"), rs.getString("location"), rs.getString("gender"), rs.getString("level"), rs.getString("department"), rs.getString("course"));
+                Image img = new Image("icons/profile1.png"); //  + cm.getUserId().toString() + ".jpg"
+                ImageView mv = new ImageView();
+                mv.setImage(img);
+                mv.setFitWidth(70);
+                mv.setFitHeight(80);
+                p.userPhoto.set(mv);
+//                p.firstName.set(rs.getString("fname"));
+//                p.lastName.set(rs.getString("lname"));
+//                p.mobile.set(rs.getInt("phone"));
+//                p.email.set(rs.getString("email"));
+//                p.location.set(rs.getString("location"));
+//                p.gender.set(rs.getString("gender"));
                 data.add(p);
             }
         } catch (Exception e) {
@@ -181,7 +214,7 @@ public class TreeTableViewController {
                     final Person person = personProp.getValue();
                     return person.firstName.get().contains(newVal)
                             || person.lastName.get().contains(newVal)
-                            || Integer.toString(person.age.get()).contains(newVal);
+                            || Integer.toString(person.mobile.get()).contains(newVal);
                 });
     }
 
@@ -190,17 +223,31 @@ public class TreeTableViewController {
      */
     static final class Person extends RecursiveTreeObject<Person> {
 
-        public ObjectProperty userPhoto = new SimpleObjectProperty();
+        public ObjectProperty<ImageView> userPhoto = new SimpleObjectProperty();
         public StringProperty firstName = new SimpleStringProperty();
         public StringProperty lastName = new SimpleStringProperty();
-        public SimpleIntegerProperty age = new SimpleIntegerProperty();
+        public SimpleIntegerProperty mobile = new SimpleIntegerProperty();
+        public StringProperty email = new SimpleStringProperty();
+        public StringProperty location = new SimpleStringProperty();
+        public StringProperty gender = new SimpleStringProperty();
+        public StringProperty level = new SimpleStringProperty();
+        public StringProperty department = new SimpleStringProperty();
+        public StringProperty course = new SimpleStringProperty();
 
-        Person(){
+        Person() {
         }
-        Person(String firstName, String lastName, int age) {
+
+        Person(String firstName, String lastName, int mobile, String email, String location, String gender, String level, String department, String course) {
             this.firstName = new SimpleStringProperty(firstName);
             this.lastName = new SimpleStringProperty(lastName);
-            this.age = new SimpleIntegerProperty(age);
+            this.mobile = new SimpleIntegerProperty(mobile);
+            this.email = new SimpleStringProperty(email);
+            this.location = new SimpleStringProperty(location);
+            this.gender = new SimpleStringProperty(gender);
+            this.level = new SimpleStringProperty(level);
+            this.department = new SimpleStringProperty(department);
+            this.course = new SimpleStringProperty(course);
+
         }
 
         StringProperty firstNameProperty() {
@@ -210,9 +257,60 @@ public class TreeTableViewController {
         StringProperty lastNameProperty() {
             return lastName;
         }
-        
+
+        SimpleIntegerProperty mobileProperty() {
+            return mobile;
+        }
+
+        StringProperty emailProperty() {
+            return email;
+        }
+
+        StringProperty locationProperty() {
+            return location;
+        }
+
+        StringProperty genderProperty() {
+            return gender;
+        }
+
+        StringProperty levelProperty() {
+            return level;
+        }
+
+        StringProperty departmentProperty() {
+            return department;
+        }
+
+        StringProperty courseProperty() {
+            return course;
+        }
+
         Object userPhotoProperty() {
             return userPhoto;
+        }
+    }
+
+    private class ImageTableCell<S> extends TableCell<S, Image> {
+
+        final ImageView imageView = new ImageView();
+
+        ImageTableCell() {
+            setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
+        }
+
+        @Override
+        protected void updateItem(Image item, boolean empty) {
+            super.updateItem(item, empty);
+
+            if (empty || item == null) {
+                imageView.setImage(null);
+                setText(null);
+                setGraphic(null);
+            }
+
+            imageView.setImage(item);
+            setGraphic(imageView);
         }
     }
 }
