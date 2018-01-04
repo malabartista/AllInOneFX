@@ -149,7 +149,7 @@ public class TreeTableViewController {
             String SQL = "SELECT * FROM students ORDER BY fname";
             ResultSet rs = con.createStatement().executeQuery(SQL);
             while (rs.next()) {
-                Person p = new Person(rs.getString("fname"), rs.getString("lname"), rs.getInt("phone"));
+                Person p = new Person();
 //                Image img = new Image("tailoring/UserPhoto/User" + cm.getUserId().toString() + ".jpg");
 //                ImageView mv = new ImageView();
 //                mv.setImage(img);

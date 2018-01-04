@@ -80,11 +80,11 @@ public class CalendarFXController implements PrimaryStageAware {
                 calendarView.getCalendarSources().setAll(familyCalendarSource);
                 calendarView.setRequestedTime(LocalTime.now());
 
-                final int count = 1000 - 1;
-                for (int i = 1; i <= count; i++) {
-                    Thread.sleep(10);
-                    updateProgress(i, count);
-                }
+//                final int count = 1000 - 1;
+//                for (int i = 1; i <= count; i++) {
+//                    Thread.sleep(10);
+//                    updateProgress(i, count);
+//                }
                 return calendarView;
             }
         };

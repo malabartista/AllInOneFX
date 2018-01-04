@@ -4,6 +4,7 @@ import com.allinonefx.gui.uicomponents.AnchorFXController;
 import com.allinonefx.gui.uicomponents.CalendarFXController;
 import com.allinonefx.gui.uicomponents.GMapsFXController;
 import com.allinonefx.gui.uicomponents.JFoenixController;
+import com.allinonefx.gui.uicomponents.JavascriptController;
 import com.allinonefx.gui.uicomponents.MediaViewController;
 import com.allinonefx.gui.uicomponents.SmartCSVController;
 import com.allinonefx.gui.uicomponents.TilesFXController;
@@ -86,6 +87,9 @@ public class SideMenuController {
     @ActionTrigger("treetableview")
     private Label treetableview;
     @FXML
+    @ActionTrigger("javascript")
+    private Label javascript;
+    @FXML
     @ActionTrigger("register")
     private Label register;
     @FXML
@@ -156,6 +160,7 @@ public class SideMenuController {
         bindNodeToController(scrollpane, ScrollPaneController.class, contentFlow, contentFlowHandler);
         */
         bindNodeToController(jfoenix, JFoenixController.class, contentFlow, contentFlowHandler);
+        bindNodeToController(javascript, JavascriptController.class, contentFlow, contentFlowHandler);
         bindNodeToController(treetableview, TreeTableViewController.class, contentFlow, contentFlowHandler);
         bindNodeToController(register, RegisterController.class, contentFlow, contentFlowHandler);
         bindNodeToController(anchorfx, AnchorFXController.class, contentFlow, contentFlowHandler);
