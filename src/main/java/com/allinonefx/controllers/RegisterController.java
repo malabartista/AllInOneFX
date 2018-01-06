@@ -39,7 +39,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.StackPane;
 import javax.annotation.PostConstruct;
@@ -47,6 +46,10 @@ import javax.annotation.PostConstruct;
 @ViewController(value = "/fxml/Register.fxml", title = "Register")
 public class RegisterController {
 
+    @FXML
+    private StackPane root;
+
+    // Form
     @FXML
     private JFXTextField txtFname;
     @FXML
@@ -57,6 +60,50 @@ public class RegisterController {
     private JFXTextField txtEmail;
     @FXML
     private JFXTextField txtLocation;
+    @FXML
+    private ToggleGroup gender;
+    @FXML
+    private JFXRadioButton rdMale;
+    @FXML
+    private JFXRadioButton rdFemale;
+    @FXML
+    private ToggleGroup level;
+    @FXML
+    private JFXRadioButton rdDegree;
+    @FXML
+    private JFXRadioButton rdDiploma;
+    @FXML
+    private JFXRadioButton rdCertificate;
+    @FXML
+    private JFXComboBox<String> comboDepartmenT;
+    private ObservableList<String> depart_lists;
+    @FXML
+    private JFXTextField txtCourseName;
+    @FXML
+    private JFXDatePicker txtBirthdate;
+    @FXML
+    private JFXTextField txtAmount;
+
+    @FXML
+    private JFXButton btnClear;
+    @FXML
+    private JFXButton btnEdit;
+    @FXML
+    private JFXButton btnSave;
+
+    // Dialog
+    @FXML
+    private JFXDialog dialog;
+    @FXML
+    private JFXButton dialogButton;
+    @FXML
+    private JFXButton acceptButton;
+
+    // ProgressBar
+    @FXML
+    private Label lblComplete;
+    @FXML
+    private JFXProgressBar progressPersonal;
     private static double progress1 = 0;
     private static double progress2 = 0;
     private static double progress3 = 0;
@@ -67,54 +114,13 @@ public class RegisterController {
     private static double progress8 = 0;
     private static double progress9 = 0;
     private static double progress10 = 0;
-    @FXML
-    private JFXProgressBar progressPersonal;
-    @FXML
-    private JFXRadioButton rdMale;
-    @FXML
-    private ToggleGroup gender;
-    @FXML
-    private JFXRadioButton rdFemale;
-    private ObservableList<String> depart_lists;
-    @FXML
-    private JFXTextField txtCourseName;
-    @FXML
-    private JFXRadioButton rdDegree;
-    @FXML
-    private ToggleGroup level;
-    @FXML
-    private JFXRadioButton rdDiploma;
-    @FXML
-    private JFXRadioButton rdCertificate;
-    @FXML
-    private TextField currentTimeTextfield;
-    @FXML
-    private JFXDatePicker currentTimeDatePicker;
-    @FXML
-    private JFXTextField txtAmount;
-    @FXML
-    private JFXTextField txtMobile111;
-    @FXML
-    private Label lblComplete;
+
+    // Database
     private Connection connection;
     private PreparedStatement pst;
     private DbHandler handler;
-    @FXML
-    private JFXComboBox<String> comboDepartmenT;
-    @FXML
-    private JFXButton btnClear;
-    @FXML
-    private JFXButton btnEdit;
-    @FXML
-    private JFXButton btnSave;
-    @FXML
-    private JFXDialog dialog;
-    @FXML
-    private JFXButton dialogButton;
-    @FXML
-    private JFXButton acceptButton;
-    @FXML
-    private StackPane root;
+
+    // DataFX - Flow    
     private FlowHandler contentFlowHandler;
     private Flow contentFlow;
     @FXMLViewFlowContext
@@ -125,25 +131,29 @@ public class RegisterController {
      */
     @PostConstruct
     public void init() throws IOException {
+        // Title
         MainController.lblTitle.setText("Register");
+        // Database Handler
         handler = new DbHandler();
+        // Form Init
         updateProgress();
         setDepartmentsToCombo();
-        // flow
+        setTextFields();
+        // Flow
         contentFlowHandler = (FlowHandler) context.getRegisteredObject("ContentFlowHandler");
         contentFlow = (Flow) context.getRegisteredObject("ContentFlow");
         contentFlow.withGlobalLink(btnSave.getId(), TreeTableViewController.class);
         // Dialog
         root.getChildren().remove(dialog);
         acceptButton.setOnMouseClicked((e) -> dialog.close());
-        progressPersonal.prefWidthProperty().bind(root.widthProperty());
     }
 
     private void updateProgress() {
         DecimalFormat decimalFormat = new DecimalFormat("###.#");
         decimalFormat.setRoundingMode(RoundingMode.HALF_UP);
 
-        //progressPersonal.setProgress(0.00);
+        progressPersonal.prefWidthProperty().bind(root.widthProperty());
+        progressPersonal.setProgress(0.00);
         double sum_progress = progress10 + progress1 + progress2 + progress3 + progress4 + progress5 + progress6 + progress7 + progress8 + progress9;
 
         txtFname.textProperty().addListener(new ChangeListener<String>() {
@@ -335,7 +345,23 @@ public class RegisterController {
                 lblComplete.setText(decimalFormat.format(sum * 100) + "% complete");
             }
         });
+    }
 
+    private void setTextFields() {
+        // force the field to be numeric only
+        txtMobile.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue,
+                    String newValue) {
+                if (txtMobile.getText().length() > 9) {
+                    String s = txtMobile.getText().substring(0, 9);
+                    txtMobile.setText(s);
+                }
+                if (!newValue.matches("\\d*")) {
+                    txtMobile.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
     }
 
     private void setDepartmentsToCombo() {
@@ -365,15 +391,21 @@ public class RegisterController {
 
     @FXML
     public void clearFields() {
-        txtAmount.setText(null);
-        txtCourseName.setText(null);
-        txtEmail.setText(null);
+        progressPersonal.setProgress(0);
         txtFname.setText(null);
         txtLname.setText(null);
-        txtLocation.setText(null);
         txtMobile.setText(null);
-        txtMobile111.setText(null);
+        txtEmail.setText(null);
+        txtLocation.setText(null);
+        rdMale.setSelected(false);
+        rdFemale.setSelected(false);
+        rdDegree.setSelected(false);
+        rdDiploma.setSelected(false);
+        rdCertificate.setSelected(false);
 
+        txtCourseName.setText(null);
+        txtBirthdate.setValue(null);
+        txtAmount.setText(null);
     }
 
     @FXML
@@ -409,7 +441,6 @@ public class RegisterController {
             clearFields();
             JFXSnackbar fXSnackbar = new JFXSnackbar(root);
             fXSnackbar.show("New student saved successfully", 3000);
-
         }
 
         try {
@@ -432,7 +463,6 @@ public class RegisterController {
             lvl = "DIPLOMA";
         }
         return lvl;
-
     }
 
     private String getGender() {
@@ -443,7 +473,6 @@ public class RegisterController {
             gdr = "FEMALE";
         }
         return gdr;
-
     }
 
 }

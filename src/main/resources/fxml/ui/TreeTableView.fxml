@@ -14,7 +14,7 @@
     <VBox spacing="10">
         <children>
             <HBox alignment="CENTER">
-                <Label styleClass="title-label">Editable Tree Table View</Label>
+                <Label styleClass="title-label">Editable Table</Label>
                 <Label fx:id="editableTreeTableViewCount" styleClass="title-label" />
                 <JFXButton fx:id="treeTableViewAdd" buttonType="FLAT" text="+" />
                 <JFXButton fx:id="treeTableViewRemove" buttonType="FLAT" text="-" />
@@ -26,9 +26,16 @@
             </HBox>
             <JFXTreeTableView fx:id="editableTreeTableView">
                 <columns>
+                    <JFXTreeTableColumn fx:id="userPhotoEditableColumn" minWidth="133" resizable="false" text="Photo" />
                     <JFXTreeTableColumn fx:id="firstNameEditableColumn" minWidth="133" resizable="false" text="First Name" />
                     <JFXTreeTableColumn fx:id="lastNameEditableColumn" minWidth="133" resizable="false" text="Last Name" />
-                    <JFXTreeTableColumn fx:id="ageEditableColumn" minWidth="133" resizable="false" text="Age" />
+                    <JFXTreeTableColumn fx:id="mobileEditableColumn" minWidth="133" resizable="false" text="Mobile" />
+                    <JFXTreeTableColumn fx:id="emailEditableColumn" minWidth="133" resizable="false" text="Email" />
+                    <JFXTreeTableColumn fx:id="locationEditableColumn" minWidth="133" resizable="false" text="Location" />
+                    <JFXTreeTableColumn fx:id="genderEditableColumn" minWidth="133" resizable="false" text="Gender" />
+                    <JFXTreeTableColumn fx:id="levelEditableColumn" minWidth="133" resizable="false" text="Level" />
+                    <JFXTreeTableColumn fx:id="departmentEditableColumn" minWidth="133" resizable="false" text="Department" />
+                    <JFXTreeTableColumn fx:id="courseEditableColumn" minWidth="133" resizable="false" text="Course" />
                 </columns>
             </JFXTreeTableView>
         </children>
