@@ -30,6 +30,7 @@
         -->
         <Label fx:id="jfoenix">JFoenix</Label>
         <Label fx:id="treetableview">Tree Table View</Label>
+        <Label fx:id="javascript">Javascript</Label>
         <Label fx:id="register">Register</Label>
         <Label fx:id="anchorfx">AnchorFX</Label>
         <Label fx:id="calendarfx">CalendarFX</Label>
