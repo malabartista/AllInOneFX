@@ -38,6 +38,9 @@ dependencies {
     compile 'io.datafx:flow:8.0.1'
     compile group: 'com.jfoenix', name: 'jfoenix', version: '1.10.0'
     compile group: 'com.lynden', name: 'GMapsFX', version: '2.12.0'
+    compile group: 'net.sourceforge.jtds', name: 'jtds', version: '1.2'
+
+
     compile group: 'de.jensd', name: 'fontawesomefx-commons', version: '8.15'
     compile group: 'de.jensd', name: 'fontawesomefx-fontawesome', version: '4.7.0-5'
     compile group: 'de.jensd', name: 'fontawesomefx-materialdesignfont', version: '1.7.22-4'

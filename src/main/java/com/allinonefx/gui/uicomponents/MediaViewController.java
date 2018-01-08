@@ -3,22 +3,20 @@ package com.allinonefx.gui.uicomponents;
 import io.datafx.controller.ViewController;
 import java.io.File;
 import java.net.MalformedURLException;
-import javafx.beans.binding.Bindings;
-import javafx.beans.property.DoubleProperty;
 import javafx.fxml.FXML;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javax.annotation.PostConstruct;
 
-@ViewController(value = "/fxml/ui/MediaView.fxml", title = "MediaView")
+@ViewController(value = "/fxml/ui/MediaView.fxml", title = "SigaFX MediaView")
 public class MediaViewController {
 
+    private File file = new File("./media/Descubre_SIGA.mp4");
+    private final String MEDIA_URL = file.toURI().toString();
     @FXML
-    private AnchorPane root;
-    @FXML
-    private MediaView mediaView;
+    private StackPane root;
 
     /**
      * init fxml when loaded.
@@ -29,17 +27,17 @@ public class MediaViewController {
         final Media m = new Media(f.toURI().toURL().toString());
         final MediaPlayer mp = new MediaPlayer(m);
         final MediaView mv = new MediaView(mp);
-        
-        mediaView.setMediaPlayer(mp);
-        
-        DoubleProperty mvw = mv.fitWidthProperty();
-        DoubleProperty mvh = mv.fitHeightProperty();
-        mvw.bind(Bindings.selectDouble(mediaView.sceneProperty(), "width"));
-        mvh.bind(Bindings.selectDouble(mediaView.sceneProperty(), "height"));
-        
-        
+        mp.setOnReady(new Runnable() {
+                    // run comment
+                    @Override
+                    public void run() {
+                        int w = mp.getMedia().getWidth();
+                        int h = mp.getMedia().getHeight();
+                        mv.setFitHeight(h - 100.0);
+                    }
+                });
 
-//        mv.setPreserveRatio(true);
+        mv.setPreserveRatio(true);
         mp.play();
         mp.setOnEndOfMedia(new Runnable() {
             public void run() {

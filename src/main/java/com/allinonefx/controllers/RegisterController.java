@@ -16,10 +16,14 @@ import com.jfoenix.controls.JFXProgressBar;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXSnackbar;
 import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.validation.RequiredFieldValidator;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import io.datafx.controller.ViewController;
 import io.datafx.controller.flow.Flow;
 import io.datafx.controller.flow.FlowException;
 import io.datafx.controller.flow.FlowHandler;
+import io.datafx.controller.flow.action.BackAction;
 import io.datafx.controller.flow.context.FXMLViewFlowContext;
 import io.datafx.controller.flow.context.ViewFlowContext;
 import io.datafx.controller.util.VetoException;
@@ -85,6 +89,9 @@ public class RegisterController {
     private JFXTextField txtAmount;
 
     @FXML
+    @BackAction
+    private JFXButton btnBack;
+    @FXML
     private JFXButton btnClear;
     @FXML
     private JFXButton btnEdit;
@@ -132,10 +139,11 @@ public class RegisterController {
     @PostConstruct
     public void init() throws IOException {
         // Title
-        MainController.lblTitle.setText("Register");
+        //MainController.lblTitle.setText("Register");
         // Database Handler
         handler = new DbHandler();
         // Form Init
+        handleValidation();
         updateProgress();
         setDepartmentsToCombo();
         setTextFields();
@@ -367,7 +375,7 @@ public class RegisterController {
     private void setDepartmentsToCombo() {
 
         connection = handler.getConnection();
-        String query = "SELECT department.`name` FROM department";
+        String query = "SELECT name FROM department";
         depart_lists = FXCollections.observableArrayList();
         try (PreparedStatement pst1 = connection.prepareStatement(query)) {
             ResultSet resultSet = pst1.executeQuery();
@@ -385,7 +393,6 @@ public class RegisterController {
         txtAmount.textProperty().addListener((ObservableValue<? extends String> observable,
                 String oldValue,
                 String newValue) -> {
-
         });
     }
 
@@ -451,6 +458,27 @@ public class RegisterController {
             Logger.getLogger(TreeTableViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
+    
+    private void handleValidation() {
+        RequiredFieldValidator fieldValidator = new RequiredFieldValidator();
+        fieldValidator.setMessage("Input required");
+        fieldValidator.setIcon(new FontAwesomeIconView(FontAwesomeIcon.TIMES));
+        txtFname.getValidators().add(fieldValidator);
+        txtFname.focusedProperty().addListener((ObservableValue<? extends Boolean> o, Boolean oldVal, Boolean newVal) -> {
+            if (!newVal) {
+                txtFname.validate();
+            }
+        });
+        RequiredFieldValidator fieldValidator2 = new RequiredFieldValidator();
+        fieldValidator2.setMessage("Input required");
+        fieldValidator2.setIcon(new FontAwesomeIconView(FontAwesomeIcon.TIMES));
+        txtLname.getValidators().add(fieldValidator2);
+        txtLname.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
+            if (!newValue) {
+                txtLname.validate();
+            }
+        });
     }
 
     private String getLevel() {
