@@ -7,6 +7,7 @@ package com.allinonefx.gui.uicomponents;
 
 import io.datafx.controller.ViewController;
 import java.io.IOException;
+import java.net.URL;
 import javafx.beans.value.*;
 import javafx.concurrent.Worker.State;
 import javafx.fxml.FXML;
@@ -15,8 +16,8 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javax.annotation.PostConstruct;
 
-@ViewController(value = "/fxml/ui/Javascript.fxml", title = "Javascript Example")
-public class JavascriptController {
+@ViewController(value = "/fxml/ui/WebView.fxml", title = "Javascript Example")
+public class WebViewController {
 
     @FXML
     private StackPane root;
@@ -28,7 +29,9 @@ public class JavascriptController {
     public void init() throws IOException, Exception {
         WebView webView = new WebView();
         final WebEngine engine = webView.getEngine();
-        engine.load("https://stackoverflow.com/questions/14029964/execute-a-javascript-function-for-a-webview-from-a-javafx-program");
+//        engine.load("https://stackoverflow.com/questions/14029964/execute-a-javascript-function-for-a-webview-from-a-javafx-program");
+        URL url = this.getClass().getResource("/index.html");
+        
 
         engine.getLoadWorker().stateProperty().addListener(
                 new ChangeListener<State>() {
@@ -57,10 +60,11 @@ public class JavascriptController {
                             + "  }"
                             + "}"
                             + "\n"
-                            + "highlightWord(document.body,'function');");
+                            + "highlightWord(document.body,'webEngine');");
                 }
             }
         });
+        engine.load(url.toString());
         root.getChildren().add(webView);
     }
 }

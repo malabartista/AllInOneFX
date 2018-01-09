@@ -6,10 +6,10 @@ import com.allinonefx.gui.uicomponents.CalendarFXController;
 import com.allinonefx.gui.uicomponents.GMapsFXController;
 import com.allinonefx.gui.uicomponents.GlyphsBrowserController;
 import com.allinonefx.gui.uicomponents.JFoenixController;
-import com.allinonefx.gui.uicomponents.JavascriptController;
 import com.allinonefx.gui.uicomponents.MediaViewController;
 import com.allinonefx.gui.uicomponents.TilesFXController;
 import com.allinonefx.gui.uicomponents.TreeTableViewController;
+import com.allinonefx.gui.uicomponents.WebViewController;
 import com.jfoenix.controls.JFXListView;
 import io.datafx.controller.ViewController;
 import io.datafx.controller.flow.Flow;
@@ -180,7 +180,7 @@ public class SideMenuController {
         bindNodeToController(gmapsfx, GMapsFXController.class, contentFlow, contentFlowHandler);
         bindNodeToController(tilesfx, TilesFXController.class, contentFlow, contentFlowHandler);
         bindNodeToController(video, MediaViewController.class, contentFlow, contentFlowHandler);
-        bindNodeToController(webview, JavascriptController.class, contentFlow, contentFlowHandler);
+        bindNodeToController(webview, WebViewController.class, contentFlow, contentFlowHandler);
 //        bindNodeToController(smartcsvfx, SmartCSVController.class, contentFlow, contentFlowHandler);
 //        Platform.runLater(new Runnable() {
 //            public void run() {
