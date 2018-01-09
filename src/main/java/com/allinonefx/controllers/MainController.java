@@ -1,5 +1,6 @@
 package com.allinonefx.controllers;
 
+import com.allinonefx.MainDemo;
 import com.allinonefx.datafx.ExtendedAnimatedFlowContainer;
 import com.allinonefx.gui.uicomponents.JFoenixController;
 import com.jfoenix.controls.*;
@@ -16,8 +17,10 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 import javafx.animation.Transition;
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
@@ -39,6 +42,8 @@ public final class MainController {
 
     @FXML
     private StackPane optionsBurger;
+    @FXML
+    private JFXButton profileButton;
     @FXML
     private JFXRippler optionsRippler;
     @FXML
@@ -72,7 +77,12 @@ public final class MainController {
             }
         });
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ui/popup/MainPopup.fxml"));
+        //set locale
+        Locale locale = new Locale("en", "EN");
+
+        //main popup
+        ResourceBundle bundle = ResourceBundle.getBundle("lang/message", locale);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ui/popup/MainPopup.fxml"), bundle);
         loader.setController(new InputController());
         toolbarPopup = new JFXPopup(loader.load());
 
@@ -81,10 +91,14 @@ public final class MainController {
                 PopupHPosition.RIGHT,
                 -12,
                 15));
+        profileButton.setOnMouseClicked(e -> toolbarPopup.show(profileButton,
+                PopupVPosition.TOP,
+                PopupHPosition.RIGHT,
+                -12,
+                15));
 
-        //set language
+        //set language smatcsv
         ViewConfiguration viewConfig = new ViewConfiguration();
-        Locale locale = new Locale("es", "ES");
         viewConfig.setResources(ResourceBundle.getBundle("smartcsv", locale));
 
         // create the inner flow and content
@@ -107,7 +121,7 @@ public final class MainController {
                 SWIPE_LEFT)));
     }
 
-    public static final class InputController {
+    public final class InputController {
 
         @FXML
         private JFXListView<?> toolbarPopupList;
@@ -115,7 +129,21 @@ public final class MainController {
         // close application
         @FXML
         private void submit() {
-            if (toolbarPopupList.getSelectionModel().getSelectedIndex() == 1) {
+            Scene scene = root.getScene();
+            final ObservableList<String> stylesheets = scene.getStylesheets();
+            if (toolbarPopupList.getSelectionModel().getSelectedIndex() == 0) {
+                stylesheets.clear();
+                stylesheets.addAll("bootstrapfx.css",
+                        MainDemo.class.getResource("/css/jfoenix-fonts.css").toExternalForm(),
+                        MainDemo.class.getResource("/css/jfoenix-design.css").toExternalForm(),
+                        MainDemo.class.getResource("/css/jfoenix-main-demo.css").toExternalForm());
+            } else if (toolbarPopupList.getSelectionModel().getSelectedIndex() == 1) {
+                stylesheets.clear();
+                stylesheets.addAll("bootstrapfx.css",
+                        MainDemo.class.getResource("/css/jfoenix-fonts.css").toExternalForm(),
+                        MainDemo.class.getResource("/css/jfoenix-design.css").toExternalForm(),
+                        MainDemo.class.getResource("/css/jfoenix-main-demo-red.css").toExternalForm());
+            } else if (toolbarPopupList.getSelectionModel().getSelectedIndex() == 3) {
                 Platform.exit();
             }
         }

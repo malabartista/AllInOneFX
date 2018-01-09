@@ -6,7 +6,6 @@
 package com.allinonefx.gui.uicomponents;
 
 import com.allinonefx.controllers.MainController;
-import com.allinonefx.controllers.PrimaryStageAware;
 import com.calendarfx.model.Calendar;
 import com.calendarfx.model.CalendarSource;
 import com.calendarfx.view.CalendarView;
@@ -20,23 +19,15 @@ import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
 import javax.annotation.PostConstruct;
 
 @ViewController(value = "/fxml/ui/CalendarFX.fxml", title = "CalendarFX Example")
-public class CalendarFXController implements PrimaryStageAware {
+public class CalendarFXController {
 
     private StringProperty title = new SimpleStringProperty();
 
     @FXML
     private StackPane root;
-
-    private Stage stage;
-
-    @Override
-    public void setPrimaryStage(Stage primaryStage) {
-        this.stage = primaryStage;
-    }
 
     /**
      * init fxml when loaded.

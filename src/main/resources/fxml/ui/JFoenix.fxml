@@ -153,7 +153,7 @@
                         </JFXBadge>
                     </children>
                 </HBox>
-                <Label styleClass="title-label" text="ProgressBar">ProgressBar</Label>
+                <Label styleClass="title-label">ProgressBar</Label>
                 <HBox spacing="20" style="-fx-padding: 0 0 0 50;">
                     <children>
                         <JFXProgressBar fx:id="progress1" progress="100" />

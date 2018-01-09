@@ -4,7 +4,6 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import io.datafx.controller.ViewController;
 import javafx.fxml.FXML;
-
 import javax.annotation.PostConstruct;
 
 @ViewController(value = "/fxml/ui/ListView.fxml", title = "Material Design Example")
@@ -41,6 +40,5 @@ public class ListViewController {
         collapse.setOnMouseClicked((e) -> list2.expandedProperty().set(false));
         list1.depthProperty().set(1);
     }
-
 
 }

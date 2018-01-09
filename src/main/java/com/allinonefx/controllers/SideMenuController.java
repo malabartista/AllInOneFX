@@ -1,12 +1,13 @@
 package com.allinonefx.controllers;
 
 import com.allinonefx.gui.uicomponents.AnchorFXController;
+import com.allinonefx.gui.uicomponents.BootstrapFXController;
 import com.allinonefx.gui.uicomponents.CalendarFXController;
 import com.allinonefx.gui.uicomponents.GMapsFXController;
+import com.allinonefx.gui.uicomponents.GlyphsBrowserController;
 import com.allinonefx.gui.uicomponents.JFoenixController;
 import com.allinonefx.gui.uicomponents.JavascriptController;
 import com.allinonefx.gui.uicomponents.MediaViewController;
-import com.allinonefx.gui.uicomponents.SmartCSVController;
 import com.allinonefx.gui.uicomponents.TilesFXController;
 import com.allinonefx.gui.uicomponents.TreeTableViewController;
 import com.jfoenix.controls.JFXListView;
@@ -20,9 +21,11 @@ import io.datafx.controller.flow.context.ViewFlowContext;
 import io.datafx.controller.util.VetoException;
 import java.util.Objects;
 import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javax.annotation.PostConstruct;
 
 @ViewController(value = "/fxml/SideMenu.fxml", title = "Material Design Example")
@@ -30,6 +33,9 @@ public class SideMenuController {
 
     @FXMLViewFlowContext
     private ViewFlowContext context;
+
+    @FXML
+    private JFXListView jfoenixList;
     /*
     @FXML
     @ActionTrigger("buttons")
@@ -79,7 +85,7 @@ public class SideMenuController {
     @FXML
     @ActionTrigger("masonry")
     private Label masonry;
-    */
+     */
     @FXML
     @ActionTrigger("jfoenix")
     private Label jfoenix;
@@ -87,8 +93,8 @@ public class SideMenuController {
     @ActionTrigger("treetableview")
     private Label treetableview;
     @FXML
-    @ActionTrigger("javascript")
-    private Label javascript;
+    @ActionTrigger("webview")
+    private Label webview;
     @FXML
     @ActionTrigger("register")
     private Label register;
@@ -96,8 +102,14 @@ public class SideMenuController {
     @ActionTrigger("anchorfx")
     private Label anchorfx;
     @FXML
+    @ActionTrigger("bootstrapfx")
+    private Label bootstrapfx;
+    @FXML
     @ActionTrigger("calendarfx")
     private Label calendarfx;
+    @FXML
+    @ActionTrigger("glyphsbrowser")
+    private Label glyphsbrowser;
     @FXML
     @ActionTrigger("gmapsfx")
     private Label gmapsfx;
@@ -158,17 +170,18 @@ public class SideMenuController {
         bindNodeToController(pickers, PickersController.class, contentFlow, contentFlowHandler);
         bindNodeToController(masonry, MasonryPaneController.class, contentFlow, contentFlowHandler);
         bindNodeToController(scrollpane, ScrollPaneController.class, contentFlow, contentFlowHandler);
-        */
+         */
         bindNodeToController(jfoenix, JFoenixController.class, contentFlow, contentFlowHandler);
-        bindNodeToController(javascript, JavascriptController.class, contentFlow, contentFlowHandler);
         bindNodeToController(treetableview, TreeTableViewController.class, contentFlow, contentFlowHandler);
-        bindNodeToController(register, RegisterController.class, contentFlow, contentFlowHandler);
         bindNodeToController(anchorfx, AnchorFXController.class, contentFlow, contentFlowHandler);
+        bindNodeToController(bootstrapfx, BootstrapFXController.class, contentFlow, contentFlowHandler);
         bindNodeToController(calendarfx, CalendarFXController.class, contentFlow, contentFlowHandler);
+        bindNodeToController(glyphsbrowser, GlyphsBrowserController.class, contentFlow, contentFlowHandler);
         bindNodeToController(gmapsfx, GMapsFXController.class, contentFlow, contentFlowHandler);
-        bindNodeToController(smartcsvfx, SmartCSVController.class, contentFlow, contentFlowHandler);
         bindNodeToController(tilesfx, TilesFXController.class, contentFlow, contentFlowHandler);
         bindNodeToController(video, MediaViewController.class, contentFlow, contentFlowHandler);
+        bindNodeToController(webview, JavascriptController.class, contentFlow, contentFlowHandler);
+//        bindNodeToController(smartcsvfx, SmartCSVController.class, contentFlow, contentFlowHandler);
 //        Platform.runLater(new Runnable() {
 //            public void run() {
 //                try {
@@ -178,6 +191,13 @@ public class SideMenuController {
 //                }
 //            }
 //        });
+
+        jfoenixList.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                System.out.println("clicked on " + jfoenixList.getSelectionModel().getSelectedItem());
+            }
+        });
     }
 
     private void bindNodeToController(Node node, Class<?> controllerClass, Flow flow, FlowHandler flowHandler) {

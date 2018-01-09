@@ -13,8 +13,6 @@ import javax.annotation.PostConstruct;
 @ViewController(value = "/fxml/ui/MediaView.fxml", title = "SigaFX MediaView")
 public class MediaViewController {
 
-    private File file = new File("./media/Descubre_SIGA.mp4");
-    private final String MEDIA_URL = file.toURI().toString();
     @FXML
     private StackPane root;
 
@@ -28,14 +26,14 @@ public class MediaViewController {
         final MediaPlayer mp = new MediaPlayer(m);
         final MediaView mv = new MediaView(mp);
         mp.setOnReady(new Runnable() {
-                    // run comment
-                    @Override
-                    public void run() {
-                        int w = mp.getMedia().getWidth();
-                        int h = mp.getMedia().getHeight();
-                        mv.setFitHeight(h - 100.0);
-                    }
-                });
+            // run comment
+            @Override
+            public void run() {
+                int w = mp.getMedia().getWidth();
+                int h = mp.getMedia().getHeight();
+                mv.setFitHeight(h - 100.0);
+            }
+        });
 
         mv.setPreserveRatio(true);
         mp.play();

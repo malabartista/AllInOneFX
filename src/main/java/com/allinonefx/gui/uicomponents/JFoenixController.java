@@ -64,7 +64,7 @@ public class JFoenixController {
      */
     @PostConstruct
     public void init() {
-        
+
         // Main Title
         MainController.lblTitle.setText("JFoenix");
 

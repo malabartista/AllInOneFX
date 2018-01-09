@@ -126,7 +126,11 @@ public class LoginController {
 
         Scene scene = new Scene(decorator, width, height);
         final ObservableList<String> stylesheets = scene.getStylesheets();
-        stylesheets.addAll(MainDemo.class.getResource("/css/jfoenix-fonts.css").toExternalForm(),
+        stylesheets.addAll(
+                "bootstrapfx.css",
+                MainDemo.class.getResource("/fxml/ui/bootstrapfx/sampler.css").toExternalForm(),
+                MainDemo.class.getResource("/fxml/ui/bootstrapfx/xml-highlighting.css").toExternalForm(),
+                MainDemo.class.getResource("/css/jfoenix-fonts.css").toExternalForm(),
                 MainDemo.class.getResource("/css/jfoenix-design.css").toExternalForm(),
                 MainDemo.class.getResource("/css/jfoenix-main-demo.css").toExternalForm());
         stage.setScene(scene);

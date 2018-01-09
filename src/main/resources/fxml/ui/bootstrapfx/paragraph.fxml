@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2015-2017 Andres Almiray
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in
+    all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+    THE SOFTWARE.
+
+-->
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.TextFlow?>
+<?import javafx.scene.text.Text?>
+<VBox spacing="10" styleClass="page">
+    <padding>
+        <Insets top="20" left="20" bottom="20" right="20"/>
+    </padding>
+
+    <Label styleClass="lead" wrapText="true"
+           text="This is a lread paragraph. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque at scelerisque dui, elementum posuere arcu. Ut at enim quis diam ullamcorper varius eget eu orci. Integer nibh augue, lobortis sed tempor sit amet, porttitor sit amet tellus. Curabitur ante diam, finibus non enim eleifend, hendrerit pretium nibh. Donec pellentesque neque lacus, egestas dictum velit auctor efficitur. Praesent semper nec nulla ut egestas. Morbi dapibus lectus sollicitudin ullamcorper dignissim. Sed tincidunt justo nec neque gravida, quis dapibus magna facilisis. Nunc ut ex blandit, blandit mauris sit amet, tristique sem. In vel purus non leo aliquam ultricies eu id dui."/>
+
+    <Label styleClass="p" wrapText="true"
+           text="This is a normal paragraph. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque at scelerisque dui, elementum posuere arcu. Ut at enim quis diam ullamcorper varius eget eu orci. Integer nibh augue, lobortis sed tempor sit amet, porttitor sit amet tellus. Curabitur ante diam, finibus non enim eleifend, hendrerit pretium nibh. Donec pellentesque neque lacus, egestas dictum velit auctor efficitur. Praesent semper nec nulla ut egestas. Morbi dapibus lectus sollicitudin ullamcorper dignissim. Sed tincidunt justo nec neque gravida, quis dapibus magna facilisis. Nunc ut ex blandit, blandit mauris sit amet, tristique sem. In vel purus non leo aliquam ultricies eu id dui."/>
+</VBox>

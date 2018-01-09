@@ -2,17 +2,24 @@
 
 <?import com.jfoenix.controls.*?>
 <?import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import java.lang.String?>
-<StackPane fx:id="root" xmlns:fx="http://javafx.com/fxml/1"
-           xmlns="http://javafx.com/javafx/2.2">
+<StackPane fx:id="root" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
     <!-- Header -->
     <BorderPane>
         <top>
             <VBox spacing="20">
                 <JFXToolbar>
                     <leftItems>
+                        <ImageView fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../icons/logo.png" />
+                            </image>
+                        </ImageView>
                         <JFXRippler maskType="CIRCLE" style="-fx-ripple-color:WHITE;">
                             <StackPane fx:id="titleBurgerContainer">
                                 <JFXHamburger fx:id="titleBurger">
@@ -20,14 +27,35 @@
                                 </JFXHamburger>
                             </StackPane>
                         </JFXRippler>
-                        <Label id="lblTitle" fx:id="lblTitle">Material Design</Label>
+                        <Label id="lblTitle" fx:id="lblTitle" style="-fx-padding: 20;">Material Design</Label>
                     </leftItems>
                     <rightItems>
-                        <JFXRippler fx:id="optionsRippler" maskType="CIRCLE"
-                                    style="-fx-ripple-color:WHITE;">
-                            <StackPane fx:id="optionsBurger">
-                                <JFXHamburger styleClass="jfx-options-burger">
-                                </JFXHamburger>
+                        <JFXBadge fx:id="badge1" position="TOP_RIGHT" styleClass="icons-badge" text="1">
+                            <StackPane style="-fx-padding: 10;">
+                                <FontAwesomeIconView glyphName="BELL" size="1.5em" styleClass="icon, icon-toolbar" />
+                            </StackPane>
+                        </JFXBadge>
+                        <StackPane>
+                            <FontAwesomeIconView glyphName="TH_LIST" size="1.5em" styleClass="icon, icon-toolbar" />
+                        </StackPane>
+                        <StackPane>
+                            <FontAwesomeIconView glyphName="MAP_MARKER" size="1.5em" styleClass="icon, icon-toolbar" />
+                        </StackPane>
+                        <JFXRippler fx:id="profileRippler" maskType="CIRCLE" style="-fx-ripple-color:WHITE;">
+                            <JFXButton fx:id="profileButton" buttonType="RAISED" text="admin">
+                                <graphic>
+                                    <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                        <image>
+                                            <Image url="@../icons/profile1.png" />
+                                        </image>
+                                    </ImageView>
+                                </graphic>
+                            </JFXButton>
+                        </JFXRippler>
+                        <JFXRippler fx:id="optionsRippler" maskType="CIRCLE" style="-fx-ripple-color:WHITE;">
+                            <StackPane fx:id="optionsBurger" style="-fx-padding: 0.0, 10.0">
+                                <!--<JFXHamburger styleClass="jfx-options-burger"></JFXHamburger>-->
+                                <FontAwesomeIconView glyphName="TINT" size="1.5em" styleClass="custom-jfx-list-view-icon"/>
                             </StackPane>
                         </JFXRippler>
                     </rightItems>

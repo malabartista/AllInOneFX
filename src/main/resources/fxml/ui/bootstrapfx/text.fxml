@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2015-2017 Andres Almiray
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in
+    all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+    THE SOFTWARE.
+
+-->
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+<GridPane hgap="10" vgap="10" styleClass="page">
+    <padding>
+        <Insets top="20" left="20" bottom="20" right="20"/>
+    </padding>
+
+    <Label GridPane.columnIndex="0" GridPane.rowIndex="0" text="h1"/>
+    <TextFlow GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.hgrow="ALWAYS"
+              styleClass="h1">
+        <Text text="Regular "/>
+        <Text text="strong " styleClass="strong"/>
+        <Text text="italic " styleClass="italic"/>
+        <Text text="code" styleClass="code"/>
+        <Text text=" muted " styleClass="text-muted"/>
+        <Text text="small " styleClass="small"/>
+    </TextFlow>
+
+    <Label GridPane.columnIndex="0" GridPane.rowIndex="1" text="h2"/>
+    <TextFlow GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.hgrow="ALWAYS"
+              styleClass="h2">
+        <Text text="Regular "/>
+        <Text text="strong " styleClass="strong"/>
+        <Text text="italic " styleClass="italic"/>
+        <Text text="code" styleClass="code"/>
+        <Text text=" muted " styleClass="text-muted"/>
+        <Text text="small " styleClass="small"/>
+    </TextFlow>
+
+    <Label GridPane.columnIndex="0" GridPane.rowIndex="2" text="h3"/>
+    <TextFlow GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.hgrow="ALWAYS"
+              styleClass="h3">
+        <Text text="Regular "/>
+        <Text text="strong " styleClass="strong"/>
+        <Text text="italic " styleClass="italic"/>
+        <Text text="code" styleClass="code"/>
+        <Text text=" muted " styleClass="text-muted"/>
+        <Text text="small " styleClass="small"/>
+    </TextFlow>
+
+    <Label GridPane.columnIndex="0" GridPane.rowIndex="3" text="h4"/>
+    <TextFlow GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.hgrow="ALWAYS"
+              styleClass="h4">
+        <Text text="Regular "/>
+        <Text text="strong " styleClass="strong"/>
+        <Text text="italic " styleClass="italic"/>
+        <Text text="code" styleClass="code"/>
+        <Text text=" muted " styleClass="text-muted"/>
+        <Text text="small " styleClass="small"/>
+    </TextFlow>
+
+    <Label GridPane.columnIndex="0" GridPane.rowIndex="4" text="h5"/>
+    <TextFlow GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.hgrow="ALWAYS"
+              styleClass="h5">
+        <Text text="Regular "/>
+        <Text text="strong " styleClass="strong"/>
+        <Text text="italic " styleClass="italic"/>
+        <Text text="code" styleClass="code"/>
+        <Text text=" muted " styleClass="text-muted"/>
+        <Text text="small " styleClass="small"/>
+    </TextFlow>
+
+    <Label GridPane.columnIndex="0" GridPane.rowIndex="5" text="h6"/>
+    <TextFlow GridPane.columnIndex="1" GridPane.rowIndex="5" GridPane.hgrow="ALWAYS"
+              styleClass="h6">
+        <Text text="Regular "/>
+        <Text text="strong " styleClass="strong"/>
+        <Text text="italic " styleClass="italic"/>
+        <Text text="code" styleClass="code"/>
+        <Text text=" muted " styleClass="text-muted"/>
+        <Text text="small " styleClass="small"/>
+    </TextFlow>
+
+    <Label GridPane.columnIndex="0" GridPane.rowIndex="6" text="p"/>
+    <TextFlow GridPane.columnIndex="1" GridPane.rowIndex="6" GridPane.hgrow="ALWAYS"
+              styleClass="p">
+        <Text text="Regular "/>
+        <Text text="strong " styleClass="strong"/>
+        <Text text="italic " styleClass="italic"/>
+        <Text text="code" styleClass="code"/>
+        <Text text=" muted " styleClass="text-muted"/>
+        <Text text="small " styleClass="small"/>
+    </TextFlow>
+</GridPane>

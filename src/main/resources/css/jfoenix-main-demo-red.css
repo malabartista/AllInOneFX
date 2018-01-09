@@ -6,6 +6,17 @@
     -fx-font-family: "Roboto";
 }
 
+.menu-bar {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+.menu {
+    /* -fx-skin: "com.sun.javafx.scene.control.skin.MenuItemSkin";*/
+    -fx-background-color: transparent;
+    -fx-border: none;
+    -fx-padding: 0.333333em 0.41777em 0.333333em 0.41777em; /* 4 5 4 5 */
+}
+
 .side-menu {
     -fx-padding: 20.0, 10.0;
     -fx-font-size: 15.0;
@@ -55,8 +66,27 @@
     -fx-font-size: 14.0px;
 }
 
-.jfx-layout-heading .label {
+.jfx-dialog-layout {
+    -fx-padding: 24.0px 24.0px 16.0px 24.0px;
+    -fx-text-fill: rgba(0.0, 0.0, 0.0, 0.87);
+}
+
+.jfx-layout-heading {
     -fx-font-size: 20.0px;
+    -fx-font-weight: BOLD;
+    -fx-alignment: center-left;
+    -fx-padding: 5.0 0.0 5.0 0.0;
+}
+
+.jfx-layout-body .label {
+    -fx-font-size: 14.0px;
+    -fx-pref-width: 400.0px;
+    -fx-wrap-text: true;
+}
+
+.jfx-layout-actions {
+    -fx-padding: 10.0px 0.0 0.0 0.0;
+    -fx-alignment: center-right;
 }
 
 .dialog-accept {
@@ -135,15 +165,15 @@
 
 .icons-badge .badge-pane {
     -fx-background-color: #ff4081;
-    -fx-background-radius: 23;
-    -fx-pref-width: 23;
-    -fx-pref-height: 23;
+    -fx-background-radius: 18;
+    -fx-pref-width: 18;
+    -fx-pref-height: 18;
     -fx-alignment: center;
 }
 
 .icons-badge Label {
     -fx-font-weight: BOLD;
-    -fx-font-size: 14.0px;
+    -fx-font-size: 10.0px;
     -fx-text-fill: WHITE;
 }
 
@@ -155,15 +185,15 @@
 
 .jfx-hamburger {
     -fx-padding: 10.0;
-    -fx-spacing: 4px;
+    -fx-spacing: 3px;
     -fx-cursor: hand;
 }
 
 .jfx-hamburger StackPane {
-    -fx-pref-width: 30px;
-    -fx-pref-height: 4px;
-    -fx-background-color: #FFF;
-    -fx-background-radius: 5px;
+    -fx-pref-width: 20px;
+    -fx-pref-height: 3px;
+    -fx-background-color: #222;
+    /*-fx-background-radius: 5px;*/
 }
 
 /*******************************************************************************
@@ -174,8 +204,8 @@
 
 .jfx-tool-bar {
     -fx-font-size: 14.0;
-/*    -fx-font-weight: BOLD;
-    -fx-background-color: #5264AE;*/
+    /*-fx-font-weight: BOLD;*/
+    /*-fx-background-color: #FA5858;*/
     -fx-pref-width: 100.0%;
     -fx-pref-height: 32.0px;
     -fx-border-color: #c2cfd6;
@@ -191,7 +221,7 @@
 }
 
 .jfx-tool-bar Label {
-    -fx-text-fill: WHITE;
+    -fx-text-fill: black;
 }
 
 .jfx-tool-bar .jfx-options-burger {
@@ -203,7 +233,7 @@
 }
 
 .jfx-tool-bar .jfx-rippler {
-    -jfx-rippler-fill: WHITE;
+    -jfx-rippler-fill: black;
 }
 
 .option-list-view {
@@ -378,15 +408,17 @@
 }
 
 .custom-jfx-progress-bar > .bar {
-    -fx-background-color: #ff8000;
-}
-.custom-jfx-progress-bar > .secondary-bar{
-    -fx-background-color: rgba(255, 135, 21, 0.18);
+    -fx-background-color: rgb(255.0, 128.0, 0.0);
 }
 
 .custom-jfx-progress-bar-stroke > .bar {
     -fx-background-color: #5264AE;
-    -fx-padding: 6;
+
+}
+.jfx-progress-bar > .track,
+.jfx-progress-bar > .bar {
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
 }
 
 /*******************************************************************************
@@ -476,7 +508,7 @@
 .custom-jfx-list-view-icon,
 .jfx-list-cell:selected .label .custom-jfx-list-view-icon {
     /*-fx-text-fill: #5264AE;*/
-    -fx-fill: #5264AE;
+    -fx-fill: #8c1022;
     -fx-padding: 0.0 10.0 0.0 5.0;
     -fx-cursor: hand;
 }
@@ -571,25 +603,28 @@
 
 .toggle-icon1 .icon {
     -fx-fill: #4285F4;
+    -fx-padding: 20.0;
 }
 
 .toggle-icon1 {
     -fx-pref-width: 80px;
     -fx-background-radius: 80px;
     -fx-pref-height: 80px;
+    -fx-background-color: transparent;
     -jfx-toggle-color: rgba(66.0, 133.0, 244.0, 0.29885056614875793);
     -jfx-untoggle-color: transparent;
 }
 
 .toggle-icon1 .jfx-rippler {
     -jfx-rippler-fill: rgba(66.0, 133.0, 244.0, 0.29885056614875793);
+    -jfx-mask-type: CIRCLE;
 }
 
-.toggle-icon2,
-.toggle-icon3 {
+.toggle-icon2, .toggle-icon3 {
     -fx-pref-width: 50px;
     -fx-background-radius: 50px;
     -fx-pref-height: 50px;
+    -fx-background-color: transparent;
 }
 
 .toggle-icon3 {
@@ -603,14 +638,17 @@
 
 .toggle-icon2 .jfx-rippler {
     -jfx-rippler-fill: RED;
+    -jfx-mask-type: CIRCLE;
 }
 
 .toggle-icon3 .icon {
     -fx-fill: rgb(204.0, 204.0, 51.0);
+    -fx-padding: 10.0;
 }
 
 .toggle-icon3 .jfx-rippler {
     -jfx-rippler-fill: #0F9D58;
+    -jfx-mask-type: CIRCLE;
 }
 
 /*******************************************************************************
@@ -619,15 +657,16 @@
 *                                                                              *
 *******************************************************************************/
 
-.jfx-spinner .arc {
+.jfx-spinner > .arc {
     -fx-stroke-width: 3.0;
+    -fx-fill: transparent;
 }
 
 .first-spinner {
     -jfx-radius: 20;
 }
 
-.first-spinner .arc {
+.first-spinner > .arc {
     -fx-stroke-width: 5.0;
 }
 
@@ -635,7 +674,7 @@
     -jfx-radius: 30;
 }
 
-.second-spinner .arc {
+.second-spinner > .arc {
     -fx-stroke-width: 5.0;
 }
 
@@ -643,7 +682,7 @@
     -jfx-radius: 40;
 }
 
-.third-spinner .arc {
+.third-spinner > .arc {
     -fx-stroke-width: 5.0;
 }
 
@@ -651,7 +690,7 @@
     -jfx-radius: 50;
 }
 
-.fourth-spinner .arc {
+.fourth-spinner > .arc {
     -fx-stroke-width: 5.0;
 }
 
@@ -659,7 +698,7 @@
     -jfx-radius: 60;
 }
 
-.fifth-spinner .arc {
+.fifth-spinner > .arc {
     -fx-stroke-width: 5.0;
 }
 
@@ -667,7 +706,7 @@
     -jfx-radius: 70;
 }
 
-.sixth-spinner .arc {
+.sixth-spinner > .arc {
     -fx-stroke-width: 5.0;
 }
 
@@ -675,7 +714,7 @@
     -jfx-radius: 80;
 }
 
-.seventh-spinner .arc {
+.seventh-spinner > .arc {
     -fx-stroke-width: 5.0;
 }
 
@@ -765,7 +804,7 @@
 *******************************************************************************/
 
 .jfx-decorator {
-    -fx-decorator-color: derive(#5264AE, -20%);
+    -fx-decorator-color: derive(#8c1022, -20%);
 }
 
 .jfx-decorator .jfx-decorator-buttons-container {
@@ -834,7 +873,6 @@
 .tree-table-view .tree-table-cell {
     -fx-border-width: 0 0 0 0;
     -fx-padding: 16 0 16 0;
-    /*-fx-alignment: top-center;*/
     -fx-alignment: center;
 }
 
@@ -879,8 +917,8 @@
     -fx-font-size: 1.0em;
 }
 
-.tree-table-row-cell:grouped {
-    -fx-background-color: rgb(230, 230, 230);
+.tree-table-row-group {
+    -fx-background-color: rgba(230, 230, 230);
 }
 
 .tree-table-view .menu-item:focused {
@@ -996,7 +1034,7 @@
 
 .rounded-button {
     -fx-background-radius: 5em;  
-    -fx-min-width: 60px;
+    -fx-min-width: 60px;  
     -fx-min-height: 60px;  
     -fx-max-width: 60px;  
     -fx-max-height: 60px;

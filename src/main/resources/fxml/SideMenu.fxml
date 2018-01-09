@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXListView?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.StackPane?>
 <?import java.lang.String?>
@@ -9,34 +10,105 @@
         <String fx:value="side-menu"/>
     </styleClass>
     <JFXListView fx:id="sideList">
-        <!--
-        <Label fx:id="button">Buttons</Label>
-        <Label fx:id="checkbox">Check Box</Label>
-        <Label fx:id="combobox">Combo Box</Label>
-        <Label fx:id="dialogs">Dialogs</Label>
-        <Label fx:id="icons">Icons</Label>
-        <Label fx:id="scrollpane">Header Scroll Pane</Label>
-        <Label fx:id="listview">List View</Label>
-        <Label fx:id="progressbar">Progress Bar</Label>
-        <Label fx:id="radiobutton">Radio Button</Label>
-        <Label fx:id="slider">Slider</Label>
-        <Label fx:id="spinner">Spinner</Label>
-        <Label fx:id="textfield">Text Field</Label>
-        <Label fx:id="togglebutton">Toggle Button</Label>
-        <Label fx:id="popup">Popup</Label>
-        <Label fx:id="pickers">Pickers</Label>
-        <Label fx:id="svgLoader">SVG Loader</Label>
-        <Label fx:id="masonry">Masonry Layout</Label>
-        -->
-        <Label fx:id="jfoenix">JFoenix</Label>
-        <Label fx:id="treetableview">Tree Table View</Label>
-        <Label fx:id="javascript">Javascript</Label>
-        <Label fx:id="register">Register</Label>
-        <Label fx:id="anchorfx">AnchorFX</Label>
-        <Label fx:id="calendarfx">CalendarFX</Label>
-        <Label fx:id="gmapsfx">GMapsFX</Label>
-        <Label fx:id="smartcsvfx">SmartCSVfx</Label>
-        <Label fx:id="tilesfx">TilesFX</Label>
-        <Label fx:id="video">Video</Label>
+        <JFXListView fx:id="jfoenixList" styleClass="sublist">
+            <groupnode>
+                <Label fx:id="jfoenix">
+                    <graphic>
+                        <StackPane styleClass="custom-jfx-list-view-icon-container">
+                            <FontAwesomeIconView glyphName="HOME" size="1.5em" styleClass="custom-jfx-list-view-icon"/>
+                        </StackPane>
+                    </graphic>
+                    JFoenix
+                </Label>
+            </groupnode>
+            <Label fx:id="button">
+                <graphic>
+                    <StackPane styleClass="custom-jfx-list-view-icon-container">
+                        <FontAwesomeIconView glyphName="PUZZLE_PIECE" size="1.5em" styleClass="custom-jfx-list-view-icon"/>
+                    </StackPane>
+                </graphic>
+                Buttons
+            </Label>
+            <Label fx:id="checkbox">
+                <graphic>
+                    <StackPane styleClass="custom-jfx-list-view-icon-container">
+                        <FontAwesomeIconView glyphName="CHECK_SQUARE" size="1.5em" styleClass="custom-jfx-list-view-icon"/>
+                    </StackPane>
+                </graphic>
+                Checkbox
+            </Label>
+        </JFXListView>
+        <Label fx:id="treetableview">
+            <graphic>
+                <StackPane styleClass="custom-jfx-list-view-icon-container">
+                    <FontAwesomeIconView glyphName="TABLE" size="1.5em" styleClass="custom-jfx-list-view-icon"/>
+                </StackPane>
+            </graphic>
+            Table
+        </Label>
+        <Label fx:id="anchorfx">
+            <graphic>
+                <StackPane styleClass="custom-jfx-list-view-icon-container">
+                    <FontAwesomeIconView glyphName="WINDOWS" size="1.5em" styleClass="custom-jfx-list-view-icon"/>
+                </StackPane>
+            </graphic>
+            AnchorFX
+        </Label>
+        <Label fx:id="bootstrapfx">
+            <graphic>
+                <StackPane styleClass="custom-jfx-list-view-icon-container">
+                    <FontAwesomeIconView glyphName="FLAG" size="1.5em" styleClass="custom-jfx-list-view-icon"/>
+                </StackPane>
+            </graphic>
+            BootstrapFX
+        </Label>
+        <Label fx:id="calendarfx">
+            <graphic>
+                <StackPane styleClass="custom-jfx-list-view-icon-container">
+                    <FontAwesomeIconView glyphName="CALENDAR" size="1.5em" styleClass="custom-jfx-list-view-icon"/>
+                </StackPane>
+            </graphic>
+            CalendarFX
+        </Label>
+        <Label fx:id="glyphsbrowser">
+            <graphic>
+                <StackPane styleClass="custom-jfx-list-view-icon-container">
+                    <FontAwesomeIconView glyphName="FLAG" size="1.5em" styleClass="custom-jfx-list-view-icon"/>
+                </StackPane>
+            </graphic>
+            Glyphs Browser
+        </Label>
+        <Label fx:id="gmapsfx">
+            <graphic>
+                <StackPane styleClass="custom-jfx-list-view-icon-container">
+                    <FontAwesomeIconView glyphName="MAP" size="1.5em" styleClass="custom-jfx-list-view-icon"/>
+                </StackPane>
+            </graphic>
+            MapsFX
+        </Label>
+        <Label fx:id="tilesfx">
+            <graphic>
+                <StackPane styleClass="custom-jfx-list-view-icon-container">
+                    <FontAwesomeIconView glyphName="WINDOWS" size="1.5em" styleClass="custom-jfx-list-view-icon"/>
+                </StackPane>
+            </graphic>
+            TilesFX
+        </Label>
+        <Label fx:id="video">
+            <graphic>
+                <StackPane styleClass="custom-jfx-list-view-icon-container">
+                    <FontAwesomeIconView glyphName="YOUTUBE" size="1.5em" styleClass="custom-jfx-list-view-icon"/>
+                </StackPane>
+            </graphic>
+            Video
+        </Label>
+        <Label fx:id="webview">
+            <graphic>
+                <StackPane styleClass="custom-jfx-list-view-icon-container">
+                    <FontAwesomeIconView glyphName="GLOBE" size="1.5em" styleClass="custom-jfx-list-view-icon"/>
+                </StackPane>
+            </graphic>
+            WebView
+        </Label>
     </JFXListView>
 </StackPane>

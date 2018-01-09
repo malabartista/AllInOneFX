@@ -177,21 +177,26 @@ public class TreeTableViewController {
         ObservableList<Person> data = FXCollections.observableArrayList();
         try {
             // mysql
-            //String SQL = "SELECT * FROM students ORDER BY fname";
+            String SQL = "SELECT * FROM students ORDER BY fname";
             // mssql
-            String SQL = "SELECT * FROM Gestores ORDER BY NIF";
+            //String SQL = "SELECT * FROM PERSONAS WHERE Nombre <> '' and Apellido1RazonSocial <> '' and Telef <> '' ORDER BY NIF";
             ResultSet rs = con.createStatement().executeQuery(SQL);
             while (rs.next()) {
                 // mysql
-                //Person p = new Person(rs.getString("fname"), rs.getString("lname"), rs.getInt("phone"), rs.getString("email"), rs.getString("location"), rs.getString("gender"), rs.getString("level"), rs.getString("department"), rs.getString("course"));
+                Person p = new Person(rs.getString("fname"), rs.getString("lname"), rs.getInt("phone"), rs.getString("email"), rs.getString("location"), rs.getString("gender"), rs.getString("level"), rs.getString("department"), rs.getString("course"));
                 // mssql
-                Person p = new Person(rs.getString("Nombre"), rs.getString("Apellido1RazonSocial"), rs.getInt("Telef"), rs.getString("EMAIL"), rs.getString("DirProvincia"), rs.getString("Sexo"), rs.getString("OFICINA"), rs.getString("DISCAPACIDAD"), rs.getString("ESTADOWEB"));
+                //Person p = new Person(rs.getString("Nombre"), rs.getString("Apellido1RazonSocial"), rs.getInt("Telef"), rs.getString("EMAIL"), rs.getString("DirProvincia"), rs.getString("Sexo"), rs.getString("OFICINA"), rs.getString("DISCAPACIDAD"), rs.getString("ESTADOWEB"));
                 String imagePath = "icons/profile1.png";// + rs.getString("id") + ".png";
+                if (rs.getString("gender") != null && rs.getString("gender").equals("MALE")) {
+                    imagePath = "icons/profile-man.png";
+                } else {
+                    imagePath = "icons/profile-woman.png";
+                }
                 Image img = new Image(imagePath);
                 ImageView mv = new ImageView();
                 mv.setImage(img);
-                mv.setFitWidth(70);
-                mv.setFitHeight(80);
+//                mv.setFitWidth(70);
+//                mv.setFitHeight(80);
                 p.userPhoto.set(mv);
 //                p.firstName.set(rs.getString("fname"));
 //                p.lastName.set(rs.getString("lname"));

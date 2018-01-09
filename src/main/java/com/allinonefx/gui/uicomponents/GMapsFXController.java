@@ -89,7 +89,7 @@ public class GMapsFXController implements MapComponentInitializedListener, Direc
     public void mapInitialized() {
         MapOptions options = new MapOptions();
 
-        options.center(new LatLong(47.606189, -122.335842))
+        options.center(new LatLong(37.4210847, -122.3137537))
                 .zoomControl(true)
                 .zoom(12)
                 .overviewMapControl(false)
