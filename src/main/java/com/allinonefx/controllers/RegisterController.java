@@ -459,7 +459,7 @@ public class RegisterController {
         }
 
     }
-    
+
     private void handleValidation() {
         RequiredFieldValidator fieldValidator = new RequiredFieldValidator();
         fieldValidator.setMessage("Input required");

@@ -73,6 +73,8 @@ dependencies {
     compile name: 'anchorfx-0.1'
     compile name: 'calendarfx-view-8.4.1'
     compile name: 'calendarfx-recurrence-8.4.1'
+    compile name: 'controlsfx-samples-8.40.14'
+    compile name: 'fxsampler-1.0.10'
     compile name: 'SmartCSV.fx-0.9'
     
 

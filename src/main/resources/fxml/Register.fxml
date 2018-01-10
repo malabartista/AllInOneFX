@@ -55,12 +55,12 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                 <children>
-                                    <JFXTextField fx:id="txtFname" focusColor="#2196f3" labelFloat="true" promptText="First Name">
+                                    <JFXTextField fx:id="txtFname" focusColor="#2196f3" labelFloat="true" promptText="%label.firstName">
                                         <font>
                                             <Font name="Roboto Medium" size="14.0" />
                                         </font>
                                     </JFXTextField>
-                                    <JFXTextField fx:id="txtLname" focusColor="#2196f3" labelFloat="true" promptText="Last Name" GridPane.rowIndex="1">
+                                    <JFXTextField fx:id="txtLname" focusColor="#2196f3" labelFloat="true" promptText="%label.lastName" GridPane.rowIndex="1">
                                         <font>
                                             <Font name="Roboto Medium" size="14.0" />
                                         </font>

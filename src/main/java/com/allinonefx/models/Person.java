@@ -6,7 +6,9 @@
 package com.allinonefx.models;
 
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -28,6 +30,7 @@ public class Person extends RecursiveTreeObject<Person> {
     public StringProperty level = new SimpleStringProperty();
     public StringProperty department = new SimpleStringProperty();
     public StringProperty course = new SimpleStringProperty();
+    public BooleanProperty checkbox = new SimpleBooleanProperty();
 
     Person() {
     }
@@ -42,6 +45,7 @@ public class Person extends RecursiveTreeObject<Person> {
         this.level = new SimpleStringProperty(level);
         this.department = new SimpleStringProperty(department);
         this.course = new SimpleStringProperty(course);
+        this.checkbox = new SimpleBooleanProperty(true);
 
     }
 
@@ -83,5 +87,9 @@ public class Person extends RecursiveTreeObject<Person> {
 
     public ObjectProperty userPhotoProperty() {
         return userPhoto;
+    }
+    
+    public BooleanProperty checkboxProperty() {
+        return checkbox;
     }
 }

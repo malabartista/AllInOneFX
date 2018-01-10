@@ -42,7 +42,7 @@
                             <FontAwesomeIconView glyphName="MAP_MARKER" size="1.5em" styleClass="icon, icon-toolbar" />
                         </StackPane>
                         <JFXRippler fx:id="profileRippler" maskType="CIRCLE" style="-fx-ripple-color:WHITE;">
-                            <JFXButton fx:id="profileButton" buttonType="RAISED" text="admin">
+                            <JFXButton fx:id="profileButton" text="admin">
                                 <graphic>
                                     <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                         <image>

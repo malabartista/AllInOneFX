@@ -12,13 +12,12 @@
     <JFXListView fx:id="sideList">
         <JFXListView fx:id="jfoenixList" styleClass="sublist">
             <groupnode>
-                <Label fx:id="jfoenix">
+                <Label fx:id="jfoenix" text="%label.jfoenix">
                     <graphic>
                         <StackPane styleClass="custom-jfx-list-view-icon-container">
                             <FontAwesomeIconView glyphName="HOME" size="1.5em" styleClass="custom-jfx-list-view-icon"/>
                         </StackPane>
                     </graphic>
-                    JFoenix
                 </Label>
             </groupnode>
             <Label fx:id="button">
@@ -70,6 +69,14 @@
             </graphic>
             CalendarFX
         </Label>
+        <Label fx:id="controlsfx">
+            <graphic>
+                <StackPane styleClass="custom-jfx-list-view-icon-container">
+                    <FontAwesomeIconView glyphName="CHECK_SQUARE_ALT" size="1.5em" styleClass="custom-jfx-list-view-icon"/>
+                </StackPane>
+            </graphic>
+            ControlsFX
+        </Label>
         <Label fx:id="glyphsbrowser">
             <graphic>
                 <StackPane styleClass="custom-jfx-list-view-icon-container">
@@ -84,7 +91,7 @@
                     <FontAwesomeIconView glyphName="MAP" size="1.5em" styleClass="custom-jfx-list-view-icon"/>
                 </StackPane>
             </graphic>
-            MapsFX
+            GMapsFX
         </Label>
         <Label fx:id="tilesfx">
             <graphic>

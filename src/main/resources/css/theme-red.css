@@ -1,0 +1,27 @@
+/*******************************************************************************
+ *                                                                             *
+ * Theme Red		                                                       *
+ *                                                                             *
+ ******************************************************************************/
+.jfx-decorator {
+    -fx-decorator-color: derive(#8c1022, -20%);
+}
+
+.custom-jfx-list-view-icon,
+.jfx-list-cell:selected .label .custom-jfx-list-view-icon {
+    /*-fx-text-fill: #5264AE;*/
+    -fx-fill: #8c1022;
+    -fx-padding: 0.0 10.0 0.0 5.0;
+    -fx-cursor: hand;
+}
+
+.rounded-button {
+    -fx-text-fill:WHITE;
+    -fx-font-size:28px;
+    -fx-background-color: #8c1022;
+    -fx-background-radius: 5em;  
+    -fx-min-width: 60px;  
+    -fx-min-height: 60px;  
+    -fx-max-width: 60px;  
+    -fx-max-height: 60px;
+}

@@ -1,8 +1,11 @@
 package com.allinonefx.controllers;
 
+import com.allinonefx.AppSettings;
 import com.allinonefx.MainDemo;
+import com.allinonefx.config.I18N;
 import com.allinonefx.datafx.ExtendedAnimatedFlowContainer;
 import com.allinonefx.gui.uicomponents.JFoenixController;
+import com.allinonefx.utils.UTF8Control;
 import com.jfoenix.controls.*;
 import com.jfoenix.controls.JFXPopup.PopupHPosition;
 import com.jfoenix.controls.JFXPopup.PopupVPosition;
@@ -13,8 +16,12 @@ import io.datafx.controller.flow.FlowHandler;
 import static io.datafx.controller.flow.container.ContainerAnimations.SWIPE_LEFT;
 import io.datafx.controller.flow.context.FXMLViewFlowContext;
 import io.datafx.controller.flow.context.ViewFlowContext;
+import java.io.IOException;
+import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.animation.Transition;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
@@ -27,7 +34,7 @@ import javafx.util.Duration;
 import javax.annotation.PostConstruct;
 
 @ViewController(value = "/fxml/Main.fxml", title = "Material Design Example")
-public final class MainController {
+public final class MainController extends I18NController {
 
     @FXMLViewFlowContext
     private ViewFlowContext context;
@@ -52,6 +59,7 @@ public final class MainController {
     public static Label lblTitle;
 
     private JFXPopup toolbarPopup;
+    private JFXPopup profilePopup;
 
     /**
      * init fxml when loaded.
@@ -78,20 +86,14 @@ public final class MainController {
         });
 
         //set locale
-        Locale locale = new Locale("en", "EN");
-
-        //main popup
-        ResourceBundle bundle = ResourceBundle.getBundle("lang/message", locale);
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ui/popup/MainPopup.fxml"), bundle);
-        loader.setController(new InputController());
-        toolbarPopup = new JFXPopup(loader.load());
+        loadLanguage(Locale.ENGLISH);
 
         optionsBurger.setOnMouseClicked(e -> toolbarPopup.show(optionsBurger,
                 PopupVPosition.TOP,
                 PopupHPosition.RIGHT,
                 -12,
                 15));
-        profileButton.setOnMouseClicked(e -> toolbarPopup.show(profileButton,
+        profileButton.setOnMouseClicked(e -> profilePopup.show(profileButton,
                 PopupVPosition.TOP,
                 PopupHPosition.RIGHT,
                 -12,
@@ -99,7 +101,8 @@ public final class MainController {
 
         //set language smatcsv
         ViewConfiguration viewConfig = new ViewConfiguration();
-        viewConfig.setResources(ResourceBundle.getBundle("smartcsv", locale));
+        viewConfig.setResources(ResourceBundle.getBundle("lang.message", Locale.ENGLISH));
+        //viewConfig.setResources(ResourceBundle.getBundle("smartcsv", Locale.ENGLISH));
 
         // create the inner flow and content
         context = new ViewFlowContext();
@@ -115,7 +118,7 @@ public final class MainController {
         context.register("ContentPane", drawer.getContent().get(0));
 
         // side controller will add links to the content flow
-        Flow sideMenuFlow = new Flow(SideMenuController.class);
+        Flow sideMenuFlow = new Flow(SideMenuController.class, viewConfig);
         final FlowHandler sideMenuFlowHandler = sideMenuFlow.createHandler(context);
         drawer.setSidePane(sideMenuFlowHandler.start(new ExtendedAnimatedFlowContainer(containerAnimationDuration,
                 SWIPE_LEFT)));
@@ -125,27 +128,91 @@ public final class MainController {
 
         @FXML
         private JFXListView<?> toolbarPopupList;
+        @FXML
+        private JFXListView<?> profilePopupList;
 
         // close application
         @FXML
-        private void submit() {
+        private void submit() throws IOException {
             Scene scene = root.getScene();
             final ObservableList<String> stylesheets = scene.getStylesheets();
-            if (toolbarPopupList.getSelectionModel().getSelectedIndex() == 0) {
-                stylesheets.clear();
-                stylesheets.addAll("bootstrapfx.css",
-                        MainDemo.class.getResource("/css/jfoenix-fonts.css").toExternalForm(),
-                        MainDemo.class.getResource("/css/jfoenix-design.css").toExternalForm(),
-                        MainDemo.class.getResource("/css/jfoenix-main-demo.css").toExternalForm());
-            } else if (toolbarPopupList.getSelectionModel().getSelectedIndex() == 1) {
-                stylesheets.clear();
-                stylesheets.addAll("bootstrapfx.css",
-                        MainDemo.class.getResource("/css/jfoenix-fonts.css").toExternalForm(),
-                        MainDemo.class.getResource("/css/jfoenix-design.css").toExternalForm(),
-                        MainDemo.class.getResource("/css/jfoenix-main-demo-red.css").toExternalForm());
-            } else if (toolbarPopupList.getSelectionModel().getSelectedIndex() == 3) {
-                Platform.exit();
+            if (toolbarPopupList != null) {
+                if (toolbarPopupList.getSelectionModel().getSelectedIndex() == 0) {
+                    stylesheets.removeAll(MainDemo.class.getResource("/css/theme-red.css").toExternalForm());
+                    stylesheets.addAll(MainDemo.class.getResource("/css/theme-blue.css").toExternalForm());
+                } else if (toolbarPopupList.getSelectionModel().getSelectedIndex() == 1) {
+                    stylesheets.removeAll(MainDemo.class.getResource("/css/theme-blue.css").toExternalForm());
+                    stylesheets.addAll(MainDemo.class.getResource("/css/theme-red.css").toExternalForm());
+                } else if (toolbarPopupList.getSelectionModel().getSelectedIndex() == 3) {
+                    Platform.exit();
+                }
+            }
+
+            if (profilePopupList != null) {
+                if (profilePopupList.getSelectionModel()
+                        .getSelectedIndex() == 0) {
+//                    switchLanguage(Locale.ENGLISH);
+                    changeLanguage(AppSettings.Language.ENGLISH);
+                } else if (profilePopupList.getSelectionModel()
+                        .getSelectedIndex() == 1) {
+                    changeLanguage(AppSettings.Language.SPANISH);
+                }
+                profilePopupList.getParent().setVisible(false);
             }
         }
+    }
+
+    public void loadLanguage(Locale locale) throws IOException {
+        ResourceBundle bundle = ResourceBundle.getBundle("lang.message", locale);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ui/popup/MainPopup.fxml"), bundle);
+        loader.setController(new InputController());
+        toolbarPopup = new JFXPopup(loader.load());
+        loader = new FXMLLoader(getClass().getResource("/fxml/ui/popup/ProfilePopup.fxml"), bundle);
+        loader.setController(new InputController());
+        profilePopup = new JFXPopup(loader.load());
+    }
+
+    /**
+     * sets the given Locale in the I18N class and keeps count of the number of
+     * switches.
+     *
+     * @param locale the new local to set
+     */
+    private void switchLanguage(Locale locale) {
+        I18N.setLocale(locale);
+    }
+
+    @Override
+    protected ResourceBundle getResourceBundle(Locale locale) {
+        return ResourceBundle.getBundle("lang.message", locale, new UTF8Control());
+    }
+
+    @Override
+    protected URL getFXMLResource() {
+        return getClass().getResource("/fxml/Main.fxml");
+    }
+
+    @Override
+    protected void onSaveState(StateBundle stateBundle) {
+
+    }
+
+    @Override
+    protected void onLoadState(I18NController newController, I18NLanguage newLanguage, ResourceBundle resourceBundle, StateBundle stateBundle) {
+        try {
+            lblTitle.setText(resourceBundle.getString("window.title"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ui/popup/MainPopup.fxml"), resourceBundle);
+            loader.setController(new InputController());
+            toolbarPopup = new JFXPopup(loader.load());
+            loader = new FXMLLoader(getClass().getResource("/fxml/ui/popup/ProfilePopup.fxml"), resourceBundle);
+            loader.setController(new InputController());
+            profilePopup = new JFXPopup(loader.load());
+            loader = new FXMLLoader(getClass().getResource("/fxml/Register.fxml"), resourceBundle);
+            loader.setController(new RegisterController());
+            drawer = new JFXDrawer();
+        } catch (IOException ex) {
+            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+//        NodeOrientation nodeOrientation = newLanguage.getNodeOrientation();
     }
 }

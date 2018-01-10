@@ -162,7 +162,8 @@
 .jfx-hamburger StackPane {
     -fx-pref-width: 30px;
     -fx-pref-height: 4px;
-    -fx-background-color: #FFF;
+    /*-fx-background-color: #FFF;*/
+    -fx-background-color: #536c79;
     -fx-background-radius: 5px;
 }
 
@@ -190,8 +191,8 @@
     -fx-padding: 0.0 10.0;
 }
 
-.jfx-tool-bar Label {
-    -fx-text-fill: WHITE;
+.jfx-tool-bar Label, .jfx-tool-bar JFXButton {
+    -fx-text-fill: #536c79;
 }
 
 .jfx-tool-bar .jfx-options-burger {
@@ -995,6 +996,9 @@
  ******************************************************************************/
 
 .rounded-button {
+    -fx-text-fill:WHITE;
+    -fx-font-size:28px;
+    -fx-background-color: #5264AE;
     -fx-background-radius: 5em;  
     -fx-min-width: 60px;
     -fx-min-height: 60px;  

@@ -26,6 +26,7 @@
             </HBox>
             <JFXTreeTableView fx:id="editableTreeTableView">
                 <columns>
+                    <JFXTreeTableColumn fx:id="checkboxEditableColumn" minWidth="133" resizable="false" text="Checbox" />
                     <JFXTreeTableColumn fx:id="userPhotoEditableColumn" minWidth="133" resizable="false" text="Photo" />
                     <JFXTreeTableColumn fx:id="firstNameEditableColumn" minWidth="133" resizable="false" text="First Name" />
                     <JFXTreeTableColumn fx:id="lastNameEditableColumn" minWidth="133" resizable="false" text="Last Name" />
@@ -40,7 +41,7 @@
             </JFXTreeTableView>
         </children>
     </VBox>
-    <JFXButton fx:id="addRegister" style="-fx-text-fill:WHITE;-fx-font-size:28px;" styleClass="rounded-button, custom-jfx-list-view-icon" text="+" StackPane.alignment="BOTTOM_RIGHT" />
+    <JFXButton fx:id="addRegister" styleClass="rounded-button" text="+" StackPane.alignment="BOTTOM_RIGHT" />
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" />
     </padding>

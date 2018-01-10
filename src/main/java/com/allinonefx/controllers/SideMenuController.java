@@ -3,6 +3,7 @@ package com.allinonefx.controllers;
 import com.allinonefx.gui.uicomponents.AnchorFXController;
 import com.allinonefx.gui.uicomponents.BootstrapFXController;
 import com.allinonefx.gui.uicomponents.CalendarFXController;
+import com.allinonefx.gui.uicomponents.ControlsFXController;
 import com.allinonefx.gui.uicomponents.GMapsFXController;
 import com.allinonefx.gui.uicomponents.GlyphsBrowserController;
 import com.allinonefx.gui.uicomponents.JFoenixController;
@@ -11,7 +12,6 @@ import com.allinonefx.gui.uicomponents.TilesFXController;
 import com.allinonefx.gui.uicomponents.TreeTableViewController;
 import com.allinonefx.gui.uicomponents.WebViewController;
 import com.jfoenix.controls.JFXListView;
-import io.datafx.controller.ViewController;
 import io.datafx.controller.flow.Flow;
 import io.datafx.controller.flow.FlowException;
 import io.datafx.controller.flow.FlowHandler;
@@ -26,9 +26,8 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import javax.annotation.PostConstruct;
 
-@ViewController(value = "/fxml/SideMenu.fxml", title = "Material Design Example")
+//@ViewController(value = "/fxml/SideMenu.fxml", title = "Material Design Example")
 public class SideMenuController {
 
     @FXMLViewFlowContext
@@ -108,6 +107,9 @@ public class SideMenuController {
     @ActionTrigger("calendarfx")
     private Label calendarfx;
     @FXML
+    @ActionTrigger("controlsfx")
+    private Label controlsfx;
+    @FXML
     @ActionTrigger("glyphsbrowser")
     private Label glyphsbrowser;
     @FXML
@@ -131,8 +133,8 @@ public class SideMenuController {
     /**
      * init fxml when loaded.
      */
-    @PostConstruct
-    public void init() {
+//    @PostConstruct
+    public void initialize() {
         Objects.requireNonNull(context, "context");
         FlowHandler contentFlowHandler = (FlowHandler) context.getRegisteredObject("ContentFlowHandler");
         sideList.propagateMouseEventsToParent();
@@ -176,6 +178,7 @@ public class SideMenuController {
         bindNodeToController(anchorfx, AnchorFXController.class, contentFlow, contentFlowHandler);
         bindNodeToController(bootstrapfx, BootstrapFXController.class, contentFlow, contentFlowHandler);
         bindNodeToController(calendarfx, CalendarFXController.class, contentFlow, contentFlowHandler);
+        bindNodeToController(controlsfx, ControlsFXController.class, contentFlow, contentFlowHandler);
         bindNodeToController(glyphsbrowser, GlyphsBrowserController.class, contentFlow, contentFlowHandler);
         bindNodeToController(gmapsfx, GMapsFXController.class, contentFlow, contentFlowHandler);
         bindNodeToController(tilesfx, TilesFXController.class, contentFlow, contentFlowHandler);

@@ -29,8 +29,10 @@ public class WebViewController {
     public void init() throws IOException, Exception {
         WebView webView = new WebView();
         final WebEngine engine = webView.getEngine();
-//        engine.load("https://stackoverflow.com/questions/14029964/execute-a-javascript-function-for-a-webview-from-a-javafx-program");
         URL url = this.getClass().getResource("/index.html");
+        
+        engine.load("https://stackoverflow.com/questions/14029964/execute-a-javascript-function-for-a-webview-from-a-javafx-program");
+//        engine.load(url.toString());
         
 
         engine.getLoadWorker().stateProperty().addListener(
@@ -60,11 +62,11 @@ public class WebViewController {
                             + "  }"
                             + "}"
                             + "\n"
-                            + "highlightWord(document.body,'webEngine');");
+                            + "highlightWord(document.body,'function');");
                 }
             }
         });
-        engine.load(url.toString());
+        
         root.getChildren().add(webView);
     }
 }

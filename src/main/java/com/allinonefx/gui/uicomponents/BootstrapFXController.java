@@ -21,6 +21,7 @@
  */
 package com.allinonefx.gui.uicomponents;
 
+import com.allinonefx.controllers.MainController;
 import io.datafx.controller.ViewController;
 import java.net.URL;
 import static java.nio.file.Files.lines;
@@ -35,7 +36,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.layout.StackPane;
 import javax.annotation.PostConstruct;
 
-@ViewController(value = "/fxml/ui/AnchorFX.fxml", title = "AnchorFX")
+@ViewController(value = "/fxml/ui/AnchorFX.fxml", title = "BootstrapFX")
 public class BootstrapFXController {
     
     @FXML
@@ -45,6 +46,7 @@ public class BootstrapFXController {
      */
     @PostConstruct
     public void init() throws Exception {
+        MainController.lblTitle.setText("BootstrapFX");
         TabPane tabPane = new TabPane();
 
         tabPane.getTabs().add(new DemoTab("Buttons", "buttons.fxml"));

@@ -132,7 +132,8 @@ public class LoginController {
                 MainDemo.class.getResource("/fxml/ui/bootstrapfx/xml-highlighting.css").toExternalForm(),
                 MainDemo.class.getResource("/css/jfoenix-fonts.css").toExternalForm(),
                 MainDemo.class.getResource("/css/jfoenix-design.css").toExternalForm(),
-                MainDemo.class.getResource("/css/jfoenix-main-demo.css").toExternalForm());
+                MainDemo.class.getResource("/css/jfoenix-main-demo.css").toExternalForm(),
+                MainDemo.class.getResource("/css/theme-blue.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
     }

@@ -20,22 +20,4 @@
             </StackPane>
         </graphic>
     </Label>
-    <Label>
-        Contact Us
-        <graphic>
-            <StackPane styleClass="custom-jfx-list-view-icon-container">
-                <FontAwesomeIconView glyphName="USER" size="1.5em"
-                                     styleClass="custom-jfx-list-view-icon"/>
-            </StackPane>
-        </graphic>
-    </Label>
-    <Label>
-        Exit
-        <graphic>
-            <StackPane styleClass="custom-jfx-list-view-icon-container">
-                <FontAwesomeIconView glyphName="REPLY" size="1.5em"
-                                     styleClass="custom-jfx-list-view-icon"/>
-            </StackPane>
-        </graphic>
-    </Label>
 </JFXListView>

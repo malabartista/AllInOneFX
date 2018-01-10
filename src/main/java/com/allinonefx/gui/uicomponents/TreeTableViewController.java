@@ -27,12 +27,15 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
+import javafx.scene.control.TreeTableCell;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableColumn.CellEditEvent;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
+import javafx.util.Callback;
 import javax.annotation.PostConstruct;
 
 @ViewController(value = "/fxml/ui/TreeTableView.fxml", title = "Tree Table View")
@@ -72,6 +75,8 @@ public class TreeTableViewController {
     private JFXTreeTableColumn<Person, String> departmentEditableColumn;
     @FXML
     private JFXTreeTableColumn<Person, String> courseEditableColumn;
+    @FXML
+    private JFXTreeTableColumn<Person, Boolean> checkboxEditableColumn;
     @FXML
     private Label treeTableViewCount;
     @FXML
@@ -127,6 +132,7 @@ public class TreeTableViewController {
     }
 
     private void setupEditableTableView() {
+        setupCellValueFactory(checkboxEditableColumn, Person::checkboxProperty);
         setupCellValueFactory(userPhotoEditableColumn, Person::userPhotoProperty);
         setupCellValueFactory(firstNameEditableColumn, Person::firstNameProperty);
         setupCellValueFactory(lastNameEditableColumn, Person::lastNameProperty);
@@ -140,6 +146,15 @@ public class TreeTableViewController {
         setupCellValueFactory(courseEditableColumn, Person::courseProperty);
 
         // add editors
+        Callback<TreeTableColumn<Person, Boolean>, TreeTableCell<Person, Boolean>> booleanCellFactory = 
+            new Callback<TreeTableColumn<Person, Boolean>, TreeTableCell<Person, Boolean>>() {
+            @Override
+                public TreeTableCell<Person, Boolean> call(TreeTableColumn<Person, Boolean> p) {
+                    return new BooleanCell();
+            }
+        };
+        checkboxEditableColumn.setCellFactory(booleanCellFactory);
+//        checkboxEditableColumn.setCellFactory( tc -> new CheckBoxTreeTableCell<>());
         firstNameEditableColumn.setCellFactory((TreeTableColumn<Person, String> param) -> {
             return new GenericEditableTreeTableCell<>(
                     new TextFieldEditorBuilder());
@@ -230,5 +245,47 @@ public class TreeTableViewController {
                             || Integer.toString(person.mobile.get()).contains(newVal);
                 });
     }
+    
 
+    class BooleanCell extends TreeTableCell<Person, Boolean> {
+        private JFXCheckBox checkBox;
+        public BooleanCell() {
+            checkBox = new JFXCheckBox();
+            checkBox.setDisable(true);
+            checkBox.selectedProperty().addListener(new ChangeListener<Boolean> () {
+                public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                    if(isEditing())
+                        commitEdit(newValue == null ? false : newValue);
+                }
+            });
+            this.setGraphic(checkBox);
+            this.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
+            this.setEditable(true);
+        }
+        @Override
+        public void startEdit() {
+            super.startEdit();
+            if (isEmpty()) {
+                return;
+            }
+            checkBox.setDisable(false);
+            checkBox.requestFocus();
+        }
+        @Override
+        public void cancelEdit() {
+            super.cancelEdit();
+            checkBox.setDisable(true);
+        }
+        public void commitEdit(Boolean value) {
+            super.commitEdit(value);
+            checkBox.setDisable(true);
+        }
+        @Override
+        public void updateItem(Boolean item, boolean empty) {
+            super.updateItem(item, empty);
+            if (!isEmpty()) {
+                checkBox.setSelected(item);
+            }
+        }
+    }
 }
