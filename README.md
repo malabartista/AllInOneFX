@@ -9,7 +9,7 @@ JavaFX Application with [a curated list of awesome JavaFX libraries, frameworks]
 - [FontAwesomeFX](https://bitbucket.org/Jerady/fontawesomefx) - FontAwesome in JavaFX with FontAwesomeFX
 - [Material Dashboard FX](https://github.com/mlayah/material-dashboard-fx) - Simple dashboard implemented using JavaFX, JFoenix and ControlsFX.
 - [CalendarFX](http://dlsc.com/products/calendarfx/) - CalendarFX is a calendar framework for JavaFX 8. It contains a set of professional custom controls, which can be used to implement a calendar UI for any kind of application.
-- [GMapFX](http://rterp.github.io/GMapsFX/) - GMapsFX provides a wrapper to the Google Map's Javascript API, allowing you to use and interact with maps using a pure Java API.
+- [GMapsFX](http://rterp.github.io/GMapsFX/) - GMapsFX provides a wrapper to the Google Map's Javascript API, allowing you to use and interact with maps using a pure Java API.
 - [SmartCSVFX](https://github.com/frosch95/SmartCSV.fx) - A simple JavaFX application to load, save and edit a CSV file and provide a JSON configuration for columns to check the values in the columns.
 - [LiveDirsFX](https://github.com/TomasMikula/LiveDirsFX) - Directory tree model for JavaFX that watches the filesystem for changes.
 - [ReactFX](https://github.com/TomasMikula/ReactFX) - Reactive event streams, observable values and more for JavaFX.
