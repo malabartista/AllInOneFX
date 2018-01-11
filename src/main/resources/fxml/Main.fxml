@@ -30,7 +30,7 @@
                         <Label id="lblTitle" fx:id="lblTitle" style="-fx-padding: 20;">Material Design</Label>
                     </leftItems>
                     <rightItems>
-                        <JFXBadge fx:id="badge1" position="TOP_RIGHT" styleClass="icons-badge" text="1">
+                        <JFXBadge fx:id="badgeNotification" position="TOP_RIGHT" styleClass="icons-badge" text="1">
                             <StackPane style="-fx-padding: 10;">
                                 <FontAwesomeIconView glyphName="BELL" size="1.5em" styleClass="icon, icon-toolbar" />
                             </StackPane>
@@ -72,4 +72,5 @@
             </JFXDrawer>
         </center>
     </BorderPane>
+    <JFXSnackbar fx:id="snackbar" />
 </StackPane>

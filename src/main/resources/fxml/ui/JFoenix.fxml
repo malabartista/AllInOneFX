@@ -44,7 +44,7 @@
             <VBox spacing="10">
                 <Label styleClass="title-label">Flat Buttons</Label>
                 <HBox spacing="20" style="-fx-padding: 0 0 0 50;">
-                    <JFXButton buttonType="FLAT" prefHeight="40" prefWidth="100" style="-fx-font-size:14px;" text="BUTTON" />
+                    <JFXButton fx:id="notificationButton" buttonType="FLAT" prefHeight="40" prefWidth="100" style="-fx-font-size:14px;" text="NOTIFICATION" />
                     <JFXButton buttonType="FLAT" prefHeight="40" prefWidth="100" style="-fx-text-fill:#5264AE;-fx-font-size:14px;" text="COLORED" />
                     <JFXButton buttonType="FLAT" disable="true" prefHeight="40" prefWidth="100" style="-fx-font-size:14px;" text="DISABLED" />
                 </HBox>

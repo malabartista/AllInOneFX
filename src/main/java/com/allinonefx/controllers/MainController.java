@@ -23,6 +23,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 import javax.annotation.PostConstruct;
@@ -51,7 +52,13 @@ public final class MainController {
     private JFXDrawer drawer;
     @FXML
     public static Label lblTitle;
+    @FXML
+    private JFXBadge badgeNotification;
+    @FXML
+    private JFXSnackbar snackbar;
+    private int count = 1;
 
+    // Toolbar and Profile Popups
     private JFXPopup toolbarPopup;
     private JFXPopup profilePopup;
 
@@ -116,44 +123,37 @@ public final class MainController {
         final FlowHandler sideMenuFlowHandler = sideMenuFlow.createHandler(context);
         drawer.setSidePane(sideMenuFlowHandler.start(new ExtendedAnimatedFlowContainer(containerAnimationDuration,
                 SWIPE_LEFT)));
-    }
-
-    public final class InputController {
-
-        @FXML
-        private JFXListView<?> toolbarPopupList;
-        @FXML
-        private JFXListView<?> profilePopupList;
-
-        // close application
-        @FXML
-        private void submit() throws IOException {
-            Scene scene = root.getScene();
-            final ObservableList<String> stylesheets = scene.getStylesheets();
-            if (toolbarPopupList != null) {
-                if (toolbarPopupList.getSelectionModel().getSelectedIndex() == 0) {
-                    stylesheets.removeAll(MainDemo.class.getResource("/css/theme-red.css").toExternalForm());
-                    stylesheets.addAll(MainDemo.class.getResource("/css/theme-blue.css").toExternalForm());
-                } else if (toolbarPopupList.getSelectionModel().getSelectedIndex() == 1) {
-                    stylesheets.removeAll(MainDemo.class.getResource("/css/theme-blue.css").toExternalForm());
-                    stylesheets.addAll(MainDemo.class.getResource("/css/theme-red.css").toExternalForm());
-                } else if (toolbarPopupList.getSelectionModel().getSelectedIndex() == 3) {
-                    Platform.exit();
-                }
+        // Notifications
+        snackbar.registerSnackbarContainer(root);
+        badgeNotification.setOnMouseClicked((click) -> {
+            int value = Integer.parseInt(badgeNotification.getText());
+            if (click.getButton() == MouseButton.PRIMARY) {
+                value++;
+            } else if (click.getButton() == MouseButton.SECONDARY) {
+                value--;
             }
 
-//            if (profilePopupList != null) {
-//                if (profilePopupList.getSelectionModel()
-//                        .getSelectedIndex() == 0) {
-////                    switchLanguage(Locale.ENGLISH);
-//                    changeLanguage(AppSettings.Language.ENGLISH);
-//                } else if (profilePopupList.getSelectionModel()
-//                        .getSelectedIndex() == 1) {
-//                    changeLanguage(AppSettings.Language.SPANISH);
-//                }
-//                profilePopupList.getParent().setVisible(false);
-//            }
-        }
+            if (value == 0) {
+                badgeNotification.setEnabled(false);
+            } else {
+                badgeNotification.setEnabled(true);
+            }
+            badgeNotification.setText(String.valueOf(value));
+
+            // trigger snackbar
+            if (count++ % 2 == 0) {
+                snackbar.fireEvent(new JFXSnackbar.SnackbarEvent("Toast Message " + count));
+            } else if (count % 4 == 0) {
+                snackbar.fireEvent(new JFXSnackbar.SnackbarEvent("Snackbar Message Persistant " + count,
+                        "CLOSE",
+                        3000,
+                        true,
+                        b -> snackbar.close()));
+            } else {
+                snackbar.fireEvent(new JFXSnackbar.SnackbarEvent("Snackbar Message " + count, "UNDO", 3000, false, (b) -> {
+                }));
+            }
+        });
     }
 
     public void loadLanguage(Locale locale) throws IOException {
@@ -209,4 +209,46 @@ public final class MainController {
 //        }
 ////        NodeOrientation nodeOrientation = newLanguage.getNodeOrientation();
 //    }
+    public final class InputController {
+
+        @FXML
+        private JFXListView<?> toolbarPopupList;
+        @FXML
+        private JFXListView<?> profilePopupList;
+
+        // close application
+        @FXML
+        private void submit() throws IOException {
+            Scene scene = root.getScene();
+            final ObservableList<String> stylesheets = scene.getStylesheets();
+            if (toolbarPopupList != null) {
+                if (toolbarPopupList.getSelectionModel().getSelectedIndex() == 0) {
+                    stylesheets.removeAll(MainDemo.class.getResource("/css/theme-red.css").toExternalForm());
+                    stylesheets.addAll(MainDemo.class.getResource("/css/theme-blue.css").toExternalForm());
+                } else if (toolbarPopupList.getSelectionModel().getSelectedIndex() == 1) {
+                    stylesheets.removeAll(MainDemo.class.getResource("/css/theme-blue.css").toExternalForm());
+                    stylesheets.addAll(MainDemo.class.getResource("/css/theme-red.css").toExternalForm());
+                }
+            }
+
+            if (profilePopupList != null) {
+                if (profilePopupList.getSelectionModel()
+                        .getSelectedIndex() == 0) {
+//                    switchLanguage(Locale.ENGLISH);
+//                    changeLanguage(AppSettings.Language.ENGLISH);
+                } else if (profilePopupList.getSelectionModel()
+                        .getSelectedIndex() == 1) {
+//                    changeLanguage(AppSettings.Language.SPANISH);
+                } else if (profilePopupList.getSelectionModel().getSelectedIndex() == 2) {
+                    JFXDialogLayout dialogLayout = new JFXDialogLayout();
+                    JFXDialog dialog = new JFXDialog(dialogLayout, (StackPane) context.getRegisteredObject("ContentPane"), JFXDialog.DialogTransition.TOP);
+                    dialog.setTransitionType(JFXDialog.DialogTransition.CENTER);
+                    dialog.show((StackPane) context.getRegisteredObject("ContentPane"));
+                } else if (profilePopupList.getSelectionModel().getSelectedIndex() == 3) {
+                    Platform.exit();
+                }
+                profilePopupList.getParent().setVisible(false);
+            }
+        }
+    }
 }

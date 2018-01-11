@@ -23,12 +23,19 @@ import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.animation.Transition;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 import javax.annotation.PostConstruct;
+import org.controlsfx.control.Notifications;
 
 @ViewController(value = "/fxml/ui/JFoenix.fxml", title = "Material Design Example")
 public class JFoenixController {
@@ -37,6 +44,8 @@ public class JFoenixController {
     private ViewFlowContext context;
     @FXML
     private StackPane root;
+    @FXML
+    private JFXButton notificationButton;
     @FXML
     private JFXComboBox<Label> jfxComboBox;
     @FXML
@@ -67,6 +76,13 @@ public class JFoenixController {
 
         // Main Title
         MainController.lblTitle.setText("JFoenix");
+        
+        // Notification Button
+        notificationButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+                notification(Pos.TOP_LEFT);
+            }
+        });
 
         // ComboBox
         jfxComboBox.focusedProperty().addListener((o, oldVal, newVal) -> {
@@ -141,5 +157,29 @@ public class JFoenixController {
 
         // List View
         list1.depthProperty().set(1);
+    }
+    
+    private void notification(Pos pos) {
+        final Image SMALL_GRAPHIC = 
+            new Image("controlsfx-logo.png");
+        
+        String text = "Hello World " + (count++) + "!";
+        
+        Node graphic = new ImageView(SMALL_GRAPHIC);
+        
+        Notifications notificationBuilder = Notifications.create()
+                .title("Title Text")
+                .text(text)
+                .graphic(graphic)
+                .hideAfter(Duration.seconds(10))
+                .position(pos)
+                .onAction(new EventHandler<ActionEvent>() {
+                    @Override public void handle(ActionEvent arg0) {
+                        System.out.println("Notification clicked on!");
+                    }
+                });
+        
+        notificationBuilder.show();
+        
     }
 }

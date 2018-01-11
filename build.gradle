@@ -18,6 +18,7 @@ repositories {
     jcenter()
     mavenCentral()
     maven { url 'http://sevntu-checkstyle.github.com/sevntu.checkstyle/maven2' }
+    maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
     flatDir {
         dirs 'libs'
     }
@@ -58,6 +59,7 @@ dependencies {
     //    compile group: 'org.codehaus.griffon', name: 'griffon-rt', version: '1.4.0'    
     //    compile group: 'org.codehaus.griffon.plugins', name: 'griffon-mybatis-core', version: '2.1.0'
     compile group: 'org.controlsfx', name: 'controlsfx', version: '8.40.14'
+    compile group: 'org.fxmisc.livedirs', name: 'livedirsfx', version: '1.0.0-SNAPSHOT'
     compile group: 'org.fxmisc.richtext', name: 'richtextfx', version: '0.8.1'
     compile group: 'org.kordamp.bootstrapfx', name: 'bootstrapfx-core', version: '0.2.2'
     //    compile group: 'org.jacpfx', name: 'jacpfx.JavaFXSpring', version: '2.1'

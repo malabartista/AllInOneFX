@@ -7,6 +7,7 @@ import com.allinonefx.gui.uicomponents.ControlsFXController;
 import com.allinonefx.gui.uicomponents.GMapsFXController;
 import com.allinonefx.gui.uicomponents.GlyphsBrowserController;
 import com.allinonefx.gui.uicomponents.JFoenixController;
+import com.allinonefx.gui.uicomponents.LiveDirsFXController;
 import com.allinonefx.gui.uicomponents.MediaViewController;
 import com.allinonefx.gui.uicomponents.TilesFXController;
 import com.allinonefx.gui.uicomponents.TreeTableViewController;
@@ -22,11 +23,9 @@ import io.datafx.controller.flow.context.ViewFlowContext;
 import io.datafx.controller.util.VetoException;
 import java.util.Objects;
 import javafx.application.Platform;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import javax.annotation.PostConstruct;
 
 @ViewController(value = "/fxml/SideMenu.fxml", title = "Material Design Example")
@@ -35,8 +34,8 @@ public class SideMenuController {
     @FXMLViewFlowContext
     private ViewFlowContext context;
 
-    @FXML
-    private JFXListView jfoenixList;
+//    @FXML
+//    private JFXListView jfoenixList;
     /*
     @FXML
     @ActionTrigger("buttons")
@@ -94,12 +93,6 @@ public class SideMenuController {
     @ActionTrigger("treetableview")
     private Label treetableview;
     @FXML
-    @ActionTrigger("webview")
-    private Label webview;
-    @FXML
-    @ActionTrigger("register")
-    private Label register;
-    @FXML
     @ActionTrigger("anchorfx")
     private Label anchorfx;
     @FXML
@@ -118,6 +111,9 @@ public class SideMenuController {
     @ActionTrigger("gmapsfx")
     private Label gmapsfx;
     @FXML
+    @ActionTrigger("livedirsfx")
+    private Label livedirsfx;
+    @FXML
     @ActionTrigger("smartcsvfx")
     private Label smartcsvfx;
     @FXML
@@ -126,6 +122,9 @@ public class SideMenuController {
     @FXML
     @ActionTrigger("video")
     private Label video;
+    @FXML
+    @ActionTrigger("webview")
+    private Label webview;
     @FXML
     @ActionTrigger("scrollpane")
     private Label scrollpane;
@@ -183,6 +182,7 @@ public class SideMenuController {
         bindNodeToController(controlsfx, ControlsFXController.class, contentFlow, contentFlowHandler);
         bindNodeToController(glyphsbrowser, GlyphsBrowserController.class, contentFlow, contentFlowHandler);
         bindNodeToController(gmapsfx, GMapsFXController.class, contentFlow, contentFlowHandler);
+        bindNodeToController(livedirsfx, LiveDirsFXController.class, contentFlow, contentFlowHandler);
         bindNodeToController(tilesfx, TilesFXController.class, contentFlow, contentFlowHandler);
         bindNodeToController(video, MediaViewController.class, contentFlow, contentFlowHandler);
         bindNodeToController(webview, WebViewController.class, contentFlow, contentFlowHandler);
@@ -197,12 +197,12 @@ public class SideMenuController {
 //            }
 //        });
 
-        jfoenixList.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                System.out.println("clicked on " + jfoenixList.getSelectionModel().getSelectedItem());
-            }
-        });
+//        jfoenixList.setOnMouseClicked(new EventHandler<MouseEvent>() {
+//            @Override
+//            public void handle(MouseEvent event) {
+//                System.out.println("clicked on " + jfoenixList.getSelectionModel().getSelectedItem());
+//            }
+//        });
     }
 
     private void bindNodeToController(Node node, Class<?> controllerClass, Flow flow, FlowHandler flowHandler) {

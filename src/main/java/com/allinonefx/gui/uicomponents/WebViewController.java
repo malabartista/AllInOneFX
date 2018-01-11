@@ -5,6 +5,7 @@
  */
 package com.allinonefx.gui.uicomponents;
 
+import com.allinonefx.controllers.MainController;
 import io.datafx.controller.ViewController;
 import java.io.IOException;
 import java.net.URL;
@@ -27,6 +28,7 @@ public class WebViewController {
      */
     @PostConstruct
     public void init() throws IOException, Exception {
+        MainController.lblTitle.setText("WebView");
         WebView webView = new WebView();
         final WebEngine engine = webView.getEngine();
         URL url = this.getClass().getResource("/index.html");

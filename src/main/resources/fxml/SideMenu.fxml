@@ -10,6 +10,15 @@
         <String fx:value="side-menu"/>
     </styleClass>
     <JFXListView fx:id="sideList">
+        <Label fx:id="jfoenix">
+            <graphic>
+                <StackPane styleClass="custom-jfx-list-view-icon-container">
+                    <FontAwesomeIconView glyphName="HOME" size="1.5em" styleClass="custom-jfx-list-view-icon"/>
+                </StackPane>
+            </graphic>
+            JFoenix
+        </Label>
+        <!--
         <JFXListView fx:id="jfoenixList" styleClass="sublist">
             <groupnode>
                 <Label fx:id="jfoenix">
@@ -38,6 +47,7 @@
                 Checkbox
             </Label>
         </JFXListView>
+        -->
         <Label fx:id="treetableview">
             <graphic>
                 <StackPane styleClass="custom-jfx-list-view-icon-container">
@@ -93,6 +103,14 @@
                 </StackPane>
             </graphic>
             GMapsFX
+        </Label>
+        <Label fx:id="livedirsfx">
+            <graphic>
+                <StackPane styleClass="custom-jfx-list-view-icon-container">
+                    <FontAwesomeIconView glyphName="FOLDER" size="1.5em" styleClass="custom-jfx-list-view-icon"/>
+                </StackPane>
+            </graphic>
+            LiveDirsFX
         </Label>
         <Label fx:id="tilesfx">
             <graphic>

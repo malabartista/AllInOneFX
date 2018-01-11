@@ -1,5 +1,6 @@
 package com.allinonefx.gui.uicomponents;
 
+import com.allinonefx.controllers.MainController;
 import io.datafx.controller.ViewController;
 import java.io.File;
 import java.net.MalformedURLException;
@@ -21,6 +22,7 @@ public class MediaViewController {
      */
     @PostConstruct
     public void init() throws MalformedURLException {
+        MainController.lblTitle.setText("Video");
         final File f = new File(getClass().getClassLoader().getResource("media/big_buck_bunny.mp4").getFile());
         final Media m = new Media(f.toURI().toURL().toString());
         final MediaPlayer mp = new MediaPlayer(m);
