@@ -12,12 +12,13 @@
     <JFXListView fx:id="sideList">
         <JFXListView fx:id="jfoenixList" styleClass="sublist">
             <groupnode>
-                <Label fx:id="jfoenix" text="%label.jfoenix">
+                <Label fx:id="jfoenix">
                     <graphic>
                         <StackPane styleClass="custom-jfx-list-view-icon-container">
                             <FontAwesomeIconView glyphName="HOME" size="1.5em" styleClass="custom-jfx-list-view-icon"/>
                         </StackPane>
                     </graphic>
+                    JFoenix
                 </Label>
             </groupnode>
             <Label fx:id="button">

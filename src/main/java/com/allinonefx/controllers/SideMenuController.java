@@ -12,6 +12,7 @@ import com.allinonefx.gui.uicomponents.TilesFXController;
 import com.allinonefx.gui.uicomponents.TreeTableViewController;
 import com.allinonefx.gui.uicomponents.WebViewController;
 import com.jfoenix.controls.JFXListView;
+import io.datafx.controller.ViewController;
 import io.datafx.controller.flow.Flow;
 import io.datafx.controller.flow.FlowException;
 import io.datafx.controller.flow.FlowHandler;
@@ -26,8 +27,9 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javax.annotation.PostConstruct;
 
-//@ViewController(value = "/fxml/SideMenu.fxml", title = "Material Design Example")
+@ViewController(value = "/fxml/SideMenu.fxml", title = "Material Design Example")
 public class SideMenuController {
 
     @FXMLViewFlowContext
@@ -133,8 +135,8 @@ public class SideMenuController {
     /**
      * init fxml when loaded.
      */
-//    @PostConstruct
-    public void initialize() {
+    @PostConstruct
+    public void init() {
         Objects.requireNonNull(context, "context");
         FlowHandler contentFlowHandler = (FlowHandler) context.getRegisteredObject("ContentFlowHandler");
         sideList.propagateMouseEventsToParent();
