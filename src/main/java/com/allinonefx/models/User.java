@@ -16,11 +16,14 @@ import javafx.beans.property.StringProperty;
 import javafx.scene.image.ImageView;
 
 /*
- * Model class
+ * User Model class
  */
-public class Person extends RecursiveTreeObject<Person> {
+public class User extends RecursiveTreeObject<User> {
 
     public ObjectProperty<ImageView> userPhoto = new SimpleObjectProperty();
+    public SimpleIntegerProperty id = new SimpleIntegerProperty();
+    public StringProperty userName = new SimpleStringProperty();
+    public StringProperty password = new SimpleStringProperty();
     public StringProperty firstName = new SimpleStringProperty();
     public StringProperty lastName = new SimpleStringProperty();
     public SimpleIntegerProperty mobile = new SimpleIntegerProperty();
@@ -32,10 +35,16 @@ public class Person extends RecursiveTreeObject<Person> {
     public StringProperty course = new SimpleStringProperty();
     public BooleanProperty checkbox = new SimpleBooleanProperty();
 
-    Person() {
+    public User() {
+    }
+    
+    public User(String userName, String password, int mobile) {
+        this.userName = new SimpleStringProperty(userName);
+        this.password = new SimpleStringProperty(password);
+        this.mobile = new SimpleIntegerProperty(mobile);
     }
 
-    public Person(String firstName, String lastName, int mobile, String email, String location, String gender, String level, String department, String course) {
+    public User(String firstName, String lastName, int mobile, String email, String location, String gender, String level, String department, String course) {
         this.firstName = new SimpleStringProperty(firstName);
         this.lastName = new SimpleStringProperty(lastName);
         this.mobile = new SimpleIntegerProperty(mobile);
@@ -49,6 +58,14 @@ public class Person extends RecursiveTreeObject<Person> {
 
     }
 
+    public SimpleIntegerProperty idProperty() {
+        return id;
+    }
+    
+    public StringProperty userNameProperty() {
+        return userName;
+    }
+    
     public StringProperty firstNameProperty() {
         return firstName;
     }
@@ -92,4 +109,6 @@ public class Person extends RecursiveTreeObject<Person> {
     public BooleanProperty checkboxProperty() {
         return checkbox;
     }
+    
+    
 }
