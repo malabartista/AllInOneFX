@@ -12,21 +12,16 @@ public class DbHandler extends Configs {
         // mysql
         final String ConnectionString = "jdbc:mysql://" + Configs.dbhost + ":" + Configs.dbport + "/" + Configs.dbname;
         // mssql
-        final String connectionUrl = "jdbc:jtds:sqlserver://localhost/bdVersion5xp3;user=gestionTrafico;password=gestionTrafico1;instance=sqlexpress01;domain=";
+//        final String connectionUrl = "jdbc:jtds:sqlserver://localhost/databasename;user=*****;password=******;instance=sqlexpress01;domain=";
         try {
             // mysql
             Class.forName("com.mysql.jdbc.Driver");
-            // mssql
-            //Class.forName("net.sourceforge.jtds.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            System.err.println(e.getMessage());
-        }
-
-        try {
-            // mysql
             dbconnection = DriverManager.getConnection(ConnectionString, Configs.dbuser, Configs.dbpass);
             // mssql
-            //dbconnection = DriverManager.getConnection(connectionUrl);  
+//            Class.forName("net.sourceforge.jtds.jdbc.Driver");
+//            dbconnection = DriverManager.getConnection(connectionUrl);  
+        } catch (ClassNotFoundException e) {
+            System.err.println(e.getMessage());
         } catch (SQLException e) {
             System.err.println(e.getMessage());
         }

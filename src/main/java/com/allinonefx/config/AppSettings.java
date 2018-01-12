@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.allinonefx;
+package com.allinonefx.config;
 
 import com.allinonefx.controllers.I18NController;
 import java.util.Locale;
