@@ -6,8 +6,10 @@
 package com.allinonefx.controllers;
 
 import com.allinonefx.config.DbHandler;
+import com.allinonefx.dao.UserDao;
 import static com.allinonefx.gui.uicomponents.DialogController.CONTENT_PANE;
 import com.allinonefx.gui.uicomponents.TreeTableViewController;
+import com.allinonefx.models.User;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
@@ -53,7 +55,7 @@ public class RegisterController {
     @FXML
     private StackPane root;
 
-    // Form
+    // form
     @FXML
     private JFXTextField txtFname;
     @FXML
@@ -98,15 +100,13 @@ public class RegisterController {
     @FXML
     private JFXButton btnSave;
 
-    // Dialog
+    // dialog
     @FXML
     private JFXDialog dialog;
     @FXML
-    private JFXButton dialogButton;
-    @FXML
     private JFXButton acceptButton;
 
-    // ProgressBar
+    // progressbar
     @FXML
     private Label lblComplete;
     @FXML
@@ -122,36 +122,36 @@ public class RegisterController {
     private static double progress9 = 0;
     private static double progress10 = 0;
 
-    // Database
+    // database
     private Connection connection;
     private PreparedStatement pst;
     private DbHandler handler;
 
     // DataFX - Flow    
-    private FlowHandler contentFlowHandler;
-    private Flow contentFlow;
     @FXMLViewFlowContext
     private ViewFlowContext context;
+    private FlowHandler contentFlowHandler;
+    private Flow contentFlow;
 
     /**
      * init fxml when loaded.
      */
     @PostConstruct
     public void init() throws IOException {
-        // Title
-        //MainController.lblTitle.setText("Register");
-        // Database Handler
+        // title
+        MainController.lblTitle.setText("Register");
+        // database handler
         handler = new DbHandler();
-        // Form Init
+        // form init
         handleValidation();
         updateProgress();
         setDepartmentsToCombo();
         setTextFields();
-        // Flow
+        // flow
         contentFlowHandler = (FlowHandler) context.getRegisteredObject("ContentFlowHandler");
         contentFlow = (Flow) context.getRegisteredObject("ContentFlow");
         contentFlow.withGlobalLink(btnSave.getId(), TreeTableViewController.class);
-        // Dialog
+        // dialog
         root.getChildren().remove(dialog);
         acceptButton.setOnMouseClicked((e) -> dialog.close());
     }
@@ -172,7 +172,6 @@ public class RegisterController {
                 } else {
                     progress1 = 0.0;
                 }
-
                 double sum = (progress10 + progress1 + progress2 + progress3 + progress4 + progress5 + progress6 + progress7 + progress8 + progress9);
                 progressPersonal.setProgress(sum);
                 lblComplete.setText(decimalFormat.format(sum * 100) + "% complete");
@@ -198,10 +197,8 @@ public class RegisterController {
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 if (!newValue.isEmpty()) {
                     progress3 = 0.1;
-
                 } else {
                     progress3 = 0.0;
-
                 }
                 double sum = (progress10 + progress1 + progress2 + progress3 + progress4 + progress5 + progress6 + progress7 + progress8 + progress9);
                 progressPersonal.setProgress(sum);
@@ -214,10 +211,8 @@ public class RegisterController {
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 if (newValue.length() > 1) {
                     progress4 = 0.1;
-
                 } else {
                     progress4 = 0.0;
-
                 }
                 double sum = (progress10 + progress1 + progress2 + progress3 + progress4 + progress5 + progress6 + progress7 + progress8 + progress9);
                 progressPersonal.setProgress(sum);
@@ -230,10 +225,8 @@ public class RegisterController {
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 if (!newValue.isEmpty()) {
                     progress5 = 0.1;
-
                 } else {
                     progress5 = 0.0;
-
                 }
                 double sum = (progress10 + progress1 + progress2 + progress3 + progress4 + progress5 + progress6 + progress7 + progress8 + progress9);
                 progressPersonal.setProgress(sum);
@@ -246,10 +239,8 @@ public class RegisterController {
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 if (!newValue.isEmpty()) {
                     progress6 = 0.1;
-
                 } else {
                     progress6 = 0.0;
-
                 }
                 double sum = (progress10 + progress1 + progress2 + progress3 + progress4 + progress5 + progress6 + progress7 + progress8 + progress9);
                 progressPersonal.setProgress(sum);
@@ -262,10 +253,8 @@ public class RegisterController {
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 if (!newValue.isEmpty()) {
                     progress7 = 0.1;
-
                 } else {
                     progress7 = 0.0;
-
                 }
                 double sum = (progress10 + progress1 + progress2 + progress3 + progress4 + progress5 + progress6 + progress7 + progress8 + progress9);
                 progressPersonal.setProgress(sum);
@@ -290,9 +279,7 @@ public class RegisterController {
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
                 if (!oldValue) {
                     progress8 = 0.1;
-
                 }
-
                 double sum = (progress10 + progress1 + progress2 + progress3 + progress4 + progress5 + progress6 + progress7 + progress8 + progress9);
                 progressPersonal.setProgress(sum);
                 lblComplete.setText(decimalFormat.format(sum * 100) + "% complete");
@@ -317,7 +304,6 @@ public class RegisterController {
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
                 if (!oldValue) {
                     progress9 = 0.1;
-
                 }
                 double sum = (progress10 + progress1 + progress2 + progress3 + progress4 + progress5 + progress6 + progress7 + progress8 + progress9);
                 progressPersonal.setProgress(sum);
@@ -329,7 +315,6 @@ public class RegisterController {
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
                 if (!oldValue) {
                     progress9 = 0.1;
-
                 }
                 double sum = (progress1 + progress2 + progress3 + progress4 + progress5 + progress6 + progress7 + progress8 + progress9);
                 progressPersonal.setProgress(sum);
@@ -373,7 +358,6 @@ public class RegisterController {
     }
 
     private void setDepartmentsToCombo() {
-
         connection = handler.getConnection();
         String query = "SELECT name FROM department";
         depart_lists = FXCollections.observableArrayList();
@@ -409,45 +393,32 @@ public class RegisterController {
         rdDegree.setSelected(false);
         rdDiploma.setSelected(false);
         rdCertificate.setSelected(false);
-
         txtCourseName.setText(null);
         txtBirthdate.setValue(null);
         txtAmount.setText(null);
     }
 
     @FXML
-    private void editStudent(ActionEvent event) {
+    private void editUser(ActionEvent event) {
     }
 
     @FXML
-    private void saveStudent(ActionEvent event) throws SQLException {
-        // CHECK IF ALL FILEDS ARE FILLED UP
+    private void saveUser(ActionEvent event) throws SQLException {
+        // check if all fields are filled up
         if (progressPersonal.getProgress() < 0.9) {
             dialog.setTransitionType(JFXDialog.DialogTransition.CENTER);
             dialog.show((StackPane) context.getRegisteredObject(CONTENT_PANE));
             return;
         }
-        String insert = "INSERT INTO students(fname,lname,location,gender,email,phone,"
-                + "`level`,department,course,paid) "
-                + "VALUES (?,?,?,?,?,?,?,?,?,?)";
-        connection = handler.getConnection();
-        pst = connection.prepareStatement(insert);
-        pst.setString(1, txtFname.getText().toUpperCase());
-        pst.setString(2, txtLname.getText().toUpperCase());
-        pst.setString(3, txtLocation.getText());
-        pst.setString(4, getGender());
-        pst.setString(5, txtEmail.getText());
-        pst.setString(6, txtMobile.getText());
-        pst.setString(7, getLevel());
-        pst.setString(8, comboDepartmenT.getSelectionModel().getSelectedItem().toUpperCase());
-        pst.setString(9, txtCourseName.getText());
-        pst.setString(10, txtAmount.getText());
 
-        int success = pst.executeUpdate();
-        if (success == 1) {
+        //User u = new User(txtFname.getText().toUpperCase(), txtLname.getText().toUpperCase(), Integer.parseInt(txtMobile.getText()));
+        User u = new User(txtFname.getText().toUpperCase(), txtLname.getText().toUpperCase(), Integer.parseInt(txtMobile.getText()), txtEmail.getText().toUpperCase(), txtLocation.getText().toUpperCase(), getGender(), getLevel(), comboDepartmenT.getSelectionModel().getSelectedItem().toUpperCase(), txtCourseName.getText().toUpperCase());
+        UserDao dao = new UserDao();
+        boolean success = dao.insertUser(u);
+        if (success) {
             clearFields();
             JFXSnackbar fXSnackbar = new JFXSnackbar(root);
-            fXSnackbar.show("New student saved successfully", 3000);
+            fXSnackbar.show("New user saved successfully", 3000);
         }
 
         try {
@@ -457,7 +428,6 @@ public class RegisterController {
         } catch (FlowException ex) {
             Logger.getLogger(TreeTableViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     private void handleValidation() {

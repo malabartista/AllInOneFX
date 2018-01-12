@@ -33,15 +33,12 @@ public final class MainController {
 
     @FXMLViewFlowContext
     private ViewFlowContext context;
-
     @FXML
     private StackPane root;
-
     @FXML
     private StackPane titleBurgerContainer;
     @FXML
     private JFXHamburger titleBurger;
-
     @FXML
     private StackPane optionsBurger;
     @FXML
@@ -57,8 +54,6 @@ public final class MainController {
     @FXML
     private JFXSnackbar snackbar;
     private int count = 1;
-
-    // Toolbar and Profile Popups
     private JFXPopup toolbarPopup;
     private JFXPopup profilePopup;
 
@@ -240,10 +235,10 @@ public final class MainController {
                         .getSelectedIndex() == 1) {
 //                    changeLanguage(AppSettings.Language.SPANISH);
                 } else if (profilePopupList.getSelectionModel().getSelectedIndex() == 2) {
-                    JFXDialogLayout dialogLayout = new JFXDialogLayout();
-                    JFXDialog dialog = new JFXDialog(dialogLayout, (StackPane) context.getRegisteredObject("ContentPane"), JFXDialog.DialogTransition.TOP);
-                    dialog.setTransitionType(JFXDialog.DialogTransition.CENTER);
-                    dialog.show((StackPane) context.getRegisteredObject("ContentPane"));
+//                    JFXDialogLayout dialogLayout = new JFXDialogLayout();
+//                    JFXDialog dialog = new JFXDialog(dialogLayout, (StackPane) context.getRegisteredObject("ContentPane"), JFXDialog.DialogTransition.TOP);
+//                    dialog.setTransitionType(JFXDialog.DialogTransition.CENTER);
+//                    dialog.show((StackPane) context.getRegisteredObject("ContentPane"));
                 } else if (profilePopupList.getSelectionModel().getSelectedIndex() == 3) {
                     Platform.exit();
                 }

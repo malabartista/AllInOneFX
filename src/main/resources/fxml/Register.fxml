@@ -222,7 +222,7 @@
                             <Font name="Roboto Medium" size="15.0" />
                         </font>
                     </JFXButton>
-                    <JFXButton fx:id="btnEdit" buttonType="RAISED" onAction="#editStudent" ripplerFill="#3d9a31" style="-fx-background-color: #26B99A;" text="Edit" textFill="WHITE">
+                    <JFXButton fx:id="btnEdit" buttonType="RAISED" onAction="#editUser" ripplerFill="#3d9a31" style="-fx-background-color: #26B99A;" text="Edit" textFill="WHITE">
                         <font>
                             <Font name="Roboto Medium" size="15.0" />
                         </font>
@@ -230,7 +230,7 @@
                             <MaterialDesignIconView fill="WHITE" glyphName="BORDER_COLOR" size="18.0" wrappingWidth="29.0" />
                         </graphic>
                     </JFXButton>
-                    <JFXButton fx:id="btnSave" buttonType="RAISED" onAction="#saveStudent" ripplerFill="#3f25d7" style="-fx-background-color: rgb(0, 170, 207);" text="Save" textFill="WHITE">
+                    <JFXButton fx:id="btnSave" buttonType="RAISED" onAction="#saveUser" ripplerFill="#3f25d7" style="-fx-background-color: rgb(0, 170, 207);" text="Save" textFill="WHITE">
                         <font>
                             <Font name="Roboto Medium" size="15.0" />
                         </font>

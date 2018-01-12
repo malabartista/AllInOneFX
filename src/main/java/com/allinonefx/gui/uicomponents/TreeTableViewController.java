@@ -1,9 +1,9 @@
 package com.allinonefx.gui.uicomponents;
 
-import com.allinonefx.config.DbHandler;
 import com.allinonefx.controllers.MainController;
 import com.allinonefx.controllers.RegisterController;
-import com.allinonefx.models.Person;
+import com.allinonefx.dao.UserDao;
+import com.allinonefx.models.User;
 import com.jfoenix.controls.*;
 import com.jfoenix.controls.cells.editors.IntegerTextFieldEditorBuilder;
 import com.jfoenix.controls.cells.editors.TextFieldEditorBuilder;
@@ -16,8 +16,6 @@ import io.datafx.controller.flow.FlowHandler;
 import io.datafx.controller.flow.context.FXMLViewFlowContext;
 import io.datafx.controller.flow.context.ViewFlowContext;
 import io.datafx.controller.util.VetoException;
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.util.function.Function;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,7 +30,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TreeTableCell;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableColumn.CellEditEvent;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.util.Callback;
@@ -54,29 +51,29 @@ public class TreeTableViewController {
     @FXML
     private StackPane root;
     @FXML
-    private JFXTreeTableView<Person> editableTreeTableView;
+    private JFXTreeTableView<User> editableTreeTableView;
     @FXML
-    private JFXTreeTableColumn<Person, ImageView> userPhotoEditableColumn;
+    private JFXTreeTableColumn<User, ImageView> userPhotoEditableColumn;
     @FXML
-    private JFXTreeTableColumn<Person, String> firstNameEditableColumn;
+    private JFXTreeTableColumn<User, String> firstNameEditableColumn;
     @FXML
-    private JFXTreeTableColumn<Person, String> lastNameEditableColumn;
+    private JFXTreeTableColumn<User, String> lastNameEditableColumn;
     @FXML
-    private JFXTreeTableColumn<Person, Integer> mobileEditableColumn;
+    private JFXTreeTableColumn<User, Integer> mobileEditableColumn;
     @FXML
-    private JFXTreeTableColumn<Person, String> emailEditableColumn;
+    private JFXTreeTableColumn<User, String> emailEditableColumn;
     @FXML
-    private JFXTreeTableColumn<Person, String> locationEditableColumn;
+    private JFXTreeTableColumn<User, String> locationEditableColumn;
     @FXML
-    private JFXTreeTableColumn<Person, String> genderEditableColumn;
+    private JFXTreeTableColumn<User, String> genderEditableColumn;
     @FXML
-    private JFXTreeTableColumn<Person, String> levelEditableColumn;
+    private JFXTreeTableColumn<User, String> levelEditableColumn;
     @FXML
-    private JFXTreeTableColumn<Person, String> departmentEditableColumn;
+    private JFXTreeTableColumn<User, String> departmentEditableColumn;
     @FXML
-    private JFXTreeTableColumn<Person, String> courseEditableColumn;
+    private JFXTreeTableColumn<User, String> courseEditableColumn;
     @FXML
-    private JFXTreeTableColumn<Person, Boolean> checkboxEditableColumn;
+    private JFXTreeTableColumn<User, Boolean> checkboxEditableColumn;
     @FXML
     private Label treeTableViewCount;
     @FXML
@@ -121,8 +118,8 @@ public class TreeTableViewController {
         contentFlow.withGlobalLink(addRegister.getId(), RegisterController.class);
     }
 
-    private <T> void setupCellValueFactory(JFXTreeTableColumn<Person, T> column, Function<Person, ObservableValue<T>> mapper) {
-        column.setCellValueFactory((TreeTableColumn.CellDataFeatures<Person, T> param) -> {
+    private <T> void setupCellValueFactory(JFXTreeTableColumn<User, T> column, Function<User, ObservableValue<T>> mapper) {
+        column.setCellValueFactory((TreeTableColumn.CellDataFeatures<User, T> param) -> {
             if (column.validateValue(param)) {
                 return mapper.apply(param.getValue().getValue());
             } else {
@@ -132,99 +129,64 @@ public class TreeTableViewController {
     }
 
     private void setupEditableTableView() {
-        setupCellValueFactory(checkboxEditableColumn, Person::checkboxProperty);
-        setupCellValueFactory(userPhotoEditableColumn, Person::userPhotoProperty);
-        setupCellValueFactory(firstNameEditableColumn, Person::firstNameProperty);
-        setupCellValueFactory(lastNameEditableColumn, Person::lastNameProperty);
-//        setupCellValueFactory(mobileEditableColumn, Person::mobileProperty);
+        setupCellValueFactory(checkboxEditableColumn, User::checkboxProperty);
+        setupCellValueFactory(userPhotoEditableColumn, User::userPhotoProperty);
+        setupCellValueFactory(firstNameEditableColumn, User::firstNameProperty);
+        setupCellValueFactory(lastNameEditableColumn, User::lastNameProperty);
+//        setupCellValueFactory(mobileEditableColumn, User::mobileProperty);
         setupCellValueFactory(mobileEditableColumn, p -> p.mobile.asObject());
-        setupCellValueFactory(emailEditableColumn, Person::emailProperty);
-        setupCellValueFactory(locationEditableColumn, Person::locationProperty);
-        setupCellValueFactory(genderEditableColumn, Person::genderProperty);
-        setupCellValueFactory(levelEditableColumn, Person::levelProperty);
-        setupCellValueFactory(departmentEditableColumn, Person::departmentProperty);
-        setupCellValueFactory(courseEditableColumn, Person::courseProperty);
+        setupCellValueFactory(emailEditableColumn, User::emailProperty);
+        setupCellValueFactory(locationEditableColumn, User::locationProperty);
+        setupCellValueFactory(genderEditableColumn, User::genderProperty);
+        setupCellValueFactory(levelEditableColumn, User::levelProperty);
+        setupCellValueFactory(departmentEditableColumn, User::departmentProperty);
+        setupCellValueFactory(courseEditableColumn, User::courseProperty);
 
         // add editors
-        Callback<TreeTableColumn<Person, Boolean>, TreeTableCell<Person, Boolean>> booleanCellFactory = 
-            new Callback<TreeTableColumn<Person, Boolean>, TreeTableCell<Person, Boolean>>() {
+        Callback<TreeTableColumn<User, Boolean>, TreeTableCell<User, Boolean>> booleanCellFactory
+                = new Callback<TreeTableColumn<User, Boolean>, TreeTableCell<User, Boolean>>() {
             @Override
-                public TreeTableCell<Person, Boolean> call(TreeTableColumn<Person, Boolean> p) {
-                    return new BooleanCell();
+            public TreeTableCell<User, Boolean> call(TreeTableColumn<User, Boolean> p) {
+                return new BooleanCell();
             }
         };
         checkboxEditableColumn.setCellFactory(booleanCellFactory);
 //        checkboxEditableColumn.setCellFactory( tc -> new CheckBoxTreeTableCell<>());
-        firstNameEditableColumn.setCellFactory((TreeTableColumn<Person, String> param) -> {
+        firstNameEditableColumn.setCellFactory((TreeTableColumn<User, String> param) -> {
             return new GenericEditableTreeTableCell<>(
                     new TextFieldEditorBuilder());
         });
-        firstNameEditableColumn.setOnEditCommit((CellEditEvent<Person, String> t) -> {
+        firstNameEditableColumn.setOnEditCommit((CellEditEvent<User, String> t) -> {
             t.getTreeTableView()
                     .getTreeItem(t.getTreeTablePosition()
                             .getRow())
                     .getValue().firstName.set(t.getNewValue());
         });
-        lastNameEditableColumn.setCellFactory((TreeTableColumn<Person, String> param) -> {
+        lastNameEditableColumn.setCellFactory((TreeTableColumn<User, String> param) -> {
             return new GenericEditableTreeTableCell<>(
                     new TextFieldEditorBuilder());
         });
-        lastNameEditableColumn.setOnEditCommit((CellEditEvent<Person, String> t) -> {
+        lastNameEditableColumn.setOnEditCommit((CellEditEvent<User, String> t) -> {
             t.getTreeTableView()
                     .getTreeItem(t.getTreeTablePosition()
                             .getRow())
                     .getValue().lastName.set(t.getNewValue());
         });
-        mobileEditableColumn.setCellFactory((TreeTableColumn<Person, Integer> param) -> {
+        mobileEditableColumn.setCellFactory((TreeTableColumn<User, Integer> param) -> {
             return new GenericEditableTreeTableCell<>(
                     new IntegerTextFieldEditorBuilder());
         });
-        mobileEditableColumn.setOnEditCommit((CellEditEvent<Person, Integer> t) -> {
+        mobileEditableColumn.setOnEditCommit((CellEditEvent<User, Integer> t) -> {
             t.getTreeTableView()
                     .getTreeItem(t.getTreeTablePosition()
                             .getRow())
                     .getValue().mobile.set(t.getNewValue());
         });
 
-        // Data Table
-        DbHandler handler = new DbHandler();
-        Connection con = handler.getConnection();
-        ObservableList<Person> data = FXCollections.observableArrayList();
-        try {
-            // mysql
-            String SQL = "SELECT * FROM students ORDER BY fname";
-            // mssql
-            //String SQL = "SELECT * FROM PERSONAS WHERE Nombre <> '' and Apellido1RazonSocial <> '' and Telef <> '' ORDER BY NIF";
-            ResultSet rs = con.createStatement().executeQuery(SQL);
-            while (rs.next()) {
-                // mysql
-                Person p = new Person(rs.getString("fname"), rs.getString("lname"), rs.getInt("phone"), rs.getString("email"), rs.getString("location"), rs.getString("gender"), rs.getString("level"), rs.getString("department"), rs.getString("course"));
-                // mssql
-                //Person p = new Person(rs.getString("Nombre"), rs.getString("Apellido1RazonSocial"), rs.getInt("Telef"), rs.getString("EMAIL"), rs.getString("DirProvincia"), rs.getString("Sexo"), rs.getString("OFICINA"), rs.getString("DISCAPACIDAD"), rs.getString("ESTADOWEB"));
-                String imagePath = "icons/profile1.png";// + rs.getString("id") + ".png";
-                if (rs.getString("gender") != null && rs.getString("gender").equals("MALE")) {
-                    imagePath = "icons/profile-man.png";
-                } else {
-                    imagePath = "icons/profile-woman.png";
-                }
-                Image img = new Image(imagePath);
-                ImageView mv = new ImageView();
-                mv.setImage(img);
-//                mv.setFitWidth(70);
-//                mv.setFitHeight(80);
-                p.userPhoto.set(mv);
-//                p.firstName.set(rs.getString("fname"));
-//                p.lastName.set(rs.getString("lname"));
-//                p.mobile.set(rs.getInt("phone"));
-//                p.email.set(rs.getString("email"));
-//                p.location.set(rs.getString("location"));
-//                p.gender.set(rs.getString("gender"));
-                data.add(p);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Error on Building Data");
-        }
+        // Set Data Table
+        UserDao userDao = new UserDao();
+        ObservableList<User> data = FXCollections.observableArrayList(userDao.getAllUsers());
+
         editableTreeTableView.setRoot(new RecursiveTreeItem<>(data, RecursiveTreeObject::getChildren));
         editableTreeTableView.setShowRoot(false);
         editableTreeTableView.setEditable(true);
@@ -236,32 +198,35 @@ public class TreeTableViewController {
                 .addListener(setupSearchField(editableTreeTableView));
     }
 
-    private ChangeListener<String> setupSearchField(final JFXTreeTableView<Person> tableView) {
+    private ChangeListener<String> setupSearchField(final JFXTreeTableView<User> tableView) {
         return (o, oldVal, newVal)
-                -> tableView.setPredicate(personProp -> {
-                    final Person person = personProp.getValue();
-                    return person.firstName.get().contains(newVal)
-                            || person.lastName.get().contains(newVal)
-                            || Integer.toString(person.mobile.get()).contains(newVal);
+                -> tableView.setPredicate(userProp -> {
+                    final User user = userProp.getValue();
+                    return user.firstName.get().contains(newVal)
+                            || user.lastName.get().contains(newVal)
+                            || Integer.toString(user.mobile.get()).contains(newVal);
                 });
     }
-    
 
-    class BooleanCell extends TreeTableCell<Person, Boolean> {
+    class BooleanCell extends TreeTableCell<User, Boolean> {
+
         private JFXCheckBox checkBox;
+
         public BooleanCell() {
             checkBox = new JFXCheckBox();
             checkBox.setDisable(true);
-            checkBox.selectedProperty().addListener(new ChangeListener<Boolean> () {
+            checkBox.selectedProperty().addListener(new ChangeListener<Boolean>() {
                 public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                    if(isEditing())
+                    if (isEditing()) {
                         commitEdit(newValue == null ? false : newValue);
+                    }
                 }
             });
             this.setGraphic(checkBox);
             this.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
             this.setEditable(true);
         }
+
         @Override
         public void startEdit() {
             super.startEdit();
@@ -271,15 +236,18 @@ public class TreeTableViewController {
             checkBox.setDisable(false);
             checkBox.requestFocus();
         }
+
         @Override
         public void cancelEdit() {
             super.cancelEdit();
             checkBox.setDisable(true);
         }
+
         public void commitEdit(Boolean value) {
             super.commitEdit(value);
             checkBox.setDisable(true);
         }
+
         @Override
         public void updateItem(Boolean item, boolean empty) {
             super.updateItem(item, empty);
