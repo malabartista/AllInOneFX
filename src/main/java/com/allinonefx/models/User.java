@@ -44,7 +44,9 @@ public class User extends RecursiveTreeObject<User> {
         this.mobile = new SimpleIntegerProperty(mobile);
     }
 
-    public User(String firstName, String lastName, int mobile, String email, String location, String gender, String level, String department, String course) {
+    public User(String userName, String password, String firstName, String lastName, int mobile, String email, String location, String gender, String level, String department, String course) {
+        this.userName = new SimpleStringProperty(userName);
+        this.password = new SimpleStringProperty(password);
         this.firstName = new SimpleStringProperty(firstName);
         this.lastName = new SimpleStringProperty(lastName);
         this.mobile = new SimpleIntegerProperty(mobile);
@@ -55,7 +57,6 @@ public class User extends RecursiveTreeObject<User> {
         this.department = new SimpleStringProperty(department);
         this.course = new SimpleStringProperty(course);
         this.checkbox = new SimpleBooleanProperty(true);
-
     }
 
     public SimpleIntegerProperty idProperty() {
@@ -64,6 +65,10 @@ public class User extends RecursiveTreeObject<User> {
     
     public StringProperty userNameProperty() {
         return userName;
+    }
+    
+    public StringProperty passwordProperty() {
+        return password;
     }
     
     public StringProperty firstNameProperty() {

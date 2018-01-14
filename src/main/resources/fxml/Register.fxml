@@ -5,12 +5,13 @@
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXDialog?>
 <?import com.jfoenix.controls.JFXDialogLayout?>
+<?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXProgressBar?>
 <?import com.jfoenix.controls.JFXRadioButton?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXTimePicker?>
 <?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.Group?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -21,94 +22,76 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="root" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane fx:id="root" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
     <VBox alignment="CENTER" spacing="10">
         <children>
             <JFXProgressBar fx:id="progressPersonal" />
-            <Label fx:id="lblComplete" alignment="CENTER" layoutX="92.0" layoutY="70.0" text="0% complete">
+            <Label fx:id="lblComplete" alignment="CENTER" text="0% complete">
                 <font>
-                    <Font name="Roboto Black" size="13.0" />
+                    <Font name="Roboto Black" size="14.0" />
                 </font>
             </Label>
             <GridPane prefHeight="1514.0" prefWidth="1285.0">
                 <columnConstraints>
-                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" />
+                    <ColumnConstraints hgrow="SOMETIMES" />
+                    <ColumnConstraints hgrow="SOMETIMES" />
                 </columnConstraints>
                 <rowConstraints>
-                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    <RowConstraints vgrow="SOMETIMES" />
                 </rowConstraints>
                 <children>
-                    <VBox spacing="10" styleClass="card-white">
+                    <VBox styleClass="card-white">
                         <children>
-                            <GridPane layoutX="14.0" layoutY="44.0" prefHeight="443.0" prefWidth="299.0">
+                            <GridPane prefHeight="443.0" prefWidth="299.0">
                                 <columnConstraints>
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" />
                                 </columnConstraints>
                                 <rowConstraints>
-                                    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints vgrow="SOMETIMES" />
+                                    <RowConstraints vgrow="SOMETIMES" />
+                                    <RowConstraints vgrow="SOMETIMES" />
+                                    <RowConstraints vgrow="SOMETIMES" />
+                                    <RowConstraints vgrow="SOMETIMES" />
+                                    <RowConstraints vgrow="SOMETIMES" />
+                                    <RowConstraints vgrow="SOMETIMES" />
                                 </rowConstraints>
                                 <children>
-                                    <JFXTextField fx:id="txtFname" focusColor="#2196f3" labelFloat="true" promptText="%label.firstName">
+                                    <JFXTextField fx:id="txtUname" focusColor="#2196f3" labelFloat="true" promptText="%label.userName">
                                         <font>
                                             <Font name="Roboto Medium" size="14.0" />
                                         </font>
                                     </JFXTextField>
-                                    <JFXTextField fx:id="txtLname" focusColor="#2196f3" labelFloat="true" promptText="%label.lastName" GridPane.rowIndex="1">
+                                    <JFXPasswordField fx:id="txtPassword" focusColor="#2196f3" labelFloat="true" promptText="%label.password" GridPane.rowIndex="1">
+                                        <font>
+                                            <Font name="Roboto Medium" size="14.0" />
+                                        </font>
+                                    </JFXPasswordField>
+                                    <JFXTextField fx:id="txtFname" focusColor="#2196f3" labelFloat="true" promptText="%label.firstName" GridPane.rowIndex="2">
                                         <font>
                                             <Font name="Roboto Medium" size="14.0" />
                                         </font>
                                     </JFXTextField>
-                                    <JFXTextField fx:id="txtMobile" focusColor="#2196f3" labelFloat="true" promptText="Phone" GridPane.rowIndex="2">
+                                    <JFXTextField fx:id="txtLname" focusColor="#2196f3" labelFloat="true" promptText="%label.lastName" GridPane.rowIndex="3">
                                         <font>
                                             <Font name="Roboto Medium" size="14.0" />
                                         </font>
                                     </JFXTextField>
-                                    <JFXTextField fx:id="txtEmail" focusColor="#2196f3" labelFloat="true" promptText="Email" GridPane.rowIndex="3">
+                                    <JFXTextField fx:id="txtMobile" focusColor="#2196f3" labelFloat="true" promptText="Phone" GridPane.rowIndex="4">
                                         <font>
                                             <Font name="Roboto Medium" size="14.0" />
                                         </font>
                                     </JFXTextField>
-                                    <JFXTextField fx:id="txtLocation" focusColor="#2196f3" labelFloat="true" promptText="Location" GridPane.rowIndex="4">
+                                    <JFXTextField fx:id="txtEmail" focusColor="#2196f3" labelFloat="true" promptText="Email" GridPane.rowIndex="5">
                                         <font>
                                             <Font name="Roboto Medium" size="14.0" />
                                         </font>
                                     </JFXTextField>
-                                    <VBox GridPane.rowIndex="5">
-                                        <children>
-                                            <Label styleClass="control-label" text="Gender">
-                                                <VBox.margin>
-                                                    <Insets left="10.0" />
-                                                </VBox.margin>
-                                            </Label>
-                                            <Group>
-                                                <children>
-                                                    <JFXRadioButton fx:id="rdMale" layoutY="14.0" text="Male" textFill="#4d4d4d">
-                                                        <font>
-                                                            <Font name="Roboto Medium" size="14.0" />
-                                                        </font>
-                                                        <toggleGroup>
-                                                            <ToggleGroup fx:id="gender" />
-                                                        </toggleGroup>
-                                                    </JFXRadioButton>
-                                                    <JFXRadioButton fx:id="rdFemale" layoutX="121.0" layoutY="14.0" text="Female" textFill="#4d4d4d" toggleGroup="$gender">
-                                                        <font>
-                                                            <Font name="Roboto Medium" size="14.0" />
-                                                        </font>
-                                                    </JFXRadioButton>
-                                                </children>
-                                                <VBox.margin>
-                                                    <Insets left="50.0" />
-                                                </VBox.margin>
-                                            </Group>
-                                        </children>
-                                    </VBox>
+                                    <JFXTextField fx:id="txtLocation" focusColor="#2196f3" labelFloat="true" promptText="Location" GridPane.rowIndex="6">
+                                        <font>
+                                            <Font name="Roboto Medium" size="14.0" />
+                                        </font>
+                                    </JFXTextField>
                                 </children>
                             </GridPane>
                         </children>
@@ -116,19 +99,68 @@
                             <Insets bottom="20.0" left="40.0" right="40.0" />
                         </padding>
                     </VBox>
-                    <VBox spacing="10" styleClass="card-white" GridPane.columnIndex="1">
+                    <VBox styleClass="card-white" GridPane.columnIndex="1">
                         <children>
-                            <GridPane prefHeight="253.0" prefWidth="299.0">
+                            <GridPane prefHeight="443.0" prefWidth="299.0">
                                 <columnConstraints>
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" />
                                 </columnConstraints>
                                 <rowConstraints>
                                     <RowConstraints vgrow="SOMETIMES" />
                                     <RowConstraints vgrow="SOMETIMES" />
                                     <RowConstraints vgrow="SOMETIMES" />
+                                    <RowConstraints vgrow="SOMETIMES" />
+                                    <RowConstraints vgrow="SOMETIMES" />
+                                    <RowConstraints vgrow="SOMETIMES" />
                                 </rowConstraints>
                                 <children>
-                                    <VBox alignment="CENTER_LEFT" spacing="10.0">
+                                    <VBox alignment="CENTER_LEFT">
+                                        <children>
+                                            <JFXComboBox fx:id="comboDepartmenT" promptText="Select department" />
+                                        </children>
+                                    </VBox>
+                                    <JFXTextField fx:id="txtCourseName" focusColor="#2196f3" labelFloat="true" promptText="Course Name" GridPane.rowIndex="1">
+                                        <font>
+                                            <Font name="Roboto Medium" size="14.0" />
+                                        </font>
+                                    </JFXTextField>
+                                    <VBox alignment="CENTER_LEFT" GridPane.rowIndex="2">
+                                        <children>
+                                            <JFXDatePicker fx:id="txtBirthdate" promptText="Birthdate" />
+                                        </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER_LEFT" GridPane.rowIndex="3">
+                                        <children>
+                                            <JFXTimePicker fx:id="txtHour" promptText="Hour" />
+                                        </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER_LEFT" GridPane.rowIndex="4">
+                                        <children>
+                                            <Label styleClass="control-label" text="Gender">
+                                                <VBox.margin>
+                                                    <Insets />
+                                                </VBox.margin>
+                                            </Label>
+                                            <HBox>
+                                                <children>
+                                                    <JFXRadioButton fx:id="rdMale" text="Male" textFill="#4d4d4d">
+                                                        <font>
+                                                            <Font name="Roboto Medium" size="14.0" />
+                                                        </font>
+                                                        <toggleGroup>
+                                                            <ToggleGroup fx:id="gender1" />
+                                                        </toggleGroup>
+                                                    </JFXRadioButton>
+                                                    <JFXRadioButton fx:id="rdFemale" text="Female" textFill="#4d4d4d" toggleGroup="$gender1">
+                                                        <font>
+                                                            <Font name="Roboto Medium" size="14.0" />
+                                                        </font>
+                                                    </JFXRadioButton>
+                                                </children>
+                                            </HBox>
+                                        </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER_LEFT" GridPane.rowIndex="5">
                                         <children>
                                             <Label styleClass="control-label" text="Level" />
                                             <HBox>
@@ -155,28 +187,11 @@
                                             </HBox>
                                         </children>
                                     </VBox>
-                                    <VBox alignment="CENTER_LEFT" GridPane.rowIndex="1">
-                                        <children>
-                                            <Label styleClass="control-label" text="Departament" />
-                                            <JFXComboBox fx:id="comboDepartmenT" />
-                                        </children>
-                                    </VBox>
-                                    <JFXTextField fx:id="txtCourseName" focusColor="#2196f3" labelFloat="true" promptText="Course Name" GridPane.rowIndex="2">
-                                        <font>
-                                            <Font name="Roboto Medium" size="14.0" />
-                                        </font>
-                                    </JFXTextField>
                                 </children>
                             </GridPane>
-                            <VBox spacing="10.0">
-                                <children>
-                                    <Label styleClass="control-label" text="Birthdate" />
-                                    <JFXDatePicker fx:id="txtBirthdate" />
-                                </children>
-                            </VBox>
                         </children>
                         <padding>
-                            <Insets left="40.0" right="40.0" />
+                            <Insets bottom="20.0" left="40.0" right="40.0" />
                         </padding>
                     </VBox>
                     <VBox spacing="10" styleClass="card-white" GridPane.columnIndex="2">
@@ -189,14 +204,6 @@
                                         </font>
                                     </JFXTextField>
                                     <VBox>
-                                        <children>
-                                            <Label alignment="CENTER" contentDisplay="CENTER" styleClass="control-label" text="Balance" />
-                                            <JFXTextField fx:id="txtMobile111" editable="false" focusColor="#2196f3" text="0.00">
-                                                <font>
-                                                    <Font name="Roboto Medium" size="14.0" />
-                                                </font>
-                                            </JFXTextField>
-                                        </children>
                                         <opaqueInsets>
                                             <Insets left="10.0" />
                                         </opaqueInsets>
@@ -251,8 +258,7 @@
                 <Label>Form Incomplete</Label>
             </heading>
             <body>
-                <Label>Please fill all the form´s fields.
-                </Label>
+                <Label>Please fill all the form´s fields.</Label>
             </body>
             <actions>
                 <JFXButton fx:id="acceptButton" styleClass="dialog-accept">ACCEPT</JFXButton>

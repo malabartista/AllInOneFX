@@ -25,8 +25,10 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
+import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableCell;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableColumn.CellEditEvent;
@@ -35,7 +37,7 @@ import javafx.scene.layout.StackPane;
 import javafx.util.Callback;
 import javax.annotation.PostConstruct;
 
-@ViewController(value = "/fxml/ui/TreeTableView.fxml", title = "Tree Table View")
+@ViewController(value = "/fxml/ui/TreeTableView.fxml", title = "Users Table")
 public class TreeTableViewController {
 
     private static final String PREFIX = "( ";
@@ -54,6 +56,10 @@ public class TreeTableViewController {
     private JFXTreeTableView<User> editableTreeTableView;
     @FXML
     private JFXTreeTableColumn<User, ImageView> userPhotoEditableColumn;
+    @FXML
+    private JFXTreeTableColumn<User, String> userNameEditableColumn;
+    @FXML
+    private JFXTreeTableColumn<User, String> passwordEditableColumn;
     @FXML
     private JFXTreeTableColumn<User, String> firstNameEditableColumn;
     @FXML
@@ -79,6 +85,8 @@ public class TreeTableViewController {
     @FXML
     private JFXButton treeTableViewAdd;
     @FXML
+    private JFXButton treeTableViewEdit;
+    @FXML
     private JFXButton treeTableViewRemove;
     @FXML
     private Label editableTreeTableViewCount;
@@ -99,7 +107,7 @@ public class TreeTableViewController {
         Flow contentFlow = (Flow) context.getRegisteredObject("ContentFlow");
         addRegister.setOnMouseClicked((e) -> {
             try {
-                contentFlowHandler.handle("addRegister");
+                contentFlowHandler.handle("treeTableViewAdd");
             } catch (VetoException ex) {
                 Logger.getLogger(TreeTableViewController.class.getName()).log(Level.SEVERE, null, ex);
             } catch (FlowException ex) {
@@ -108,14 +116,42 @@ public class TreeTableViewController {
         });
         treeTableViewAdd.setOnMouseClicked((e) -> {
             try {
-                contentFlowHandler.handle("addRegister");
+                contentFlowHandler.handle("treeTableViewAdd");
             } catch (VetoException ex) {
                 Logger.getLogger(TreeTableViewController.class.getName()).log(Level.SEVERE, null, ex);
             } catch (FlowException ex) {
                 Logger.getLogger(TreeTableViewController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
-        contentFlow.withGlobalLink(addRegister.getId(), RegisterController.class);
+        treeTableViewRemove.setOnMouseClicked((e) -> {
+            if (editableTreeTableView.getSelectionModel().getSelectedItem() != null) {
+                User user = editableTreeTableView.getSelectionModel().getSelectedItem().getValue();
+                System.out.println(user.firstName.get());
+                UserDao userDao = new UserDao();
+                userDao.deleteUser(user.id.get());
+                setupEditableTableView();
+                MainController.snackbar.show("User deleted", 3000);
+            } else {
+                MainController.snackbar.show("No user selected", 3000);
+            }
+        });
+        treeTableViewEdit.setOnMouseClicked((e) -> {
+            if (editableTreeTableView.getSelectionModel().getSelectedItem() != null) {
+                User user = editableTreeTableView.getSelectionModel().getSelectedItem().getValue();
+                try {
+                    context.register("editUser", user);
+                    contentFlowHandler.handle("treeTableViewEdit");
+                } catch (VetoException ex) {
+                    Logger.getLogger(TreeTableViewController.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (FlowException ex) {
+                    Logger.getLogger(TreeTableViewController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+                MainController.snackbar.show("No user selected", 3000);
+            }
+        });
+        contentFlow.withGlobalLink(treeTableViewAdd.getId(), RegisterController.class);
+        contentFlow.withGlobalLink(treeTableViewEdit.getId(), RegisterController.class);
     }
 
     private <T> void setupCellValueFactory(JFXTreeTableColumn<User, T> column, Function<User, ObservableValue<T>> mapper) {
@@ -131,6 +167,8 @@ public class TreeTableViewController {
     private void setupEditableTableView() {
         setupCellValueFactory(checkboxEditableColumn, User::checkboxProperty);
         setupCellValueFactory(userPhotoEditableColumn, User::userPhotoProperty);
+        setupCellValueFactory(userNameEditableColumn, User::userNameProperty);
+        setupCellValueFactory(passwordEditableColumn, User::passwordProperty);
         setupCellValueFactory(firstNameEditableColumn, User::firstNameProperty);
         setupCellValueFactory(lastNameEditableColumn, User::lastNameProperty);
 //        setupCellValueFactory(mobileEditableColumn, User::mobileProperty);
@@ -157,10 +195,19 @@ public class TreeTableViewController {
                     new TextFieldEditorBuilder());
         });
         firstNameEditableColumn.setOnEditCommit((CellEditEvent<User, String> t) -> {
-            t.getTreeTableView()
-                    .getTreeItem(t.getTreeTablePosition()
-                            .getRow())
-                    .getValue().firstName.set(t.getNewValue());
+            if (!t.getNewValue().equals(t.getOldValue())) {
+                t.getTreeTableView()
+                        .getTreeItem(t.getTreeTablePosition()
+                                .getRow())
+                        .getValue().firstName.set(t.getNewValue());
+                // update database
+                UserDao userDao = new UserDao();
+                User user = userDao.getUser(t.getTreeTableView().getTreeItem(t.getTreeTablePosition().getRow()).getValue().id.get());
+                user.firstName.set(t.getNewValue().toUpperCase());
+                if (userDao.updateUser(user)) {
+                    MainController.snackbar.show("User updated", 3000);
+                }
+            }
         });
         lastNameEditableColumn.setCellFactory((TreeTableColumn<User, String> param) -> {
             return new GenericEditableTreeTableCell<>(

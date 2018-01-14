@@ -1,6 +1,8 @@
 package com.allinonefx.controllers;
 
 import com.allinonefx.MainDemo;
+import com.allinonefx.dao.UserDao;
+import com.allinonefx.models.User;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDecorator;
 import com.jfoenix.controls.JFXPasswordField;
@@ -40,7 +42,8 @@ public class LoginController {
     @FXMLViewFlowContext
     private ViewFlowContext flowContext;
 
-    private Label label;
+    @FXML
+    private Label lblMessage;
     @FXML
     private JFXTextField txtUsername;
     @FXML
@@ -52,33 +55,14 @@ public class LoginController {
     @FXML
     private ImageView imgProgress;
 
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
-    }
-
     /**
      * init fxml when loaded.
      */
     @PostConstruct
     public void init() {
         handleValidation();
+        lblMessage.setVisible(false);
         imgProgress.setVisible(false);
-    }
-
-    @FXML
-    private void login(ActionEvent event) {
-        imgProgress.setVisible(true);
-        PauseTransition pauseTransition = new PauseTransition();
-        pauseTransition.setDuration(Duration.seconds(3));
-        pauseTransition.setOnFinished(ev -> {
-            try {
-                completeLogin();
-            } catch (FlowException ex) {
-                Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        });
-        pauseTransition.play();
     }
 
     private void handleValidation() {
@@ -102,7 +86,33 @@ public class LoginController {
         });
     }
 
-    private void completeLogin() throws FlowException {
+    @FXML
+    private void login(ActionEvent event) {
+        lblMessage.setVisible(false);
+        imgProgress.setVisible(true);
+        //transition
+        PauseTransition pauseTransition = new PauseTransition();
+        pauseTransition.setDuration(Duration.seconds(3));
+        pauseTransition.setOnFinished(ev -> {
+            // check user exists
+            UserDao userDao = new UserDao();
+            User user = userDao.getUserByUserNameAndPassword(txtUsername.getText().toUpperCase(), txtPassword.getText().toUpperCase());
+            if (user != null) {
+                try {
+                    completeLogin(user);
+                } catch (FlowException ex) {
+                    Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+                imgProgress.setVisible(false);
+                lblMessage.setVisible(true);
+            }
+        });
+        pauseTransition.play();
+
+    }
+
+    private void completeLogin(User user) throws FlowException {
         btnLogin.getScene().getWindow().hide();
         imgProgress.setVisible(false);
         Stage stage = new Stage();
@@ -110,6 +120,7 @@ public class LoginController {
         DefaultFlowContainer container = new DefaultFlowContainer();
         flowContext = new ViewFlowContext();
         flowContext.register("Stage", stage);
+        flowContext.register("User", user);
         flow.createHandler(flowContext).start(container);
 
         JFXDecorator decorator = new JFXDecorator(stage, container.getView());

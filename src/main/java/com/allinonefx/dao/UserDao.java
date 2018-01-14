@@ -86,7 +86,7 @@ public class UserDao {
 //            String insert = "INSERT INTO students(fname,lname,location,gender,email,phone,"
 //                    + "`level`,department,course,paid) "
 //                    + "VALUES (?,?,?,?,?,?,?,?,?,?)";
-            PreparedStatement ps = connection.prepareStatement("INSERT INTO user(username,password,email,fname,lname,location,gender,level,department,course) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            PreparedStatement ps = connection.prepareStatement("INSERT INTO user(fname,lname,username,password,email,mobile,location,gender,level,department,course) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             ps = userPreparedStatement(ps, user);
             int i = ps.executeUpdate();
             if (i == 1) {
@@ -102,9 +102,9 @@ public class UserDao {
         DbHandler handler = new DbHandler();
         Connection connection = handler.getConnection();
         try {
-            PreparedStatement ps = connection.prepareStatement("UPDATE user SET username=?, password=?, mobile=?, fname=?, lname=? WHERE id=?");
+            PreparedStatement ps = connection.prepareStatement("UPDATE user SET fname=?, lname=?, username=?, password=?, email=?, mobile=?, location=?, gender=?, level=?, department=?, course=? WHERE id=?");
             ps = userPreparedStatement(ps, user);
-            ps.setInt(6, user.id.get());
+            ps.setInt(12, user.id.get());
             int i = ps.executeUpdate();
             if (i == 1) {
                 return true;
@@ -131,15 +131,17 @@ public class UserDao {
     }
     
     public PreparedStatement userPreparedStatement(PreparedStatement ps, User user) throws SQLException{
-        ps.setString(1, user.userName.get());
-        ps.setString(2, user.password.get());
-        ps.setInt(3, user.mobile.get());
-        ps.setString(4, user.firstName.get());
-        ps.setString(5, user.lastName.get());
-        ps.setString(6, user.location.get());
-        ps.setString(7, user.gender.get());
-        ps.setString(8, user.level.get());
-        ps.setString(9, user.department.get());
+        ps.setString(1, user.firstName.get());
+        ps.setString(2, user.lastName.get());
+        ps.setString(3, user.userName.get());
+        ps.setString(4, user.password.get());
+        ps.setString(5, user.email.get());
+        ps.setInt(6, user.mobile.get());
+        ps.setString(7, user.location.get());
+        ps.setString(8, user.gender.get());
+        ps.setString(9, user.level.get());
+        ps.setString(10, user.department.get());
+        ps.setString(11, user.course.get());
         return ps;
     }
 
@@ -147,16 +149,17 @@ public class UserDao {
         User user = new User();
         // user table
         user.id.set(rs.getInt("id"));
-        user.userName.set(rs.getString("username"));
-        user.password.set(rs.getString("password"));
         user.firstName.set(rs.getString("fname"));
         user.lastName.set(rs.getString("lname"));
+        user.userName.set(rs.getString("username"));
+        user.password.set(rs.getString("password"));
         user.email.set(rs.getString("email"));
+        user.mobile.set(rs.getInt("mobile"));
         user.location.set(rs.getString("location"));
         user.gender.set(rs.getString("gender"));
         user.level.set(rs.getString("level"));
         user.department.set(rs.getString("department"));
-        user.mobile.set(rs.getInt("mobile"));
+        user.course.set(rs.getString("course"));
 
         // user image
         String imagePath = "icons/profile1.png";

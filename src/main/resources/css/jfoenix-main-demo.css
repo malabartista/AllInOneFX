@@ -175,8 +175,8 @@
 
 .jfx-tool-bar {
     -fx-font-size: 14.0;
-/*    -fx-font-weight: BOLD;
-    -fx-background-color: #5264AE;*/
+    /*    -fx-font-weight: BOLD;
+        -fx-background-color: #5264AE;*/
     -fx-pref-width: 100.0%;
     -fx-pref-height: 32.0px;
     -fx-border-color: #c2cfd6;
@@ -837,6 +837,14 @@
     -fx-padding: 16 0 16 0;
     /*-fx-alignment: top-center;*/
     -fx-alignment: center;
+}
+
+.tree-table-view .tree-table-cell.cell-left{
+    -fx-alignment: center-left;
+}
+
+.tree-table-view .tree-table-cell.cell-right{
+    -fx-alignment: center-right;
 }
 
 .tree-table-view .column-overlay {

@@ -3,6 +3,7 @@ package com.allinonefx.controllers;
 import com.allinonefx.MainDemo;
 import com.allinonefx.datafx.ExtendedAnimatedFlowContainer;
 import com.allinonefx.gui.uicomponents.JFoenixController;
+import com.allinonefx.models.User;
 import com.jfoenix.controls.*;
 import com.jfoenix.controls.JFXPopup.PopupHPosition;
 import com.jfoenix.controls.JFXPopup.PopupVPosition;
@@ -52,7 +53,7 @@ public final class MainController {
     @FXML
     private JFXBadge badgeNotification;
     @FXML
-    private JFXSnackbar snackbar;
+    public static JFXSnackbar snackbar;
     private int count = 1;
     private JFXPopup toolbarPopup;
     private JFXPopup profilePopup;
@@ -101,7 +102,7 @@ public final class MainController {
         //viewConfig.setResources(ResourceBundle.getBundle("smartcsv", Locale.ENGLISH));
 
         // create the inner flow and content
-        context = new ViewFlowContext();
+//        context = new ViewFlowContext();
         // set the default controller
         Flow innerFlow = new Flow(JFoenixController.class, viewConfig);
 
@@ -112,6 +113,9 @@ public final class MainController {
         final Duration containerAnimationDuration = Duration.millis(320);
         drawer.setContent(flowHandler.start(new ExtendedAnimatedFlowContainer(containerAnimationDuration, SWIPE_LEFT)));
         context.register("ContentPane", drawer.getContent().get(0));
+        
+        User user = (User) context.getRegisteredObject("User");
+        profileButton.setText(user.firstName.get());
 
         // side controller will add links to the content flow
         Flow sideMenuFlow = new Flow(SideMenuController.class);

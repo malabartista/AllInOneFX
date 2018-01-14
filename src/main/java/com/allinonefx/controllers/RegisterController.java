@@ -14,10 +14,12 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXProgressBar;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXSnackbar;
 import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.JFXTimePicker;
 import com.jfoenix.validation.RequiredFieldValidator;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
@@ -55,7 +57,12 @@ public class RegisterController {
     @FXML
     private StackPane root;
 
+    private User userEdit;
     // form
+    @FXML
+    private JFXTextField txtUname;
+    @FXML
+    private JFXPasswordField txtPassword;
     @FXML
     private JFXTextField txtFname;
     @FXML
@@ -87,6 +94,8 @@ public class RegisterController {
     private JFXTextField txtCourseName;
     @FXML
     private JFXDatePicker txtBirthdate;
+    @FXML
+    private JFXTimePicker txtHour;
     @FXML
     private JFXTextField txtAmount;
 
@@ -124,7 +133,6 @@ public class RegisterController {
 
     // database
     private Connection connection;
-    private PreparedStatement pst;
     private DbHandler handler;
 
     // DataFX - Flow    
@@ -162,7 +170,18 @@ public class RegisterController {
 
         progressPersonal.prefWidthProperty().bind(root.widthProperty());
         progressPersonal.setProgress(0.00);
-        double sum_progress = progress10 + progress1 + progress2 + progress3 + progress4 + progress5 + progress6 + progress7 + progress8 + progress9;
+        progress1 = 0;
+        progress2 = 0;
+        progress3 = 0;
+        progress4 = 0;
+        progress5 = 0;
+        progress6 = 0;
+        progress7 = 0;
+        progress8 = 0;
+        progress9 = 0;
+        progress10 = 0;
+        lblComplete.setText("0% complete");
+        
 
         txtFname.textProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -172,23 +191,7 @@ public class RegisterController {
                 } else {
                     progress1 = 0.0;
                 }
-                double sum = (progress10 + progress1 + progress2 + progress3 + progress4 + progress5 + progress6 + progress7 + progress8 + progress9);
-                progressPersonal.setProgress(sum);
-                lblComplete.setText(decimalFormat.format(sum * 100) + "% complete");
-            }
-        });
-
-        txtEmail.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if (!newValue.isEmpty()) {
-                    progress2 = 0.1;
-                } else {
-                    progress2 = 0.0;
-                }
-                double sum = (progress10 + progress1 + progress2 + progress3 + progress4 + progress5 + progress6 + progress7 + progress8 + progress9);
-                progressPersonal.setProgress(sum);
-                lblComplete.setText(decimalFormat.format(sum * 100) + "% complete");
+                setProgress();
             }
         });
 
@@ -196,13 +199,23 @@ public class RegisterController {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 if (!newValue.isEmpty()) {
+                    progress2 = 0.1;
+                } else {
+                    progress2 = 0.0;
+                }
+                setProgress();
+            }
+        });
+
+        txtEmail.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (!newValue.isEmpty()) {
                     progress3 = 0.1;
                 } else {
                     progress3 = 0.0;
                 }
-                double sum = (progress10 + progress1 + progress2 + progress3 + progress4 + progress5 + progress6 + progress7 + progress8 + progress9);
-                progressPersonal.setProgress(sum);
-                lblComplete.setText(decimalFormat.format(sum * 100) + "% complete");
+                setProgress();
             }
         });
 
@@ -214,9 +227,7 @@ public class RegisterController {
                 } else {
                     progress4 = 0.0;
                 }
-                double sum = (progress10 + progress1 + progress2 + progress3 + progress4 + progress5 + progress6 + progress7 + progress8 + progress9);
-                progressPersonal.setProgress(sum);
-                lblComplete.setText(decimalFormat.format(sum * 100) + "% complete");
+                setProgress();
             }
         });
 
@@ -228,9 +239,7 @@ public class RegisterController {
                 } else {
                     progress5 = 0.0;
                 }
-                double sum = (progress10 + progress1 + progress2 + progress3 + progress4 + progress5 + progress6 + progress7 + progress8 + progress9);
-                progressPersonal.setProgress(sum);
-                lblComplete.setText(decimalFormat.format(sum * 100) + "% complete");
+                setProgress();
             }
         });
         //Course name
@@ -242,9 +251,7 @@ public class RegisterController {
                 } else {
                     progress6 = 0.0;
                 }
-                double sum = (progress10 + progress1 + progress2 + progress3 + progress4 + progress5 + progress6 + progress7 + progress8 + progress9);
-                progressPersonal.setProgress(sum);
-                lblComplete.setText(decimalFormat.format(sum * 100) + "% complete");
+                setProgress();
             }
         });
         // Amount paid
@@ -256,9 +263,7 @@ public class RegisterController {
                 } else {
                     progress7 = 0.0;
                 }
-                double sum = (progress10 + progress1 + progress2 + progress3 + progress4 + progress5 + progress6 + progress7 + progress8 + progress9);
-                progressPersonal.setProgress(sum);
-                lblComplete.setText(decimalFormat.format(sum * 100) + "% complete");
+                setProgress();
             }
         });
         //Gender Radio buttons
@@ -267,11 +272,8 @@ public class RegisterController {
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
                 if (!oldValue) {
                     progress8 = 0.1;
-
                 }
-                double sum = (progress10 + progress1 + progress2 + progress3 + progress4 + progress5 + progress6 + progress7 + progress8 + progress9);
-                progressPersonal.setProgress(sum);
-                lblComplete.setText(decimalFormat.format(sum * 100) + "% complete");
+                setProgress();
             }
         });
         rdFemale.selectedProperty().addListener(new ChangeListener<Boolean>() {
@@ -280,9 +282,7 @@ public class RegisterController {
                 if (!oldValue) {
                     progress8 = 0.1;
                 }
-                double sum = (progress10 + progress1 + progress2 + progress3 + progress4 + progress5 + progress6 + progress7 + progress8 + progress9);
-                progressPersonal.setProgress(sum);
-                lblComplete.setText(decimalFormat.format(sum * 100) + "% complete");
+                setProgress();
             }
         });
 
@@ -292,11 +292,8 @@ public class RegisterController {
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
                 if (!oldValue) {
                     progress9 = 0.1;
-
                 }
-                double sum = (progress10 + progress1 + progress2 + progress3 + progress4 + progress5 + progress6 + progress7 + progress8 + progress9);
-                progressPersonal.setProgress(sum);
-                lblComplete.setText(decimalFormat.format(sum * 100) + "% complete");
+                setProgress();
             }
         });
         rdDiploma.selectedProperty().addListener(new ChangeListener<Boolean>() {
@@ -305,9 +302,7 @@ public class RegisterController {
                 if (!oldValue) {
                     progress9 = 0.1;
                 }
-                double sum = (progress10 + progress1 + progress2 + progress3 + progress4 + progress5 + progress6 + progress7 + progress8 + progress9);
-                progressPersonal.setProgress(sum);
-                lblComplete.setText(decimalFormat.format(sum * 100) + "% complete");
+                setProgress();
             }
         });
         rdCertificate.selectedProperty().addListener(new ChangeListener<Boolean>() {
@@ -316,10 +311,7 @@ public class RegisterController {
                 if (!oldValue) {
                     progress9 = 0.1;
                 }
-                double sum = (progress1 + progress2 + progress3 + progress4 + progress5 + progress6 + progress7 + progress8 + progress9);
-                progressPersonal.setProgress(sum);
-                lblComplete.setText(String.valueOf(sum * 100) + "% complete");
-
+                setProgress();
             }
         });
 
@@ -333,11 +325,17 @@ public class RegisterController {
                 } else {
                     progress10 = 0.0;
                 }
-                double sum = (progress10 + progress1 + progress2 + progress3 + progress4 + progress5 + progress6 + progress7 + progress8 + progress9);
-                progressPersonal.setProgress(sum);
-                lblComplete.setText(decimalFormat.format(sum * 100) + "% complete");
+                setProgress();
             }
         });
+    }
+    
+    private void setProgress() {
+        DecimalFormat decimalFormat = new DecimalFormat("###.#");
+        decimalFormat.setRoundingMode(RoundingMode.HALF_UP);
+        double sum = (progress1 + progress2 + progress3 + progress4 + progress5 + progress6 + progress7 + progress8 + progress9 + progress10);
+        progressPersonal.setProgress(sum);
+        lblComplete.setText(decimalFormat.format(sum * 100) + "% complete");
     }
 
     private void setTextFields() {
@@ -355,6 +353,22 @@ public class RegisterController {
                 }
             }
         });
+
+        userEdit = (User) context.getRegisteredObject("editUser");
+        if (userEdit != null && userEdit.id.get() != 0) {
+            context.register("editUser", new User());
+            txtUname.setText(userEdit.userName.get());
+            txtPassword.setText(userEdit.password.get());
+            txtFname.setText(userEdit.firstName.get());
+            txtLname.setText(userEdit.lastName.get());
+            txtEmail.setText(userEdit.email.get());
+            txtLocation.setText(userEdit.location.get());
+            txtCourseName.setText(userEdit.course.get());
+            txtMobile.setText(Integer.toString(userEdit.mobile.get()));
+            setLevel(userEdit.level.get());
+            setGender(userEdit.gender.get());
+            comboDepartmenT.setValue(userEdit.department.get());
+        }
     }
 
     private void setDepartmentsToCombo() {
@@ -383,6 +397,8 @@ public class RegisterController {
     @FXML
     public void clearFields() {
         progressPersonal.setProgress(0);
+        txtUname.setText(null);
+        txtPassword.setText(null);
         txtFname.setText(null);
         txtLname.setText(null);
         txtMobile.setText(null);
@@ -395,6 +411,7 @@ public class RegisterController {
         rdCertificate.setSelected(false);
         txtCourseName.setText(null);
         txtBirthdate.setValue(null);
+        txtHour.setValue(null);
         txtAmount.setText(null);
     }
 
@@ -411,14 +428,24 @@ public class RegisterController {
             return;
         }
 
-        //User u = new User(txtFname.getText().toUpperCase(), txtLname.getText().toUpperCase(), Integer.parseInt(txtMobile.getText()));
-        User u = new User(txtFname.getText().toUpperCase(), txtLname.getText().toUpperCase(), Integer.parseInt(txtMobile.getText()), txtEmail.getText().toUpperCase(), txtLocation.getText().toUpperCase(), getGender(), getLevel(), comboDepartmenT.getSelectionModel().getSelectedItem().toUpperCase(), txtCourseName.getText().toUpperCase());
         UserDao dao = new UserDao();
-        boolean success = dao.insertUser(u);
-        if (success) {
-            clearFields();
-            JFXSnackbar fXSnackbar = new JFXSnackbar(root);
-            fXSnackbar.show("New user saved successfully", 3000);
+        if (userEdit != null && userEdit.id.get() != 0) {
+            setUserFields(userEdit);
+            boolean success = dao.updateUser(userEdit);
+            if (success) {
+                //            clearFields();
+                JFXSnackbar fXSnackbar = MainController.snackbar;
+                fXSnackbar.show("User updated successfully", 3000);
+            }
+        } else {
+            User u = new User();
+            setUserFields(u);
+            boolean success = dao.insertUser(u);
+            if (success) {
+                //            clearFields();
+                JFXSnackbar fXSnackbar = MainController.snackbar;
+                fXSnackbar.show("New user saved successfully", 3000);
+            }
         }
 
         try {
@@ -449,6 +476,39 @@ public class RegisterController {
                 txtLname.validate();
             }
         });
+    }
+
+    private User setUserFields(User user) {
+        user.userName.set(txtUname.getText().toUpperCase());
+        user.password.set(txtPassword.getText().toUpperCase());
+        user.firstName.set(txtFname.getText().toUpperCase());
+        user.lastName.set(txtLname.getText().toUpperCase());
+        user.mobile.set(Integer.parseInt(txtMobile.getText()));
+        user.email.set(txtEmail.getText().toUpperCase());
+        user.location.set(txtLocation.getText().toUpperCase());
+        user.gender.set(getGender());
+        user.level.set(getLevel());
+        user.department.set(comboDepartmenT.getSelectionModel().getSelectedItem().toUpperCase());
+        user.course.set(txtCourseName.getText().toUpperCase());
+        return user;
+    }
+
+    private void setLevel(String lvl) {
+        if (lvl.equals("CERTIFICATE")) {
+            rdCertificate.setSelected(true);
+        } else if (lvl.equals("DEGREE")) {
+            rdDegree.setSelected(true);
+        } else if (lvl.equals("DIPLOMA")) {
+            rdDiploma.setSelected(true);
+        }
+    }
+
+    private void setGender(String gdr) {
+        if (gdr.equals("MALE")) {
+            rdMale.setSelected(true);
+        } else if (gdr.equals("FEMALE")) {
+            rdFemale.setSelected(true);
+        }
     }
 
     private String getLevel() {
