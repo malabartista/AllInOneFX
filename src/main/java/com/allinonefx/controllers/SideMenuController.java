@@ -12,6 +12,7 @@ import com.allinonefx.gui.uicomponents.MediaViewController;
 import com.allinonefx.gui.uicomponents.TilesFXController;
 import com.allinonefx.gui.uicomponents.TreeTableViewController;
 import com.allinonefx.gui.uicomponents.WebViewController;
+import com.allinonefx.gui.uicomponents.WordpressRestAPI;
 import com.jfoenix.controls.JFXListView;
 import io.datafx.controller.ViewController;
 import io.datafx.controller.flow.Flow;
@@ -126,6 +127,9 @@ public class SideMenuController {
     @ActionTrigger("webview")
     private Label webview;
     @FXML
+    @ActionTrigger("wordpress")
+    private Label wordpress;
+    @FXML
     @ActionTrigger("scrollpane")
     private Label scrollpane;
     @FXML
@@ -186,6 +190,7 @@ public class SideMenuController {
         bindNodeToController(tilesfx, TilesFXController.class, contentFlow, contentFlowHandler);
         bindNodeToController(video, MediaViewController.class, contentFlow, contentFlowHandler);
         bindNodeToController(webview, WebViewController.class, contentFlow, contentFlowHandler);
+        bindNodeToController(wordpress, WordpressRestAPI.class, contentFlow, contentFlowHandler);
 //        bindNodeToController(smartcsvfx, SmartCSVController.class, contentFlow, contentFlowHandler);
 //        Platform.runLater(new Runnable() {
 //            public void run() {

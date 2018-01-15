@@ -1,6 +1,7 @@
 package com.allinonefx.controllers;
 
 import com.allinonefx.MainDemo;
+import com.allinonefx.config.I18N;
 import com.allinonefx.datafx.ExtendedAnimatedFlowContainer;
 import com.allinonefx.gui.uicomponents.JFoenixController;
 import com.allinonefx.models.User;
@@ -63,6 +64,7 @@ public final class MainController {
      */
     @PostConstruct
     public void init() throws Exception {
+//        lblTitle.bind(I18N.createStringBinding("window.title"));
         // init the title hamburger icon
         drawer.setOnDrawerOpening(e -> {
             final Transition animation = titleBurger.getAnimation();
@@ -165,15 +167,15 @@ public final class MainController {
         profilePopup = new JFXPopup(loader.load());
     }
 
-//    /**
-//     * sets the given Locale in the I18N class and keeps count of the number of
-//     * switches.
-//     *
-//     * @param locale the new local to set
-//     */
-//    private void switchLanguage(Locale locale) {
-//        I18N.setLocale(locale);
-//    }
+    /**
+     * sets the given Locale in the I18N class and keeps count of the number of
+     * switches.
+     *
+     * @param locale the new local to set
+     */
+    private void switchLanguage(Locale locale) {
+        I18N.setLocale(locale);
+    }
 //
 //    @Override
 //    protected ResourceBundle getResourceBundle(Locale locale) {
@@ -233,10 +235,11 @@ public final class MainController {
             if (profilePopupList != null) {
                 if (profilePopupList.getSelectionModel()
                         .getSelectedIndex() == 0) {
-//                    switchLanguage(Locale.ENGLISH);
+                    switchLanguage(Locale.ENGLISH);
 //                    changeLanguage(AppSettings.Language.ENGLISH);
                 } else if (profilePopupList.getSelectionModel()
                         .getSelectedIndex() == 1) {
+                    switchLanguage(new Locale("es","ES"));
 //                    changeLanguage(AppSettings.Language.SPANISH);
                 } else if (profilePopupList.getSelectionModel().getSelectedIndex() == 2) {
 //                    JFXDialogLayout dialogLayout = new JFXDialogLayout();

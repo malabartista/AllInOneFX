@@ -37,6 +37,7 @@ public class CalendarFXController {
         MainController.lblTitle.setText("CalendarFX");
         JFXProgressBar progressBar = new JFXProgressBar();
         CalendarView calendarView = new CalendarView();
+
         Task calendarTask = new Task<CalendarView>() {
             @Override
             protected CalendarView call() throws Exception {

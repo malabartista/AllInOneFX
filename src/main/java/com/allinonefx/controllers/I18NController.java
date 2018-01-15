@@ -14,10 +14,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.NodeOrientation;
 import javafx.scene.Parent;
 import javafx.stage.Stage;
-/**
- *
- * @author lrodriguez
- */
+
+
 public abstract class I18NController {
     private Stage primaryStage;
 

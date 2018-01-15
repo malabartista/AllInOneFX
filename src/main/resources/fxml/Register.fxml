@@ -219,7 +219,7 @@
             </GridPane>
             <HBox alignment="TOP_RIGHT" spacing="10">
                 <children>
-                    <JFXButton fx:id="btnBack" buttonType="RAISED" ripplerFill="#f52020" style="-fx-background-color: #F39C12;" text="Back" textFill="WHITE">
+                    <JFXButton fx:id="backButton" buttonType="RAISED" ripplerFill="#f52020" style="-fx-background-color: #F39C12;" text="Back" textFill="WHITE">
                         <font>
                             <Font name="Roboto Medium" size="15.0" />
                         </font>

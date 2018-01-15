@@ -14,6 +14,19 @@ if (!hasProperty('mainClass')) {
     ext.mainClass = 'com.allinonefx.MainDemo'
 }
 
+buildscript {
+  repositories {
+    maven {
+      url "https://plugins.gradle.org/m2/"
+    }
+  }
+  dependencies {
+    classpath "gradle.plugin.com.speedment.gradle:SpeedmentGradlePlugin:2.2.3"
+  }
+}
+
+apply plugin: "com.speedment.gradle"
+
 repositories {
     jcenter()
     mavenCentral()
@@ -37,9 +50,11 @@ dependencies {
     // maven
     compile 'io.datafx:datafx:8.0.1'
     compile 'io.datafx:flow:8.0.1'
+    compile group: 'com.afrozaar.wordpress', name: 'wp-api-v2-client-java', version: '4.8.3'
     compile group: 'com.airhacks', name: 'afterburner.fx', version: '1.7.0'
     compile group: 'com.jfoenix', name: 'jfoenix', version: '1.10.0'
     compile group: 'com.lynden', name: 'GMapsFX', version: '2.12.0'
+    compile group: 'com.speedment', name: 'speedment', version: '2.3.7'
     compile group: 'net.sourceforge.jtds', name: 'jtds', version: '1.2'
 
     compile group: 'de.jensd', name: 'fontawesomefx-commons', version: '8.15'

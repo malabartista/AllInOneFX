@@ -52,7 +52,7 @@ import javafx.scene.layout.StackPane;
 import javax.annotation.PostConstruct;
 
 @ViewController(value = "/fxml/Register.fxml", title = "Register")
-public class RegisterController {
+public class RegisterController extends AbstractViewController {
 
     @FXML
     private StackPane root;

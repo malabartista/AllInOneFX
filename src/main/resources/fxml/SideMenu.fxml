@@ -136,5 +136,13 @@
             </graphic>
             WebView
         </Label>
+        <Label fx:id="wordpress">
+            <graphic>
+                <StackPane styleClass="custom-jfx-list-view-icon-container">
+                    <FontAwesomeIconView glyphName="GLOBE" size="1.5em" styleClass="custom-jfx-list-view-icon"/>
+                </StackPane>
+            </graphic>
+            Wordpress
+        </Label>
     </JFXListView>
 </StackPane>
