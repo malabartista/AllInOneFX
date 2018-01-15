@@ -16,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.controlsfx.control.Rating?>
 
-<AnchorPane id="AnchorPane" prefHeight="713.0" prefWidth="1219.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111">
+<AnchorPane id="AnchorPane" prefHeight="713.0" prefWidth="1219.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.101">
     <children>
       <Label layoutX="19.0" layoutY="17.0" prefHeight="29.0" prefWidth="207.0" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: #7387A8;" text="Contacts" />
       <Separator layoutX="3.0" layoutY="55.0" prefHeight="4.0" prefWidth="1213.0" />

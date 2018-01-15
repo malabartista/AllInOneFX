@@ -11,11 +11,11 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<StackPane fx:id="root" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane fx:id="root" xmlns="http://javafx.com/javafx/8.0.101" xmlns:fx="http://javafx.com/fxml/1">
     <VBox spacing="10">
         <children>
             <HBox alignment="CENTER">
-                <Label styleClass="title-label">Users Table</Label>
+                <Label fx:id="lblTitle" styleClass="title-label" text="%label.users" />
                 <Label fx:id="editableTreeTableViewCount" styleClass="title-label" />
                 <JFXButton fx:id="treeTableViewAdd" buttonType="FLAT">
                     <graphic>
@@ -34,25 +34,25 @@
                 </JFXButton>
                 <StackPane HBox.hgrow="ALWAYS">
                     <StackPane maxWidth="200" StackPane.alignment="CENTER_RIGHT">
-                        <JFXTextField fx:id="searchField2" promptText="Search..." />
+                        <JFXTextField fx:id="searchField" promptText="%text.search" />
                     </StackPane>
                 </StackPane>
             </HBox>
             <JFXTreeTableView fx:id="editableTreeTableView">
                 <columns>
-                    <JFXTreeTableColumn fx:id="checkboxEditableColumn" minWidth="133" resizable="false" text="Checbox"/>
-                    <JFXTreeTableColumn fx:id="userPhotoEditableColumn" minWidth="133" text="Photo" />
-                    <JFXTreeTableColumn fx:id="userNameEditableColumn" minWidth="133" text="User Name" styleClass="cell-left"/>
-                    <JFXTreeTableColumn fx:id="passwordEditableColumn" minWidth="133" text="Password" styleClass="cell-left"/>
-                    <JFXTreeTableColumn fx:id="firstNameEditableColumn" minWidth="133" text="First Name" styleClass="cell-left"/>
-                    <JFXTreeTableColumn fx:id="lastNameEditableColumn" minWidth="133" text="Last Name" styleClass="cell-left"/>
-                    <JFXTreeTableColumn fx:id="mobileEditableColumn" minWidth="133" text="Mobile" styleClass="cell-right"/>
-                    <JFXTreeTableColumn fx:id="emailEditableColumn" minWidth="133" text="Email" styleClass="cell-left"/>
-                    <JFXTreeTableColumn fx:id="locationEditableColumn" minWidth="133" text="Location" styleClass="cell-left"/>
-                    <JFXTreeTableColumn fx:id="genderEditableColumn" minWidth="133" text="Gender" styleClass="cell-left"/>
-                    <JFXTreeTableColumn fx:id="levelEditableColumn" minWidth="133" text="Level" styleClass="cell-left"/>
-                    <JFXTreeTableColumn fx:id="departmentEditableColumn" minWidth="133" text="Department" styleClass="cell-left"/>
-                    <JFXTreeTableColumn fx:id="courseEditableColumn" minWidth="133" text="Course" styleClass="cell-left"/>
+                    <JFXTreeTableColumn fx:id="checkboxEditableColumn" minWidth="133" resizable="false" text="%column.checkbox"/>
+                    <JFXTreeTableColumn fx:id="userPhotoEditableColumn" minWidth="133" text="%column.photo" />
+                    <JFXTreeTableColumn fx:id="userNameEditableColumn" minWidth="133" text="%column.username" styleClass="cell-left"/>
+                    <JFXTreeTableColumn fx:id="passwordEditableColumn" minWidth="133" text="%column.password" styleClass="cell-left"/>
+                    <JFXTreeTableColumn fx:id="firstNameEditableColumn" minWidth="133" text="%column.firstname" styleClass="cell-left"/>
+                    <JFXTreeTableColumn fx:id="lastNameEditableColumn" minWidth="133" text="%column.lastname" styleClass="cell-left"/>
+                    <JFXTreeTableColumn fx:id="mobileEditableColumn" minWidth="133" text="%column.mobile" styleClass="cell-right"/>
+                    <JFXTreeTableColumn fx:id="emailEditableColumn" minWidth="133" text="%column.email" styleClass="cell-left"/>
+                    <JFXTreeTableColumn fx:id="locationEditableColumn" minWidth="133" text="%column.location" styleClass="cell-left"/>
+                    <JFXTreeTableColumn fx:id="genderEditableColumn" minWidth="133" text="%column.gender" styleClass="cell-left"/>
+                    <JFXTreeTableColumn fx:id="levelEditableColumn" minWidth="133" text="%column.level" styleClass="cell-left"/>
+                    <JFXTreeTableColumn fx:id="departmentEditableColumn" minWidth="133" text="%column.department" styleClass="cell-left"/>
+                    <JFXTreeTableColumn fx:id="courseEditableColumn" minWidth="133" text="%column.course" styleClass="cell-left"/>
                 </columns>
             </JFXTreeTableView>
         </children>

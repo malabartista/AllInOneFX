@@ -1,5 +1,6 @@
 package com.allinonefx.gui.uicomponents;
 
+import com.allinonefx.config.I18N;
 import com.allinonefx.controllers.MainController;
 import com.allinonefx.controllers.RegisterController;
 import com.allinonefx.dao.UserDao;
@@ -16,6 +17,7 @@ import io.datafx.controller.flow.FlowHandler;
 import io.datafx.controller.flow.context.FXMLViewFlowContext;
 import io.datafx.controller.flow.context.ViewFlowContext;
 import io.datafx.controller.util.VetoException;
+import java.util.ResourceBundle;
 import java.util.function.Function;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -55,6 +57,8 @@ public class TreeTableViewController {
     @FXML
     private JFXTreeTableView<User> editableTreeTableView;
     @FXML
+    private JFXTreeTableColumn<User, Boolean> checkboxEditableColumn;
+    @FXML
     private JFXTreeTableColumn<User, ImageView> userPhotoEditableColumn;
     @FXML
     private JFXTreeTableColumn<User, String> userNameEditableColumn;
@@ -79,9 +83,9 @@ public class TreeTableViewController {
     @FXML
     private JFXTreeTableColumn<User, String> courseEditableColumn;
     @FXML
-    private JFXTreeTableColumn<User, Boolean> checkboxEditableColumn;
-    @FXML
     private Label treeTableViewCount;
+    @FXML
+    private Label editableTreeTableViewCount;
     @FXML
     private JFXButton treeTableViewAdd;
     @FXML
@@ -89,9 +93,9 @@ public class TreeTableViewController {
     @FXML
     private JFXButton treeTableViewRemove;
     @FXML
-    private Label editableTreeTableViewCount;
+    private Label lblTitle;
     @FXML
-    private JFXTextField searchField2;
+    private JFXTextField searchField;
 
     /**
      * init fxml when loaded.
@@ -102,6 +106,8 @@ public class TreeTableViewController {
         MainController.lblTitle.setText("Tree Table View");
         // setup table
         setupEditableTableView();
+        //locale
+        localeText();
         // flow: add register
         FlowHandler contentFlowHandler = (FlowHandler) context.getRegisteredObject("ContentFlowHandler");
         Flow contentFlow = (Flow) context.getRegisteredObject("ContentFlow");
@@ -130,9 +136,9 @@ public class TreeTableViewController {
                 UserDao userDao = new UserDao();
                 userDao.deleteUser(user.id.get());
                 setupEditableTableView();
-                MainController.snackbar.show("User deleted", 3000);
+                MainController.snackbar.show(I18N.get("user.deleted"), 3000);
             } else {
-                MainController.snackbar.show("No user selected", 3000);
+                MainController.snackbar.show(I18N.get("user.no.selected"), 3000);
             }
         });
         treeTableViewEdit.setOnMouseClicked((e) -> {
@@ -147,11 +153,28 @@ public class TreeTableViewController {
                     Logger.getLogger(TreeTableViewController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } else {
-                MainController.snackbar.show("No user selected", 3000);
+                MainController.snackbar.show(I18N.get("user.no.selected"), 3000);
             }
         });
         contentFlow.withGlobalLink(treeTableViewAdd.getId(), RegisterController.class);
         contentFlow.withGlobalLink(treeTableViewEdit.getId(), RegisterController.class);
+    }
+    
+    private void localeText(){
+        lblTitle.textProperty().bind(I18N.createStringBinding("label.users"));
+        searchField.promptTextProperty().bind(I18N.createStringBinding("text.search"));
+        checkboxEditableColumn.textProperty().bind(I18N.createStringBinding("column.checkbox"));
+        userPhotoEditableColumn.textProperty().bind(I18N.createStringBinding("column.photo"));
+        userNameEditableColumn.textProperty().bind(I18N.createStringBinding("column.username"));
+        passwordEditableColumn.textProperty().bind(I18N.createStringBinding("column.password"));
+        firstNameEditableColumn.textProperty().bind(I18N.createStringBinding("column.firstname"));
+        lastNameEditableColumn.textProperty().bind(I18N.createStringBinding("column.lastname"));
+        mobileEditableColumn.textProperty().bind(I18N.createStringBinding("column.mobile"));
+        locationEditableColumn.textProperty().bind(I18N.createStringBinding("column.location"));
+        genderEditableColumn.textProperty().bind(I18N.createStringBinding("column.gender"));
+        levelEditableColumn.textProperty().bind(I18N.createStringBinding("column.level"));
+        departmentEditableColumn.textProperty().bind(I18N.createStringBinding("column.department"));
+        courseEditableColumn.textProperty().bind(I18N.createStringBinding("column.course"));
     }
 
     private <T> void setupCellValueFactory(JFXTreeTableColumn<User, T> column, Function<User, ObservableValue<T>> mapper) {
@@ -205,7 +228,7 @@ public class TreeTableViewController {
                 User user = userDao.getUser(t.getTreeTableView().getTreeItem(t.getTreeTablePosition().getRow()).getValue().id.get());
                 user.firstName.set(t.getNewValue().toUpperCase());
                 if (userDao.updateUser(user)) {
-                    MainController.snackbar.show("User updated", 3000);
+                    MainController.snackbar.show(I18N.get("user.updated"), 3000);
                 }
             }
         });
@@ -241,7 +264,7 @@ public class TreeTableViewController {
                 .bind(Bindings.createStringBinding(() -> PREFIX + editableTreeTableView.getCurrentItemsCount() + POSTFIX,
                         editableTreeTableView.currentItemsCountProperty()));
         editableTreeTableView.prefHeightProperty().bind(root.widthProperty());
-        searchField2.textProperty()
+        searchField.textProperty()
                 .addListener(setupSearchField(editableTreeTableView));
     }
 

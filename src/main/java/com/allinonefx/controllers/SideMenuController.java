@@ -1,5 +1,6 @@
 package com.allinonefx.controllers;
 
+import com.allinonefx.config.I18N;
 import com.allinonefx.gui.uicomponents.AnchorFXController;
 import com.allinonefx.gui.uicomponents.BootstrapFXController;
 import com.allinonefx.gui.uicomponents.CalendarFXController;
@@ -191,6 +192,7 @@ public class SideMenuController {
         bindNodeToController(video, MediaViewController.class, contentFlow, contentFlowHandler);
         bindNodeToController(webview, WebViewController.class, contentFlow, contentFlowHandler);
         bindNodeToController(wordpress, WordpressRestAPI.class, contentFlow, contentFlowHandler);
+        localeText();
 //        bindNodeToController(smartcsvfx, SmartCSVController.class, contentFlow, contentFlowHandler);
 //        Platform.runLater(new Runnable() {
 //            public void run() {
@@ -218,4 +220,19 @@ public class SideMenuController {
         flow.withGlobalLink(node.getId(), controllerClass);
     }
 
+    private void localeText(){
+        jfoenix.textProperty().bind(I18N.createStringBinding("label.jfoenix"));
+        treetableview.textProperty().bind(I18N.createStringBinding("label.treetableview"));
+        anchorfx.textProperty().bind(I18N.createStringBinding("label.anchorfx"));
+        bootstrapfx.textProperty().bind(I18N.createStringBinding("label.bootstrapfx"));
+        calendarfx.textProperty().bind(I18N.createStringBinding("label.calendarfx"));
+        controlsfx.textProperty().bind(I18N.createStringBinding("label.controlsfx"));
+        glyphsbrowser.textProperty().bind(I18N.createStringBinding("label.glyphsbrowser"));
+        gmapsfx.textProperty().bind(I18N.createStringBinding("label.gmapsfx"));
+        livedirsfx.textProperty().bind(I18N.createStringBinding("label.livedirsfx"));
+        tilesfx.textProperty().bind(I18N.createStringBinding("label.tilesfx"));
+        video.textProperty().bind(I18N.createStringBinding("label.video"));
+        webview.textProperty().bind(I18N.createStringBinding("label.webview"));
+        wordpress.textProperty().bind(I18N.createStringBinding("label.wordpress"));
+    }
 }

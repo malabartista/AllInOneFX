@@ -22,7 +22,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="root" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane fx:id="root" xmlns="http://javafx.com/javafx/8.0.101" xmlns:fx="http://javafx.com/fxml/1">
     <VBox alignment="CENTER" spacing="10">
         <children>
             <JFXProgressBar fx:id="progressPersonal" />
@@ -77,17 +77,17 @@
                                             <Font name="Roboto Medium" size="14.0" />
                                         </font>
                                     </JFXTextField>
-                                    <JFXTextField fx:id="txtMobile" focusColor="#2196f3" labelFloat="true" promptText="Phone" GridPane.rowIndex="4">
+                                    <JFXTextField fx:id="txtMobile" focusColor="#2196f3" labelFloat="true" promptText="%label.mobile" GridPane.rowIndex="4">
                                         <font>
                                             <Font name="Roboto Medium" size="14.0" />
                                         </font>
                                     </JFXTextField>
-                                    <JFXTextField fx:id="txtEmail" focusColor="#2196f3" labelFloat="true" promptText="Email" GridPane.rowIndex="5">
+                                    <JFXTextField fx:id="txtEmail" focusColor="#2196f3" labelFloat="true" promptText="%label.email" GridPane.rowIndex="5">
                                         <font>
                                             <Font name="Roboto Medium" size="14.0" />
                                         </font>
                                     </JFXTextField>
-                                    <JFXTextField fx:id="txtLocation" focusColor="#2196f3" labelFloat="true" promptText="Location" GridPane.rowIndex="6">
+                                    <JFXTextField fx:id="txtLocation" focusColor="#2196f3" labelFloat="true" promptText="%label.location" GridPane.rowIndex="6">
                                         <font>
                                             <Font name="Roboto Medium" size="14.0" />
                                         </font>
@@ -116,27 +116,27 @@
                                 <children>
                                     <VBox alignment="CENTER_LEFT">
                                         <children>
-                                            <JFXComboBox fx:id="comboDepartmenT" promptText="Select department" />
+                                            <JFXComboBox fx:id="comboDepartmenT" promptText="%label.department" />
                                         </children>
                                     </VBox>
-                                    <JFXTextField fx:id="txtCourseName" focusColor="#2196f3" labelFloat="true" promptText="Course Name" GridPane.rowIndex="1">
+                                    <JFXTextField fx:id="txtCourseName" focusColor="#2196f3" labelFloat="true" promptText="%label.course" GridPane.rowIndex="1">
                                         <font>
                                             <Font name="Roboto Medium" size="14.0" />
                                         </font>
                                     </JFXTextField>
                                     <VBox alignment="CENTER_LEFT" GridPane.rowIndex="2">
                                         <children>
-                                            <JFXDatePicker fx:id="txtBirthdate" promptText="Birthdate" />
+                                            <JFXDatePicker fx:id="txtBirthdate" promptText="%label.birthdate" />
                                         </children>
                                     </VBox>
                                     <VBox alignment="CENTER_LEFT" GridPane.rowIndex="3">
                                         <children>
-                                            <JFXTimePicker fx:id="txtHour" promptText="Hour" />
+                                            <JFXTimePicker fx:id="txtHour" promptText="%label.hour" />
                                         </children>
                                     </VBox>
                                     <VBox alignment="CENTER_LEFT" GridPane.rowIndex="4">
                                         <children>
-                                            <Label styleClass="control-label" text="Gender">
+                                            <Label fx:id="lblGender" styleClass="control-label" text="%label.gender">
                                                 <VBox.margin>
                                                     <Insets />
                                                 </VBox.margin>
@@ -162,7 +162,7 @@
                                     </VBox>
                                     <VBox alignment="CENTER_LEFT" GridPane.rowIndex="5">
                                         <children>
-                                            <Label styleClass="control-label" text="Level" />
+                                            <Label fx:id="lblLevel" styleClass="control-label" text="%label.level" />
                                             <HBox>
                                                 <children>
                                                     <JFXRadioButton fx:id="rdDegree" text="Degree" textFill="#4d4d4d">
@@ -198,7 +198,7 @@
                         <children>
                             <VBox spacing="10.0">
                                 <children>
-                                    <JFXTextField fx:id="txtAmount" focusColor="#2196f3" labelFloat="true" promptText="Amount">
+                                    <JFXTextField fx:id="txtAmount" focusColor="#2196f3" labelFloat="true" promptText="%label.amount">
                                         <font>
                                             <Font name="Roboto Medium" size="14.0" />
                                         </font>
@@ -219,17 +219,17 @@
             </GridPane>
             <HBox alignment="TOP_RIGHT" spacing="10">
                 <children>
-                    <JFXButton fx:id="backButton" buttonType="RAISED" ripplerFill="#f52020" style="-fx-background-color: #F39C12;" text="Back" textFill="WHITE">
+                    <JFXButton fx:id="btnBack" buttonType="RAISED" ripplerFill="#f52020" style="-fx-background-color: #F39C12;" text="button.back" textFill="WHITE">
                         <font>
                             <Font name="Roboto Medium" size="15.0" />
                         </font>
                     </JFXButton>
-                    <JFXButton fx:id="btnClear" buttonType="RAISED" onAction="#clearFields" ripplerFill="#f52020" style="-fx-background-color: #F39C12;" text="Clear" textFill="WHITE">
+                    <JFXButton fx:id="btnClear" buttonType="RAISED" onAction="#clearFields" ripplerFill="#f52020" style="-fx-background-color: #F39C12;" text="button.clear" textFill="WHITE">
                         <font>
                             <Font name="Roboto Medium" size="15.0" />
                         </font>
                     </JFXButton>
-                    <JFXButton fx:id="btnEdit" buttonType="RAISED" onAction="#editUser" ripplerFill="#3d9a31" style="-fx-background-color: #26B99A;" text="Edit" textFill="WHITE">
+                    <JFXButton fx:id="btnEdit" buttonType="RAISED" onAction="#editUser" ripplerFill="#3d9a31" style="-fx-background-color: #26B99A;" text="button.edit" textFill="WHITE">
                         <font>
                             <Font name="Roboto Medium" size="15.0" />
                         </font>
@@ -237,7 +237,7 @@
                             <MaterialDesignIconView fill="WHITE" glyphName="BORDER_COLOR" size="18.0" wrappingWidth="29.0" />
                         </graphic>
                     </JFXButton>
-                    <JFXButton fx:id="btnSave" buttonType="RAISED" onAction="#saveUser" ripplerFill="#3f25d7" style="-fx-background-color: rgb(0, 170, 207);" text="Save" textFill="WHITE">
+                    <JFXButton fx:id="btnSave" buttonType="RAISED" onAction="#saveUser" ripplerFill="#3f25d7" style="-fx-background-color: rgb(0, 170, 207);" text="button.save" textFill="WHITE">
                         <font>
                             <Font name="Roboto Medium" size="15.0" />
                         </font>

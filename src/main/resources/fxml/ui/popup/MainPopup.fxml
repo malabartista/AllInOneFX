@@ -6,14 +6,14 @@
 <?import javafx.scene.layout.StackPane?>
 <JFXListView fx:id="toolbarPopupList" styleClass="option-list-view"
              onMouseClicked="#submit" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-    <Label text="%label.blue">
+    <Label fx:id="blue" text="%label.blue">
         <graphic>
             <StackPane styleClass="custom-jfx-list-view-icon-container">
                 <FontAwesomeIconView glyphName="EYEDROPPER" size="1.5em" styleClass="custom-jfx-list-view-icon" />
             </StackPane>
         </graphic>
     </Label>
-    <Label text="%label.red">
+    <Label fx:id="red" text="%label.red">
         <graphic>
             <StackPane styleClass="custom-jfx-list-view-icon-container">
                 <FontAwesomeIconView glyphName="EYEDROPPER" size="1.5em" styleClass="custom-jfx-list-view-icon" />

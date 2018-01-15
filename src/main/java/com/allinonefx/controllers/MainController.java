@@ -52,6 +52,8 @@ public final class MainController {
     @FXML
     public static Label lblTitle;
     @FXML
+    private Label red;
+    @FXML
     private JFXBadge badgeNotification;
     @FXML
     public static JFXSnackbar snackbar;
@@ -64,6 +66,7 @@ public final class MainController {
      */
     @PostConstruct
     public void init() throws Exception {
+        
 //        lblTitle.bind(I18N.createStringBinding("window.title"));
         // init the title hamburger icon
         drawer.setOnDrawerOpening(e -> {
@@ -86,7 +89,8 @@ public final class MainController {
 
         //set locale
         loadLanguage(Locale.ENGLISH);
-
+        localeText();
+        
         optionsBurger.setOnMouseClicked(e -> toolbarPopup.show(optionsBurger,
                 PopupVPosition.TOP,
                 PopupHPosition.RIGHT,
@@ -100,7 +104,7 @@ public final class MainController {
 
         //set language smatcsv
         ViewConfiguration viewConfig = new ViewConfiguration();
-        viewConfig.setResources(ResourceBundle.getBundle("lang.message", Locale.ENGLISH));
+        viewConfig.setResources(ResourceBundle.getBundle("lang.message", I18N.getLocale()));
         //viewConfig.setResources(ResourceBundle.getBundle("smartcsv", Locale.ENGLISH));
 
         // create the inner flow and content
@@ -116,6 +120,7 @@ public final class MainController {
         drawer.setContent(flowHandler.start(new ExtendedAnimatedFlowContainer(containerAnimationDuration, SWIPE_LEFT)));
         context.register("ContentPane", drawer.getContent().get(0));
         
+        //get user
         User user = (User) context.getRegisteredObject("User");
         profileButton.setText(user.firstName.get());
 
@@ -158,7 +163,7 @@ public final class MainController {
     }
 
     public void loadLanguage(Locale locale) throws IOException {
-        ResourceBundle bundle = ResourceBundle.getBundle("lang.message", locale);
+        ResourceBundle bundle = ResourceBundle.getBundle("lang.message", I18N.getLocale());
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ui/popup/MainPopup.fxml"), bundle);
         loader.setController(new InputController());
         toolbarPopup = new JFXPopup(loader.load());
@@ -175,6 +180,11 @@ public final class MainController {
      */
     private void switchLanguage(Locale locale) {
         I18N.setLocale(locale);
+    }
+    
+    private void localeText(){
+//        red.textProperty().bind(I18N.createStringBinding("label.red"));
+        
     }
 //
 //    @Override
@@ -249,7 +259,7 @@ public final class MainController {
                 } else if (profilePopupList.getSelectionModel().getSelectedIndex() == 3) {
                     Platform.exit();
                 }
-                profilePopupList.getParent().setVisible(false);
+                profilePopup.hide();
             }
         }
     }

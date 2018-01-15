@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="760.0" scaleShape="false" stylesheets="@custom.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.allinonefx.controllers.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="760.0" scaleShape="false" stylesheets="@custom.css" xmlns="http://javafx.com/javafx/8.0.101" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.allinonefx.controllers.FXMLDocumentController">
    <children>
       <JFXToolbar layoutX="184.0" layoutY="14.0" prefHeight="40.0" prefWidth="1360.0" style="-fx-min-height: 42; -fx-background-color: #222D32;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>

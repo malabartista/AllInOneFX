@@ -6,6 +6,7 @@
 package com.allinonefx.controllers;
 
 import com.allinonefx.config.DbHandler;
+import com.allinonefx.config.I18N;
 import com.allinonefx.dao.UserDao;
 import static com.allinonefx.gui.uicomponents.DialogController.CONTENT_PANE;
 import com.allinonefx.gui.uicomponents.TreeTableViewController;
@@ -73,6 +74,10 @@ public class RegisterController extends AbstractViewController {
     private JFXTextField txtEmail;
     @FXML
     private JFXTextField txtLocation;
+    @FXML
+    private Label lblGender;
+    @FXML
+    private Label lblLevel;
     @FXML
     private ToggleGroup gender;
     @FXML
@@ -155,6 +160,7 @@ public class RegisterController extends AbstractViewController {
         updateProgress();
         setDepartmentsToCombo();
         setTextFields();
+        localeText();
         // flow
         contentFlowHandler = (FlowHandler) context.getRegisteredObject("ContentFlowHandler");
         contentFlow = (Flow) context.getRegisteredObject("ContentFlow");
@@ -435,7 +441,7 @@ public class RegisterController extends AbstractViewController {
             if (success) {
                 //            clearFields();
                 JFXSnackbar fXSnackbar = MainController.snackbar;
-                fXSnackbar.show("User updated successfully", 3000);
+                fXSnackbar.show(I18N.get("user.updated"), 3000);
             }
         } else {
             User u = new User();
@@ -444,7 +450,7 @@ public class RegisterController extends AbstractViewController {
             if (success) {
                 //            clearFields();
                 JFXSnackbar fXSnackbar = MainController.snackbar;
-                fXSnackbar.show("New user saved successfully", 3000);
+                fXSnackbar.show(I18N.get("user.new.saved"), 3000);
             }
         }
 
@@ -459,7 +465,7 @@ public class RegisterController extends AbstractViewController {
 
     private void handleValidation() {
         RequiredFieldValidator fieldValidator = new RequiredFieldValidator();
-        fieldValidator.setMessage("Input required");
+        fieldValidator.setMessage(I18N.get("input.required"));
         fieldValidator.setIcon(new FontAwesomeIconView(FontAwesomeIcon.TIMES));
         txtFname.getValidators().add(fieldValidator);
         txtFname.focusedProperty().addListener((ObservableValue<? extends Boolean> o, Boolean oldVal, Boolean newVal) -> {
@@ -468,7 +474,7 @@ public class RegisterController extends AbstractViewController {
             }
         });
         RequiredFieldValidator fieldValidator2 = new RequiredFieldValidator();
-        fieldValidator2.setMessage("Input required");
+        fieldValidator2.setMessage(I18N.get("input.required"));
         fieldValidator2.setIcon(new FontAwesomeIconView(FontAwesomeIcon.TIMES));
         txtLname.getValidators().add(fieldValidator2);
         txtLname.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
@@ -533,4 +539,24 @@ public class RegisterController extends AbstractViewController {
         return gdr;
     }
 
+    private void localeText(){
+        txtUname.promptTextProperty().bind(I18N.createStringBinding("label.userName"));
+        txtPassword.promptTextProperty().bind(I18N.createStringBinding("label.password"));
+        txtFname.promptTextProperty().bind(I18N.createStringBinding("label.firstName"));
+        txtLname.promptTextProperty().bind(I18N.createStringBinding("label.lastName"));
+        txtMobile.promptTextProperty().bind(I18N.createStringBinding("label.mobile"));
+        txtEmail.promptTextProperty().bind(I18N.createStringBinding("label.email"));
+        txtLocation.promptTextProperty().bind(I18N.createStringBinding("label.location"));
+        comboDepartmenT.promptTextProperty().bind(I18N.createStringBinding("label.department"));
+        txtCourseName.promptTextProperty().bind(I18N.createStringBinding("label.course"));
+        txtBirthdate.promptTextProperty().bind(I18N.createStringBinding("label.birthdate"));
+        txtHour.promptTextProperty().bind(I18N.createStringBinding("label.hour"));
+        lblGender.textProperty().bind(I18N.createStringBinding("label.gender"));
+        lblLevel.textProperty().bind(I18N.createStringBinding("label.level"));
+        txtAmount.promptTextProperty().bind(I18N.createStringBinding("label.amount"));
+        btnBack.textProperty().bind(I18N.createStringBinding("button.back"));
+        btnClear.textProperty().bind(I18N.createStringBinding("button.clear"));
+        btnEdit.textProperty().bind(I18N.createStringBinding("button.edit"));
+        btnSave.textProperty().bind(I18N.createStringBinding("button.save"));
+    }
 }
