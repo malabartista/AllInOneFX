@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="User">
+ 
+    <resultMap id="result" type="User">
+        <result property="id" column="id"/>
+        <result property="userName" column="username"/>
+        <result property="password" column="password"/>
+        <result property="firstName" column="fname"/>
+        <result property="lastName" column="lname"/>
+        <result property="email" column="email"/>
+        <result property="mobile" column="mobile"/>
+        <result property="location" column="location"/>
+        <result property="gender" column="gender"/>
+        <result property="department" column="department"/>
+        <result property="course" column="course"/>
+    </resultMap>
+ 
+    <select id="selectAll" resultMap="result">
+        SELECT * FROM user;
+    </select>
+ 
+    <select id="selectById" parameterType="int" resultMap="result">
+        SELECT * FROM user WHERE id = #{id}
+    </select>
+ 
+    <insert id="insert" parameterType="User" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO user (userName) VALUES (#{userName});
+    </insert>
+ 
+    <update id="update" parameterType="User">
+        UPDATE user
+        SET userName = #{userName}
+        WHERE id = #{id} 
+    </update>
+ 
+    <delete id="delete" parameterType="int">
+        DELETE from user WHERE id = #{id}
+    </delete>
+</mapper>

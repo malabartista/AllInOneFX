@@ -143,7 +143,7 @@
                                             </Label>
                                             <HBox>
                                                 <children>
-                                                    <JFXRadioButton fx:id="rdMale" text="Male" textFill="#4d4d4d">
+                                                    <JFXRadioButton fx:id="rdMale" text="%radio.male" textFill="#4d4d4d">
                                                         <font>
                                                             <Font name="Roboto Medium" size="14.0" />
                                                         </font>
@@ -151,7 +151,7 @@
                                                             <ToggleGroup fx:id="gender1" />
                                                         </toggleGroup>
                                                     </JFXRadioButton>
-                                                    <JFXRadioButton fx:id="rdFemale" text="Female" textFill="#4d4d4d" toggleGroup="$gender1">
+                                                    <JFXRadioButton fx:id="rdFemale" text="%radio.female" textFill="#4d4d4d" toggleGroup="$gender1">
                                                         <font>
                                                             <Font name="Roboto Medium" size="14.0" />
                                                         </font>
@@ -165,7 +165,7 @@
                                             <Label fx:id="lblLevel" styleClass="control-label" text="%label.level" />
                                             <HBox>
                                                 <children>
-                                                    <JFXRadioButton fx:id="rdDegree" text="Degree" textFill="#4d4d4d">
+                                                    <JFXRadioButton fx:id="rdDegree" text="%radio.degree" textFill="#4d4d4d">
                                                         <font>
                                                             <Font name="Roboto Medium" size="14.0" />
                                                         </font>
@@ -173,12 +173,12 @@
                                                             <ToggleGroup fx:id="level" />
                                                         </toggleGroup>
                                                     </JFXRadioButton>
-                                                    <JFXRadioButton fx:id="rdDiploma" text="Diploma" textFill="#4d4d4d" toggleGroup="$level">
+                                                    <JFXRadioButton fx:id="rdDiploma" text="%radio.diploma" textFill="#4d4d4d" toggleGroup="$level">
                                                         <font>
                                                             <Font name="Roboto Medium" size="14.0" />
                                                         </font>
                                                     </JFXRadioButton>
-                                                    <JFXRadioButton fx:id="rdCertificate" text="Certificate" textFill="#4d4d4d" toggleGroup="$level">
+                                                    <JFXRadioButton fx:id="rdCertificate" text="%radio.certificate" textFill="#4d4d4d" toggleGroup="$level">
                                                         <font>
                                                             <Font name="Roboto Medium" size="14.0" />
                                                         </font>

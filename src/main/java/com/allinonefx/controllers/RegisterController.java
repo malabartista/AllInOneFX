@@ -186,8 +186,7 @@ public class RegisterController extends AbstractViewController {
         progress8 = 0;
         progress9 = 0;
         progress10 = 0;
-        lblComplete.setText("0% complete");
-        
+        lblComplete.setText("0% " + I18N.get("complete"));
 
         txtFname.textProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -341,7 +340,7 @@ public class RegisterController extends AbstractViewController {
         decimalFormat.setRoundingMode(RoundingMode.HALF_UP);
         double sum = (progress1 + progress2 + progress3 + progress4 + progress5 + progress6 + progress7 + progress8 + progress9 + progress10);
         progressPersonal.setProgress(sum);
-        lblComplete.setText(decimalFormat.format(sum * 100) + "% complete");
+        lblComplete.setText(decimalFormat.format(sum * 100) + "% " + I18N.get("complete"));
     }
 
     private void setTextFields() {
@@ -552,7 +551,12 @@ public class RegisterController extends AbstractViewController {
         txtBirthdate.promptTextProperty().bind(I18N.createStringBinding("label.birthdate"));
         txtHour.promptTextProperty().bind(I18N.createStringBinding("label.hour"));
         lblGender.textProperty().bind(I18N.createStringBinding("label.gender"));
+        rdMale.textProperty().bind(I18N.createStringBinding("radio.male"));
+        rdFemale.textProperty().bind(I18N.createStringBinding("radio.female"));
         lblLevel.textProperty().bind(I18N.createStringBinding("label.level"));
+        rdDegree.textProperty().bind(I18N.createStringBinding("radio.degree"));
+        rdDiploma.textProperty().bind(I18N.createStringBinding("radio.diploma"));
+        rdCertificate.textProperty().bind(I18N.createStringBinding("radio.certificate"));
         txtAmount.promptTextProperty().bind(I18N.createStringBinding("label.amount"));
         btnBack.textProperty().bind(I18N.createStringBinding("button.back"));
         btnClear.textProperty().bind(I18N.createStringBinding("button.clear"));

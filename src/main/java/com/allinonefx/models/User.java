@@ -20,6 +20,7 @@ import javafx.scene.image.ImageView;
  */
 public class User extends RecursiveTreeObject<User> {
 
+    public BooleanProperty checkbox = new SimpleBooleanProperty();
     public ObjectProperty<ImageView> userPhoto = new SimpleObjectProperty();
     public SimpleIntegerProperty id = new SimpleIntegerProperty();
     public StringProperty userName = new SimpleStringProperty();
@@ -33,11 +34,10 @@ public class User extends RecursiveTreeObject<User> {
     public StringProperty level = new SimpleStringProperty();
     public StringProperty department = new SimpleStringProperty();
     public StringProperty course = new SimpleStringProperty();
-    public BooleanProperty checkbox = new SimpleBooleanProperty();
 
     public User() {
     }
-    
+
     public User(String userName, String password, int mobile) {
         this.userName = new SimpleStringProperty(userName);
         this.password = new SimpleStringProperty(password);
@@ -45,6 +45,7 @@ public class User extends RecursiveTreeObject<User> {
     }
 
     public User(String userName, String password, String firstName, String lastName, int mobile, String email, String location, String gender, String level, String department, String course) {
+        this.checkbox = new SimpleBooleanProperty(true);
         this.userName = new SimpleStringProperty(userName);
         this.password = new SimpleStringProperty(password);
         this.firstName = new SimpleStringProperty(firstName);
@@ -56,51 +57,146 @@ public class User extends RecursiveTreeObject<User> {
         this.level = new SimpleStringProperty(level);
         this.department = new SimpleStringProperty(department);
         this.course = new SimpleStringProperty(course);
-        this.checkbox = new SimpleBooleanProperty(true);
+    }
+
+    public int getId() {
+        return id.get();
+    }
+
+    public void setId(int id) {
+        this.id.set(id);
     }
 
     public SimpleIntegerProperty idProperty() {
         return id;
     }
-    
+
+    public String getUserName() {
+        return userName.get();
+    }
+
+    public void setUserName(String username) {
+        this.userName.set(username);
+    }
+
     public StringProperty userNameProperty() {
         return userName;
     }
     
+    public String getPassword() {
+        return password.get();
+    }
+
+    public void setPassword(String password) {
+        this.password.set(password);
+    }
+
     public StringProperty passwordProperty() {
         return password;
     }
     
+    public String getFirstName() {
+        return firstName.get();
+    }
+
+    public void setFirstName(String firstname) {
+        this.firstName.set(firstname);
+    }
+
     public StringProperty firstNameProperty() {
         return firstName;
     }
 
+    public String getLastName() {
+        return lastName.get();
+    }
+
+    public void setLastName(String lastname) {
+        this.lastName.set(lastname);
+    }
+    
     public StringProperty lastNameProperty() {
         return lastName;
+    }
+    
+    public int getMobile() {
+        return mobile.get();
+    }
+
+    public void setMobile(int mobile) {
+        this.mobile.set(mobile);
     }
 
     public SimpleIntegerProperty mobileProperty() {
         return mobile;
     }
+    
+    public String getEmail() {
+        return email.get();
+    }
+
+    public void setEmail(String email) {
+        this.email.set(email);
+    }
 
     public StringProperty emailProperty() {
         return email;
+    }
+    
+    public String getLocation() {
+        return location.get();
+    }
+
+    public void setLocation(String location) {
+        this.location.set(location);
     }
 
     public StringProperty locationProperty() {
         return location;
     }
+    
+    public String getGender() {
+        return gender.get();
+    }
+
+    public void setGender(String gender) {
+        this.gender.set(gender);
+    }
 
     public StringProperty genderProperty() {
         return gender;
+    }
+    
+    public String getLevel() {
+        return level.get();
+    }
+
+    public void setLevel(String level) {
+        this.level.set(level);
     }
 
     public StringProperty levelProperty() {
         return level;
     }
+    
+    public String getDepartment() {
+        return department.get();
+    }
+
+    public void setDepartment(String department) {
+        this.department.set(department);
+    }
 
     public StringProperty departmentProperty() {
         return department;
+    }
+    
+    public String getCourse() {
+        return course.get();
+    }
+
+    public void setCourse(String course) {
+        this.course.set(course);
     }
 
     public StringProperty courseProperty() {
@@ -110,10 +206,9 @@ public class User extends RecursiveTreeObject<User> {
     public ObjectProperty userPhotoProperty() {
         return userPhoto;
     }
-    
+
     public BooleanProperty checkboxProperty() {
         return checkbox;
     }
-    
-    
+
 }

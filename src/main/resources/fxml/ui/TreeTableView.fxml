@@ -41,8 +41,8 @@
             <JFXTreeTableView fx:id="editableTreeTableView">
                 <columns>
                     <JFXTreeTableColumn fx:id="checkboxEditableColumn" minWidth="133" resizable="false" text="%column.checkbox"/>
-                    <JFXTreeTableColumn fx:id="userPhotoEditableColumn" minWidth="133" text="%column.photo" />
-                    <JFXTreeTableColumn fx:id="userNameEditableColumn" minWidth="133" text="%column.username" styleClass="cell-left"/>
+                    <JFXTreeTableColumn fx:id="filmPhotoEditableColumn" minWidth="133" text="%column.photo" />
+                    <JFXTreeTableColumn fx:id="filmNameEditableColumn" minWidth="133" text="%column.username" styleClass="cell-left"/>
                     <JFXTreeTableColumn fx:id="passwordEditableColumn" minWidth="133" text="%column.password" styleClass="cell-left"/>
                     <JFXTreeTableColumn fx:id="firstNameEditableColumn" minWidth="133" text="%column.firstname" styleClass="cell-left"/>
                     <JFXTreeTableColumn fx:id="lastNameEditableColumn" minWidth="133" text="%column.lastname" styleClass="cell-left"/>
