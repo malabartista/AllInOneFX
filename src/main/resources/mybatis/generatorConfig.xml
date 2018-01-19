@@ -17,23 +17,36 @@
       <property name="forceBigDecimals" value="false" />
     </javaTypeResolver>
 
-    <javaModelGenerator targetPackage="test.model" targetProject="\datos\NetBeansProjects\JavaFX-Examples\AllInOneFX\src\main\java">
+    <javaModelGenerator targetPackage="com.allinonefx.model" targetProject="\datos\NetBeansProjects\JavaFX-Examples\AllInOneFX\src\main\java">
       <property name="enableSubPackages" value="true" />
       <property name="trimStrings" value="true" />
     </javaModelGenerator>
 
-    <sqlMapGenerator targetPackage="test.xml"  targetProject="\datos\NetBeansProjects\JavaFX-Examples\AllInOneFX\src\main\java">
+    <sqlMapGenerator targetPackage="mybatis.mapper"  targetProject="\datos\NetBeansProjects\JavaFX-Examples\AllInOneFX\src\main\resources">
       <property name="enableSubPackages" value="true" />
     </sqlMapGenerator>
-
-    <javaClientGenerator type="XMLMAPPER" targetPackage="test.dao"  targetProject="\datos\NetBeansProjects\JavaFX-Examples\AllInOneFX\src\main\java">
+    
+    <javaClientGenerator type="XMLMAPPER" targetPackage="com.allinonefx.dao"  targetProject="\datos\NetBeansProjects\JavaFX-Examples\AllInOneFX\src\main\java">
       <property name="enableSubPackages" value="true" />
     </javaClientGenerator>
 
-    <table schema="sakila" tableName="film" domainObjectName="Film" >
+<!--
+    <table schema="sakila" tableName="film" domainObjectName="Film">
       <property name="useActualColumnNames" value="true"/>
       <generatedKey column="film_id" sqlStatement="DB2" identity="true" />
     </table>
-
+    <table schema="sakila" tableName="customer" domainObjectName="Customer">
+      <property name="useActualColumnNames" value="true"/>
+      <generatedKey column="customer_id" sqlStatement="DB2" identity="true" />
+    </table>
+    <table schema="sakila" tableName="country" domainObjectName="Country">
+      <property name="useActualColumnNames" value="true"/>
+      <generatedKey column="country_id" sqlStatement="DB2" identity="true" />
+    </table>
+    -->
+    <table schema="sakila" tableName="category" domainObjectName="Category">
+      <property name="useActualColumnNames" value="true"/>
+      <generatedKey column="category_id" sqlStatement="DB2" identity="true" />
+    </table>
   </context>
 </generatorConfiguration>

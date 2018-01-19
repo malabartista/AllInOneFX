@@ -1,9 +1,9 @@
-package test.dao;
+package com.allinonefx.dao;
 
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
-import test.model.Film;
-import test.model.FilmExample;
+import com.allinonefx.model.Film;
+import com.allinonefx.model.FilmExample;
 
 public interface FilmMapper {
     

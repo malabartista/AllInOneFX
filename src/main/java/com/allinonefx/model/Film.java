@@ -1,4 +1,4 @@
-package test.model;
+package com.allinonefx.model;
 
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import java.math.BigDecimal;

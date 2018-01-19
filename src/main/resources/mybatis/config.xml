@@ -6,7 +6,10 @@
 <configuration>
     <typeAliases>
         <typeAlias alias="User" type="com.allinonefx.models.User"/>
-        <typeAlias alias="Film" type="test.model.Film"/>
+        <typeAlias alias="Category" type="com.allinonefx.model.Category"/>
+        <typeAlias alias="Country" type="com.allinonefx.model.Country"/>
+        <typeAlias alias="Customer" type="com.allinonefx.model.Customer"/>
+        <typeAlias alias="Film" type="com.allinonefx.model.Film"/>
     </typeAliases>
  
     <environments default="development">
@@ -23,6 +26,9 @@
     </environments>
     <mappers>
         <mapper resource="mybatis/mapper/User.xml"/>
+        <mapper resource="mybatis/mapper/CategoryMapper.xml"/>
+        <mapper resource="mybatis/mapper/CountryMapper.xml"/>
+        <mapper resource="mybatis/mapper/CustomerMapper.xml"/>
         <mapper resource="mybatis/mapper/FilmMapper.xml"/>
     </mappers>
 </configuration>

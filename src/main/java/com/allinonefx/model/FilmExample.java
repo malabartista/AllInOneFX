@@ -1,4 +1,4 @@
-package test.model;
+package com.allinonefx.model;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

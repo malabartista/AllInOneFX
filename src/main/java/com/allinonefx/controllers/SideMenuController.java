@@ -1,6 +1,7 @@
 package com.allinonefx.controllers;
 
 import com.allinonefx.config.I18N;
+import com.allinonefx.controllers.table.FilmTableViewController;
 import com.allinonefx.gui.uicomponents.AnchorFXController;
 import com.allinonefx.gui.uicomponents.BootstrapFXController;
 import com.allinonefx.gui.uicomponents.CalendarFXController;
@@ -11,7 +12,6 @@ import com.allinonefx.gui.uicomponents.JFoenixController;
 import com.allinonefx.gui.uicomponents.LiveDirsFXController;
 import com.allinonefx.gui.uicomponents.MediaViewController;
 import com.allinonefx.gui.uicomponents.TilesFXController;
-import com.allinonefx.gui.uicomponents.TreeTableViewController;
 import com.allinonefx.gui.uicomponents.WebViewController;
 import com.allinonefx.gui.uicomponents.WordpressRestAPI;
 import com.jfoenix.controls.JFXListView;
@@ -180,7 +180,7 @@ public class SideMenuController {
         bindNodeToController(scrollpane, ScrollPaneController.class, contentFlow, contentFlowHandler);
          */
         bindNodeToController(jfoenix, JFoenixController.class, contentFlow, contentFlowHandler);
-        bindNodeToController(treetableview, TreeTableViewController.class, contentFlow, contentFlowHandler);
+        bindNodeToController(treetableview, FilmTableViewController.class, contentFlow, contentFlowHandler);
         bindNodeToController(anchorfx, AnchorFXController.class, contentFlow, contentFlowHandler);
         bindNodeToController(bootstrapfx, BootstrapFXController.class, contentFlow, contentFlowHandler);
         bindNodeToController(calendarfx, CalendarFXController.class, contentFlow, contentFlowHandler);
