@@ -1,8 +1,9 @@
 package com.allinonefx.controllers;
 
 import com.allinonefx.MainDemo;
-import com.allinonefx.dao.UserDao;
-import com.allinonefx.models.User;
+import com.allinonefx.dao.StaffMapper;
+import com.allinonefx.model.Staff;
+import com.allinonefx.mybatis.MyBatisConnectionFactory;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDecorator;
 import com.jfoenix.controls.JFXPasswordField;
@@ -32,6 +33,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javax.annotation.PostConstruct;
+import org.apache.ibatis.session.SqlSession;
 
 /**
  * genarated by APX file generation template File name: LoginController.java
@@ -39,6 +41,7 @@ import javax.annotation.PostConstruct;
 @ViewController(value = "/fxml/Login.fxml", title = "Login")
 public class LoginController {
 
+    SqlSession sqlSession = MyBatisConnectionFactory.getSqlSessionFactory().openSession();
     @FXMLViewFlowContext
     private ViewFlowContext flowContext;
 
@@ -95,11 +98,11 @@ public class LoginController {
         pauseTransition.setDuration(Duration.seconds(3));
         pauseTransition.setOnFinished(ev -> {
             // check user exists
-            UserDao userDao = new UserDao();
-            User user = userDao.getUserByUserNameAndPassword(txtUsername.getText().toUpperCase(), txtPassword.getText().toUpperCase());
-            if (user != null) {
+            StaffMapper staffMapper = sqlSession.getMapper(StaffMapper.class);
+            Staff staff = staffMapper.selectByUsernameAndPassword(txtUsername.getText(), txtPassword.getText());
+            if (staff != null) {
                 try {
-                    completeLogin(user);
+                    completeLogin(staff);
                 } catch (FlowException ex) {
                     Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -112,7 +115,7 @@ public class LoginController {
 
     }
 
-    private void completeLogin(User user) throws FlowException {
+    private void completeLogin(Staff staff) throws FlowException {
         btnLogin.getScene().getWindow().hide();
         imgProgress.setVisible(false);
         Stage stage = new Stage();
@@ -120,7 +123,7 @@ public class LoginController {
         DefaultFlowContainer container = new DefaultFlowContainer();
         flowContext = new ViewFlowContext();
         flowContext.register("Stage", stage);
-        flowContext.register("User", user);
+        flowContext.register("User", staff);
         flow.createHandler(flowContext).start(container);
 
         JFXDecorator decorator = new JFXDecorator(stage, container.getView());

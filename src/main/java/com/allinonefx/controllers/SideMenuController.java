@@ -1,7 +1,6 @@
 package com.allinonefx.controllers;
 
 import com.allinonefx.config.I18N;
-import com.allinonefx.controllers.table.FilmTableViewController;
 import com.allinonefx.gui.uicomponents.AnchorFXController;
 import com.allinonefx.gui.uicomponents.BootstrapFXController;
 import com.allinonefx.gui.uicomponents.CalendarFXController;
@@ -89,11 +88,11 @@ public class SideMenuController {
     private Label masonry;
      */
     @FXML
+    @ActionTrigger("dashboard")
+    private Label dashboard;
+    @FXML
     @ActionTrigger("jfoenix")
     private Label jfoenix;
-    @FXML
-    @ActionTrigger("treetableview")
-    private Label treetableview;
     @FXML
     @ActionTrigger("anchorfx")
     private Label anchorfx;
@@ -115,9 +114,6 @@ public class SideMenuController {
     @FXML
     @ActionTrigger("livedirsfx")
     private Label livedirsfx;
-    @FXML
-    @ActionTrigger("smartcsvfx")
-    private Label smartcsvfx;
     @FXML
     @ActionTrigger("tilesfx")
     private Label tilesfx;
@@ -179,8 +175,8 @@ public class SideMenuController {
         bindNodeToController(masonry, MasonryPaneController.class, contentFlow, contentFlowHandler);
         bindNodeToController(scrollpane, ScrollPaneController.class, contentFlow, contentFlowHandler);
          */
+        bindNodeToController(dashboard, DashboardController.class, contentFlow, contentFlowHandler);
         bindNodeToController(jfoenix, JFoenixController.class, contentFlow, contentFlowHandler);
-        bindNodeToController(treetableview, FilmTableViewController.class, contentFlow, contentFlowHandler);
         bindNodeToController(anchorfx, AnchorFXController.class, contentFlow, contentFlowHandler);
         bindNodeToController(bootstrapfx, BootstrapFXController.class, contentFlow, contentFlowHandler);
         bindNodeToController(calendarfx, CalendarFXController.class, contentFlow, contentFlowHandler);
@@ -192,7 +188,7 @@ public class SideMenuController {
         bindNodeToController(video, MediaViewController.class, contentFlow, contentFlowHandler);
         bindNodeToController(webview, WebViewController.class, contentFlow, contentFlowHandler);
         bindNodeToController(wordpress, WordpressRestAPI.class, contentFlow, contentFlowHandler);
-        localeText();
+        setLocale();
 //        bindNodeToController(smartcsvfx, SmartCSVController.class, contentFlow, contentFlowHandler);
 //        Platform.runLater(new Runnable() {
 //            public void run() {
@@ -216,13 +212,8 @@ public class SideMenuController {
         flow.withGlobalLink(node.getId(), controllerClass);
     }
 
-    private void bindNodeToApplication(Node node, Class<?> controllerClass, Flow flow, FlowHandler flowHandler) {
-        flow.withGlobalLink(node.getId(), controllerClass);
-    }
-
-    private void localeText(){
+    private void setLocale() {
         jfoenix.textProperty().bind(I18N.createStringBinding("label.jfoenix"));
-        treetableview.textProperty().bind(I18N.createStringBinding("label.treetableview"));
         anchorfx.textProperty().bind(I18N.createStringBinding("label.anchorfx"));
         bootstrapfx.textProperty().bind(I18N.createStringBinding("label.bootstrapfx"));
         calendarfx.textProperty().bind(I18N.createStringBinding("label.calendarfx"));

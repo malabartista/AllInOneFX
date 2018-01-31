@@ -1,7 +1,6 @@
 package com.allinonefx;
 
 import com.allinonefx.controllers.LoginController;
-import com.jfoenix.controls.JFXDecorator;
 import com.jfoenix.svg.SVGGlyphLoader;
 import io.datafx.controller.ViewConfiguration;
 import io.datafx.controller.flow.Flow;
@@ -64,9 +63,7 @@ public class MainDemo extends Application {
         FlowHandler flowHandler = new FlowHandler(flow, new ViewFlowContext(), viewConfig);
         flowHandler.start(container);
 
-        JFXDecorator decorator = new JFXDecorator(stage, container.getView());
-        decorator.setCustomMaximize(true);
-
+        //set width and height
         double width = 800;
         double height = 600;
         try {
@@ -78,7 +75,12 @@ public class MainDemo extends Application {
         } catch (Exception e) {
         }
 
-        Scene scene = new Scene(decorator, width, height);
+        //decorator
+//        JFXDecorator decorator = new JFXDecorator(stage, container.getView());
+//        decorator.setCustomMaximize(true);
+//        Scene scene = new Scene(decorator, width, height);
+        //no decorator
+        Scene scene = new Scene(container.getView(), width, height);
         final ObservableList<String> stylesheets = scene.getStylesheets();
         stylesheets.addAll(MainDemo.class.getResource("/css/jfoenix-fonts.css").toExternalForm(),
                 MainDemo.class.getResource("/css/jfoenix-design.css").toExternalForm(),

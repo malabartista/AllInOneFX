@@ -1,0 +1,194 @@
+
+.root{
+    -fx-text-control-title-color: rgb(130.0, 130.0, 130.0);
+    -swatch-grey: rgb(200.0, 200.0, 200.0);
+    -swatch-dark-grey: rgb(150.0, 150.0, 150.0);
+    -swatch-light-grey: rgb(230.0, 230.0, 230.0);
+    -swatch-toolbar: rgb(245.0, 245.0, 245.0);
+    -swatch-toolbar-selected: rgb(215.0, 215.0, 215.0);-swatch-100: #BBDEFB;
+    -swatch-200: #90CAF9;
+    -swatch-300: #64BEF6;
+    -swatch-400: #42A5F5;
+    -swatch-500: #2196F3;
+   -fx-background-color: #F5F5F5;
+}
+
+.toolbar{
+    -fx-pref-height:50px;
+    -fx-background-color: #3F51B5;
+}
+.side-bar{
+    -fx-background-color: #ffffff;
+    -fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.3), 7.0, 0.0, 0.0,0.0);
+}
+.side-buttons{
+    -fx-background-color: transparent;
+    -fx-background-radius: 0;
+    -fx-alignment: CENTER_LEFT;
+}
+.side-buttons:active{
+    -fx-background-color: #F3F3F3;
+}
+
+
+.fab{
+    -fx-pref-height:50px;   
+    -fx-pref-width:50px;
+    -fx-background-color: #ff4081;
+    -fx-background-radius: 50px;
+    -fx-border-radius: 50px;
+    -fx-alignment: CENTER;
+    -fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.30), 6.0, 0.3, 0,1);
+}
+
+
+.card-white{
+    -fx-background-color: rgb(255.0, 255.0, 255.0);
+    -fx-background-radius: 4.0;
+    -fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5);
+}
+/*Toogle buttons for sideboard*/
+.button-raised {
+    -fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.30), 6.0, 0.3, 0,
+        1);
+    -fx-background-color: rgb(250, 250, 250);
+}
+
+
+.toggle-button {
+    -fx-text-fill: #fbf6f6;
+    -fx-pref-height:50px;
+    -fx-font-family:'Roboto medium';
+    -fx-font-size:14px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-background-color: #1F4855;
+    -fx-padding: 0 0 0 20;
+    -fx-effect: null;
+}
+
+.toggle-button:focused {
+    -fx-background-color: #143038;
+}
+/*Material look tableview*/
+.table-view {
+    /*     Constants used throughout the tableview. */
+    -fx-table-header-border-color: transparent;
+    -fx-table-cell-border-color: -fx-box-border;  
+    /*    Horizontal Lines*/
+    -fx-background-color: transparent;
+}
+
+/* The column header row is made up of a number of column-header, one for each
+   TableColumn, and a 'filler' area that extends from the right-most column
+   to the edge of the tableview, or up to the 'column control' button. */
+.table-view .filler, .table-view .column-header
+{
+    -fx-size: 40;
+    -fx-border-style: null;
+    -fx-border-color: rgb(200.0, 200.0, 200.0);
+    -fx-border-width: 0 0 1 0;
+    -fx-background-color: transparent;
+}
+
+.table-view .show-hide-columns-button
+{
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header .label,
+.table-view .column-drag-header .label
+{
+    -fx-alignment: CENTER_LEFT;
+}
+
+.table-view .column-header-background
+{
+    -fx-background-color: transparent;
+}
+
+.table-row-cell {
+    -fx-cell-size: 30px;
+}
+
+.table-cell {
+    -fx-border-color: transparent; 
+    -fx-border-width: 1;
+}
+
+/*Radio button*/
+.custom-jfx-check-box{
+    -fx-selected-color: #F87951;
+    -fx-unselected-color:#F0F0F0;
+}
+
+/*Progress bar*/
+.progress-bar>.track {
+    -fx-background-color: derive(rgb(200.0, 200.0, 200.0), 50.0%);
+    -fx-background-radius: 2.0;
+    -fx-padding: 0.0;
+}
+
+.progress-bar>.bar {
+    -fx-background-color:  #F87951;
+    -fx-background-radius: 2.0;
+    -fx-background-insets: 0.0;
+    -fx-border-width: 0.0;
+    -fx-effect: null;
+}
+/*Control label*/
+.control-label {
+    -fx-font-size: 13.5px;
+    -fx-padding: 8 0 0 0;
+    -fx-font-family:'Roboto Medium';
+    -fx-text-fill: #4d4d4d;
+    
+}
+
+.control-label .text {
+    -fx-fill: -fx-text-control-title-color;
+}
+
+/*******************************************************************************
+ *                                                                             *
+ * ComboBox, ChoiceBox COMMON                                                 *
+ *                                                                             *
+ ******************************************************************************/
+.combo-box-base, .choice-box {
+    -fx-background-color: transparent;
+    -fx-border-color: -swatch-grey;
+    -fx-border-width: 0 0 2 0;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+}
+
+.combo-box:focused, .choice-box:focused {
+    -fx-border-color: -swatch-500;
+}
+
+.combo-box-base>.label, .choice-box>.label {
+    -fx-padding: 0.7em 0.7em 0.7em 0em;
+}
+
+.combo-box-base>.arrow-button, .choice-box>.open-button {
+    -fx-padding: 1.2em 0.7em 1.2em 0.5em;
+    -fx-background-radius: 0.0 2.0 2.0 0.0;
+}
+
+.combo-box-base>.arrow-button>.arrow, .choice-box>.open-button>.arrow {
+    -fx-background-color: -swatch-grey;
+}
+
+.combo-box-base .arrow-button:hover .arrow, .spinner .increment-arrow-button:hover .increment-arrow,
+.spinner .decrement-arrow-button:hover .decrement-arrow {
+    -fx-background-color: -swatch-dark-grey;
+}
+
+.menu-item:focused {
+    -fx-background-color: -swatch-light-grey;
+}
+
+
+
+
+
+

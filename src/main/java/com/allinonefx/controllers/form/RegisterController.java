@@ -3,10 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.allinonefx.controllers;
+package com.allinonefx.controllers.form;
 
 import com.allinonefx.config.DbHandler;
 import com.allinonefx.config.I18N;
+import com.allinonefx.controllers.AbstractViewController;
+import com.allinonefx.controllers.MainController;
 import com.allinonefx.dao.UserDao;
 import static com.allinonefx.gui.uicomponents.DialogController.CONTENT_PANE;
 import com.allinonefx.gui.uicomponents.TreeTableViewController;
@@ -160,7 +162,7 @@ public class RegisterController extends AbstractViewController {
         updateProgress();
         setDepartmentsToCombo();
         setTextFields();
-        localeText();
+        setLocale();
         // flow
         contentFlowHandler = (FlowHandler) context.getRegisteredObject("ContentFlowHandler");
         contentFlow = (Flow) context.getRegisteredObject("ContentFlow");
@@ -538,7 +540,7 @@ public class RegisterController extends AbstractViewController {
         return gdr;
     }
 
-    private void localeText(){
+    private void setLocale(){
         txtUname.promptTextProperty().bind(I18N.createStringBinding("label.userName"));
         txtPassword.promptTextProperty().bind(I18N.createStringBinding("label.password"));
         txtFname.promptTextProperty().bind(I18N.createStringBinding("label.firstName"));

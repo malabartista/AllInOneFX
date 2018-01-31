@@ -3,8 +3,8 @@ package com.allinonefx.controllers;
 import com.allinonefx.MainDemo;
 import com.allinonefx.config.I18N;
 import com.allinonefx.datafx.ExtendedAnimatedFlowContainer;
-import com.allinonefx.gui.uicomponents.JFoenixController;
-import com.allinonefx.models.User;
+import com.allinonefx.model.Staff;
+import com.allinonefx.utils.ImageUtils;
 import com.jfoenix.controls.*;
 import com.jfoenix.controls.JFXPopup.PopupHPosition;
 import com.jfoenix.controls.JFXPopup.PopupVPosition;
@@ -15,20 +15,27 @@ import io.datafx.controller.flow.FlowHandler;
 import static io.datafx.controller.flow.container.ContainerAnimations.SWIPE_LEFT;
 import io.datafx.controller.flow.context.FXMLViewFlowContext;
 import io.datafx.controller.flow.context.ViewFlowContext;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import javafx.animation.Transition;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 import javax.annotation.PostConstruct;
+import javax.imageio.ImageIO;
 
 @ViewController(value = "/fxml/Main.fxml", title = "Material Design Example")
 public final class MainController {
@@ -45,6 +52,8 @@ public final class MainController {
     private StackPane optionsBurger;
     @FXML
     private JFXButton profileButton;
+    @FXML
+    private ImageView profileImage;
     @FXML
     private JFXRippler optionsRippler;
     @FXML
@@ -66,8 +75,12 @@ public final class MainController {
      */
     @PostConstruct
     public void init() throws Exception {
-        
+        //sets
+        loadLanguage(Locale.ENGLISH);
+        setLocale();
+        setProfileButton();
 //        lblTitle.bind(I18N.createStringBinding("window.title"));
+
         // init the title hamburger icon
         drawer.setOnDrawerOpening(e -> {
             final Transition animation = titleBurger.getAnimation();
@@ -86,11 +99,6 @@ public final class MainController {
                 drawer.close();
             }
         });
-
-        //set locale
-        loadLanguage(Locale.ENGLISH);
-        localeText();
-        
         optionsBurger.setOnMouseClicked(e -> toolbarPopup.show(optionsBurger,
                 PopupVPosition.TOP,
                 PopupHPosition.RIGHT,
@@ -110,7 +118,7 @@ public final class MainController {
         // create the inner flow and content
 //        context = new ViewFlowContext();
         // set the default controller
-        Flow innerFlow = new Flow(JFoenixController.class, viewConfig);
+        Flow innerFlow = new Flow(DashboardController.class, viewConfig);
 
         //final FlowHandler flowHandler = innerFlow.createHandler(context);
         FlowHandler flowHandler = new FlowHandler(innerFlow, context, viewConfig);
@@ -119,17 +127,14 @@ public final class MainController {
         final Duration containerAnimationDuration = Duration.millis(320);
         drawer.setContent(flowHandler.start(new ExtendedAnimatedFlowContainer(containerAnimationDuration, SWIPE_LEFT)));
         context.register("ContentPane", drawer.getContent().get(0));
-        
-        //get user
-        User user = (User) context.getRegisteredObject("User");
-        profileButton.setText(user.firstName.get());
 
         // side controller will add links to the content flow
         Flow sideMenuFlow = new Flow(SideMenuController.class);
         final FlowHandler sideMenuFlowHandler = sideMenuFlow.createHandler(context);
         drawer.setSidePane(sideMenuFlowHandler.start(new ExtendedAnimatedFlowContainer(containerAnimationDuration,
                 SWIPE_LEFT)));
-        // Notifications
+
+        // notifications
         snackbar.registerSnackbarContainer(root);
         badgeNotification.setOnMouseClicked((click) -> {
             int value = Integer.parseInt(badgeNotification.getText());
@@ -162,6 +167,15 @@ public final class MainController {
         });
     }
 
+    public void setProfileButton() throws IOException {
+        Staff staff = (Staff) context.getRegisteredObject("User");
+        profileButton.setText(staff.getFirst_name() + " " + staff.getLast_name());
+        InputStream in = new ByteArrayInputStream(staff.getPicture());
+        BufferedImage imageRounded = ImageUtils.makeRoundedCorner(ImageIO.read(in), 160);
+        Image image = SwingFXUtils.toFXImage(imageRounded, null);
+        profileImage.setImage(image);
+    }
+
     public void loadLanguage(Locale locale) throws IOException {
         ResourceBundle bundle = ResourceBundle.getBundle("lang.message", I18N.getLocale());
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ui/popup/MainPopup.fxml"), bundle);
@@ -181,10 +195,10 @@ public final class MainController {
     private void switchLanguage(Locale locale) {
         I18N.setLocale(locale);
     }
-    
-    private void localeText(){
+
+    private void setLocale() {
 //        red.textProperty().bind(I18N.createStringBinding("label.red"));
-        
+
     }
 //
 //    @Override
@@ -220,6 +234,7 @@ public final class MainController {
 //        }
 ////        NodeOrientation nodeOrientation = newLanguage.getNodeOrientation();
 //    }
+
     public final class InputController {
 
         @FXML
@@ -249,7 +264,7 @@ public final class MainController {
 //                    changeLanguage(AppSettings.Language.ENGLISH);
                 } else if (profilePopupList.getSelectionModel()
                         .getSelectedIndex() == 1) {
-                    switchLanguage(new Locale("es","ES"));
+                    switchLanguage(new Locale("es", "ES"));
 //                    changeLanguage(AppSettings.Language.SPANISH);
                 } else if (profilePopupList.getSelectionModel().getSelectedIndex() == 2) {
 //                    JFXDialogLayout dialogLayout = new JFXDialogLayout();

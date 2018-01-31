@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXListView?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<GridPane fx:id="root" hgap="10" prefHeight="796.0" prefWidth="1253.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.101" xmlns:fx="http://javafx.com/fxml/1">
+    <padding>
+        <Insets bottom="20" left="20" right="20" top="40" />
+    </padding>
+    
+    <Pane fx:id="paneFilms" styleClass="pane-totals" GridPane.columnIndex="0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0">
+        <children>
+            <VBox spacing="10.0">
+                <children>
+                    <HBox alignment="CENTER_LEFT">
+                        <Pane prefHeight="100.0" prefWidth="100.0" styleClass="custom-dashboard-pane">
+                            <children>        
+                                <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../icons/film.png" />
+                                    </image>
+                                </ImageView>
+                            </children>
+                            <HBox.margin>
+                                <Insets left="10.0" top="-30.0" />
+                            </HBox.margin>
+                            <padding>
+                                <Insets top="20.0" />
+                            </padding>
+                        </Pane>
+                        <VBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
+                            <Label fx:id="lblFilms" alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="%label.films" textAlignment="RIGHT" textFill="#8d8b8b">
+                                <font>
+                                    <Font name="Roboto Black" size="14.0" />
+                                </font>
+                            </Label>
+                            <Label fx:id="totalFilms" alignment="TOP_RIGHT" prefHeight="22.0" prefWidth="88.0" text="Total">
+                                <font>
+                                    <Font name="Roboto Black" size="24.0" />
+                                </font>
+                            </Label>
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                        </VBox>
+                    </HBox>
+                    <Label fx:id="lblSepFilms" minHeight="5.0" prefHeight="5.0" style="-fx-background-color: #5DB95C; -fx-border-radius: 5; -fx-background-radius: 5;" />
+                    <Label fx:id="totalNumberFilms" text="%label.total.films">
+                        <font>
+                            <Font name="Roboto Regular" size="14.0" />
+                        </font>
+                    </Label>
+                </children>
+                <padding>
+                    <Insets left="10.0" right="10.0" />
+                </padding>
+            </VBox>
+        </children>
+        <cursor>
+            <Cursor fx:constant="HAND" />
+        </cursor>
+        <padding>
+            <Insets bottom="10.0" />
+        </padding>
+    </Pane>
+
+    <Pane fx:id="paneCustomers" styleClass="pane-totals" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0">
+        <children>
+            <VBox spacing="10.0">
+                <children>
+                    <HBox alignment="CENTER_LEFT">
+                        <Pane prefHeight="100.0" prefWidth="100.0" styleClass="custom-dashboard-pane">
+                            <children>        
+                                <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../icons/customer.png" />
+                                    </image>
+                                </ImageView>
+                            </children>
+                            <HBox.margin>
+                                <Insets left="10.0" top="-30.0" />
+                            </HBox.margin>
+                            <padding>
+                                <Insets top="20.0" />
+                            </padding>
+                        </Pane>
+                        <VBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
+                            <Label fx:id="lblCustomers" alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="%label.customers" textAlignment="RIGHT" textFill="#8d8b8b">
+                                <font>
+                                    <Font name="Roboto Black" size="14.0" />
+                                </font>
+                            </Label>
+                            <Label fx:id="totalCustomers" alignment="TOP_RIGHT" prefHeight="22.0" prefWidth="88.0" text="Total">
+                                <font>
+                                    <Font name="Roboto Black" size="24.0" />
+                                </font>
+                            </Label>
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                        </VBox>
+                    </HBox>
+                    <Label fx:id="lblSepCustomers" minHeight="5.0" prefHeight="5.0" style="-fx-background-color: #5DB95C; -fx-border-radius: 5; -fx-background-radius: 5;" />
+                    <Label fx:id="totalNumberCustomers" text="%label.total.customers">
+                        <font>
+                            <Font name="Roboto Regular" size="14.0" />
+                        </font>
+                    </Label>
+                </children>
+                <padding>
+                    <Insets left="10.0" right="10.0" />
+                </padding>
+            </VBox>
+        </children>
+        <cursor>
+            <Cursor fx:constant="HAND" />
+        </cursor>
+        <padding>
+            <Insets bottom="10.0" />
+        </padding>
+    </Pane>
+        
+    <Pane fx:id="paneCountries" styleClass="pane-totals" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0">
+        <children>
+            <VBox spacing="10.0">
+                <children>
+                    <HBox alignment="CENTER_LEFT">
+                        <Pane prefHeight="100.0" prefWidth="100.0" styleClass="custom-dashboard-pane">
+                            <children>        
+                                <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../icons/flag.png" />
+                                    </image>
+                                </ImageView>
+                            </children>
+                            <HBox.margin>
+                                <Insets left="10.0" top="-30.0" />
+                            </HBox.margin>
+                            <padding>
+                                <Insets top="20.0" />
+                            </padding>
+                        </Pane>
+                        <VBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
+                            <Label fx:id="lblCountries" alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="%label.countries" textAlignment="RIGHT" textFill="#8d8b8b">
+                                <font>
+                                    <Font name="Roboto Black" size="14.0" />
+                                </font>
+                            </Label>
+                            <Label fx:id="totalCountries" alignment="TOP_RIGHT" prefHeight="22.0" prefWidth="88.0" text="Total">
+                                <font>
+                                    <Font name="Roboto Black" size="24.0" />
+                                </font>
+                            </Label>
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                        </VBox>
+                    </HBox>
+                    <Label fx:id="lblSepCountries" minHeight="5.0" prefHeight="5.0" style="-fx-background-color: #5DB95C; -fx-border-radius: 5; -fx-background-radius: 5;" />
+                    <Label fx:id="totalNumberCountries" text="%label.total.countries">
+                        <font>
+                            <Font name="Roboto Regular" size="14.0" />
+                        </font>
+                    </Label>
+                </children>
+                <padding>
+                    <Insets left="10.0" right="10.0" />
+                </padding>
+            </VBox>
+        </children>
+        <cursor>
+            <Cursor fx:constant="HAND" />
+        </cursor>
+        <GridPane.margin>
+            <Insets />
+        </GridPane.margin>
+        <padding>
+            <Insets bottom="10.0" />
+        </padding>
+    </Pane>
+    <Pane fx:id="paneCategories" styleClass="pane-totals" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0">
+        <children>
+            <VBox spacing="10.0">
+                <children>
+                    <HBox alignment="CENTER_LEFT">
+                        <Pane prefHeight="100.0" prefWidth="100.0" styleClass="custom-dashboard-pane">
+                            <children>        
+                                <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../icons/category.png" />
+                                    </image>
+                                </ImageView>
+                            </children>
+                            <HBox.margin>
+                                <Insets left="10.0" top="-30.0" />
+                            </HBox.margin>
+                            <padding>
+                                <Insets top="20.0" />
+                            </padding>
+                        </Pane>
+                        <VBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
+                            <Label fx:id="lblCategories" alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="%label.categories" textAlignment="RIGHT" textFill="#8d8b8b">
+                                <font>
+                                    <Font name="Roboto Black" size="14.0" />
+                                </font>
+                            </Label>
+                            <Label fx:id="totalCategories" alignment="TOP_RIGHT" prefHeight="22.0" prefWidth="88.0" text="Total">
+                                <font>
+                                    <Font name="Roboto Black" size="24.0" />
+                                </font>
+                            </Label>
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                        </VBox>
+                    </HBox>
+                    <Label fx:id="lblSepCategories" minHeight="5.0" prefHeight="5.0" style="-fx-background-color: #5DB95C; -fx-border-radius: 5; -fx-background-radius: 5;" />
+                    <Label fx:id="totalNumberCategories" text="%label.total.categories">
+                        <font>
+                            <Font name="Roboto Regular" size="14.0" />
+                        </font>
+                    </Label>
+                </children>
+                <padding>
+                    <Insets left="10.0" right="10.0" />
+                </padding>
+            </VBox>
+        </children>
+        <cursor>
+            <Cursor fx:constant="HAND" />
+        </cursor>
+        <padding>
+            <Insets bottom="10.0" />
+        </padding>
+    </Pane>
+    <StackPane fx:id="profileStackPane" style="-fx-background-color: white; -fx-background-radius: 3; -fx-border-radius: 3; -fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5);" GridPane.columnIndex="0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
+        <children>
+            <VBox>
+                <children>
+                    <Pane style="-fx-background-radius: 4 4 0 0;" styleClass="custom-background">
+                        <children>
+                            <Circle layoutX="55.0" layoutY="64.0" radius="41.0" stroke="#a49f9f" strokeType="INSIDE">
+                                <fill>
+                                    <LinearGradient endX="1.0" endY="1.0">
+                                        <stops>
+                                            <Stop color="#8a765a" />
+                                            <Stop color="WHITE" offset="1.0" />
+                                        </stops>
+                                    </LinearGradient>
+                                </fill>
+                            </Circle>
+                            <ImageView fx:id="imgProfile" fitHeight="80.0" fitWidth="80.0" layoutX="15.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" />
+                            <Label fx:id="lblProfileName" layoutX="108.0" layoutY="23.0" prefHeight="30.0" prefWidth="116.0" text="Jonh Doe" textFill="#fffefe">
+                                <font>
+                                    <Font name="Roboto Medium" size="18.0" />
+                                </font>
+                            </Label>
+                            <Label layoutX="108.0" layoutY="53.0" prefHeight="25.0" prefWidth="124.0" text="Logged user" textFill="WHITE">
+                                <font>
+                                    <Font name="Roboto Medium" size="14.0" />
+                                </font>
+                            </Label>
+                        </children>
+                        <padding>
+                            <Insets bottom="20.0" />
+                        </padding>
+                    </Pane>
+                    <VBox spacing="20.0">
+                        <children>
+                            <Label style="-fx-font-size: 14; -fx-text-fill: #6a7d9a;" text="default user">
+                                <graphic>
+                                    <MaterialDesignIconView fill="#7387a8" glyphName="ACCOUNT_KEY" size="17.0" wrappingWidth="20.666692197322845" />
+                                </graphic>
+                            </Label>
+                            <Label fx:id="lblProfileSubname" style="-fx-font-size: 14; -fx-text-fill: #6a7d9a;" text="John Doe">
+                                <graphic>
+                                    <MaterialDesignIconView fill="#7387a8" glyphName="ACCOUNT" size="17.0" wrappingWidth="20.666631162166595" />
+                                </graphic>
+                            </Label>
+                            <Label fx:id="lblProfileEmail" style="-fx-font-size: 14; -fx-text-fill: #6a7d9a;" text="johndoe@mail.com">
+                                <graphic>
+                                    <MaterialDesignIconView fill="#7387a8" glyphName="EMAIL" size="17.0" wrappingWidth="22.000005185604095" />
+                                </graphic>
+                            </Label>
+                            <Label fx:id="lblProfileAddress" style="-fx-font-size: 14; -fx-text-fill: #6a7d9a;" text="+254717160344">
+                                <graphic>
+                                    <MaterialDesignIconView fill="#7387a8" glyphName="MAP_MARKER" size="17.0" wrappingWidth="20.666692197322845" />
+                                </graphic>
+                            </Label>
+                            <Label fx:id="lblProfileCreated" style="-fx-font-size: 14; -fx-text-fill: #6a7d9a;" text="Created on 17th March 2016">
+                                <graphic>
+                                    <MaterialDesignIconView fill="#7387a8" glyphName="ACCOUNT_PLUS" size="17.0" wrappingWidth="20.666692197322845" />
+                                </graphic>
+                            </Label>
+                            <Label fx:id="lblProfileLastUpdate" style="-fx-font-size: 14; -fx-text-fill: #6a7d9a;" text="Last activity:18-08-2012 1348hrs">
+                                <graphic>
+                                    <MaterialDesignIconView fill="#7387a8" glyphName="CLOCK_START" size="17.0" wrappingWidth="20.666692197322845" />
+                                </graphic>
+                            </Label>
+                        </children>
+                        <padding>
+                            <Insets bottom="20.0" left="20.0" top="20.0" />
+                        </padding>
+                    </VBox>
+                </children>
+            </VBox>
+            <Button mnemonicParsing="false" style="-fx-background-color: #F87951;" styleClass="rounded-button" StackPane.alignment="BOTTOM_RIGHT">
+                <graphic>
+                    <MaterialDesignIconView fill="WHITE" glyphName="BORDER_COLOR" size="24" wrappingWidth="22.000005185604095" />
+                </graphic>
+            <StackPane.margin>
+               <Insets bottom="10.0" right="10.0" />
+            </StackPane.margin>
+            </Button>
+        </children>
+    </StackPane>
+
+    <StackPane fx:id="catStackPane" alignment="TOP_LEFT" style="-fx-background-color: white; -fx-background-radius: 3; -fx-border-radius: 3; -fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5);" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
+        <children>
+            <VBox>
+                <children>
+                    <Pane style="-fx-background-color: #00B3A0; -fx-background-radius: 4 4 0 0;">
+                        <children>
+                     <HBox>
+                        <children>
+                           <FontAwesomeIconView fill="WHITE" glyphName="LIST_ALT" size="24.0" />
+                                  <Label fx:id="lblFilmsCategories" text="%label.films.categories" textFill="#fffefe">
+                                      <font>
+                                          <Font name="Roboto Medium" size="18.0" />
+                                      </font>
+                              <HBox.margin>
+                                 <Insets left="10.0" />
+                              </HBox.margin>
+                                  </Label>
+                        </children>
+                        <padding>
+                           <Insets bottom="10.0" left="10.0" top="10.0" />
+                        </padding>
+                     </HBox>
+                        </children>
+                    </Pane>
+                    <JFXListView fx:id="categoryList" opacity="0.95" style="-fx-font-size: 14; -fx-font-family: 'Roboto Medium'; -fx-border-width: 0; -fx-border-color: null;" />
+                </children>
+            </VBox>
+            <Button fx:id="btnAddCategory" mnemonicParsing="false" style="-fx-background-color: #F87951;" styleClass="rounded-button" StackPane.alignment="BOTTOM_RIGHT">
+                <graphic>
+                    <FontAwesomeIconView fill="WHITE" glyphName="PLUS" size="24.0" />
+                </graphic>
+            <StackPane.margin>
+               <Insets bottom="10.0" right="10.0" />
+            </StackPane.margin>
+            </Button>
+        </children>
+    </StackPane>
+    
+    <VBox alignment="TOP_CENTER" style="-fx-background-color: white; -fx-background-radius: 3; -fx-border-radius: 3; -fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5);" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
+        <children>
+            <Pane style="-fx-background-color: #F87951; -fx-background-radius: 4 4 0 0;">
+                <children>
+               <HBox depthTest="DISABLE">
+                  <children>
+                          <FontAwesomeIconView fill="WHITE" glyphName="BELL" size="24.0" />
+                          <Label fx:id="lblRecentNotifications" text="%label.recent.notifications" textFill="#fffefe">
+                              <font>
+                                  <Font name="Roboto Medium" size="18.0" />
+                              </font>
+                        <HBox.margin>
+                           <Insets left="10.0" />
+                        </HBox.margin>
+                          </Label>
+                  </children>
+                  <padding>
+                     <Insets bottom="10.0" left="10.0" top="10.0" />
+                  </padding>
+               </HBox>
+                </children>
+            </Pane>
+            <Label text="No new notifications" textFill="#b2b1b1">
+                <font>
+                    <Font name="Roboto Medium" size="18.0" />
+                </font>
+            </Label>
+        </children>
+    </VBox>
+    <columnConstraints>
+        <ColumnConstraints />
+        <ColumnConstraints />
+        <ColumnConstraints />
+        <ColumnConstraints />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints />
+        <RowConstraints />
+    </rowConstraints>
+</GridPane>

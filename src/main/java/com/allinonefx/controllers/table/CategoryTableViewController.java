@@ -2,69 +2,42 @@ package com.allinonefx.controllers.table;
 
 import com.allinonefx.config.I18N;
 import com.allinonefx.controllers.MainController;
-import com.allinonefx.controllers.RegisterController;
+import com.allinonefx.controllers.form.RegisterController;
 import com.allinonefx.dao.CategoryMapper;
 import com.allinonefx.model.Category;
-import com.allinonefx.mybatis.MyBatisConnectionFactory;
 import com.jfoenix.controls.*;
+import com.jfoenix.controls.cells.editors.TextFieldEditorBuilder;
+import com.jfoenix.controls.cells.editors.base.GenericEditableTreeTableCell;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import io.datafx.controller.ViewController;
 import io.datafx.controller.flow.Flow;
 import io.datafx.controller.flow.FlowException;
 import io.datafx.controller.flow.FlowHandler;
-import io.datafx.controller.flow.context.FXMLViewFlowContext;
-import io.datafx.controller.flow.context.ViewFlowContext;
 import io.datafx.controller.util.VetoException;
 import java.util.function.Function;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.beans.binding.Bindings;
+import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.TreeTableColumn;
+import javafx.scene.control.TreeTableColumn.CellEditEvent;
 import javafx.scene.control.cell.TreeItemPropertyValueFactory;
-import javafx.scene.layout.StackPane;
 import javax.annotation.PostConstruct;
-import org.apache.ibatis.session.SqlSession;
 
-@ViewController(value = "/fxml/ui/CategoryTableView.fxml", title = "Categories Table")
-public class CategoryTableViewController {
+@ViewController(value = "/fxml/table/TreeTableView.fxml", title = "Categories")
+public class CategoryTableViewController extends TreeTableViewController {
 
-    private static final String PREFIX = "( ";
-    private static final String POSTFIX = " )";
+    CategoryMapper mapper = sqlSession.getMapper(CategoryMapper.class);
 
-    @FXMLViewFlowContext
-    private ViewFlowContext context;
-
-    @FXML
-    private JFXButton addRegister;
-
-    // editable table view
-    @FXML
-    private StackPane root;
     @FXML
     private JFXTreeTableView<Category> editableTreeTableView;
-    @FXML
-    private JFXTreeTableColumn<Category, Integer> categoryIdEditableColumn;
-    @FXML
-    private JFXTreeTableColumn<Category, String> nameEditableColumn;
-    @FXML
-    private Label treeTableViewCount;
-    @FXML
-    private Label editableTreeTableViewCount;
-    @FXML
-    private JFXButton treeTableViewAdd;
-    @FXML
-    private JFXButton treeTableViewEdit;
-    @FXML
-    private JFXButton treeTableViewRemove;
-    @FXML
-    private Label lblTitle;
-    @FXML
-    private JFXTextField searchField;
+    private JFXTreeTableColumn<Category, Integer> categoryIdEditableColumn = new JFXTreeTableColumn();
+    private JFXTreeTableColumn<Category, String> nameEditableColumn = new JFXTreeTableColumn();
 
     /**
      * init fxml when loaded.
@@ -72,23 +45,16 @@ public class CategoryTableViewController {
     @PostConstruct
     public void init() {
         //title
-        MainController.lblTitle.setText("Tree Table View");
+        MainController.lblTitle.setText("Categories");
         // setup table
         setupEditableTableView();
         //locale
-        localeText();
+        setLocale();
         // flow: add register
         FlowHandler contentFlowHandler = (FlowHandler) context.getRegisteredObject("ContentFlowHandler");
         Flow contentFlow = (Flow) context.getRegisteredObject("ContentFlow");
-        addRegister.setOnMouseClicked((e) -> {
-            try {
-                contentFlowHandler.handle("treeTableViewAdd");
-            } catch (VetoException ex) {
-                Logger.getLogger(CategoryTableViewController.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (FlowException ex) {
-                Logger.getLogger(CategoryTableViewController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        });
+        contentFlow.withGlobalLink(treeTableViewAdd.getId(), RegisterController.class);
+        contentFlow.withGlobalLink(treeTableViewEdit.getId(), RegisterController.class);
         treeTableViewAdd.setOnMouseClicked((e) -> {
             try {
                 contentFlowHandler.handle("treeTableViewAdd");
@@ -96,18 +62,6 @@ public class CategoryTableViewController {
                 Logger.getLogger(CategoryTableViewController.class.getName()).log(Level.SEVERE, null, ex);
             } catch (FlowException ex) {
                 Logger.getLogger(CategoryTableViewController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        });
-        treeTableViewRemove.setOnMouseClicked((e) -> {
-            if (editableTreeTableView.getSelectionModel().getSelectedItem() != null) {
-                Category category = editableTreeTableView.getSelectionModel().getSelectedItem().getValue();
-                System.out.println(category.getName());
-//                CategoryDao categoryDao = new CategoryDao();
-//                categoryDao.deleteCategory(category.getCategory_id());
-                setupEditableTableView();
-                MainController.snackbar.show(I18N.get("user.deleted"), 3000);
-            } else {
-                MainController.snackbar.show(I18N.get("user.no.selected"), 3000);
             }
         });
         treeTableViewEdit.setOnMouseClicked((e) -> {
@@ -122,19 +76,83 @@ public class CategoryTableViewController {
                     Logger.getLogger(CategoryTableViewController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } else {
-                MainController.snackbar.show(I18N.get("user.no.selected"), 3000);
+                MainController.snackbar.show(I18N.get("category.no.selected"), 3000);
             }
         });
-        contentFlow.withGlobalLink(treeTableViewAdd.getId(), RegisterController.class);
-        contentFlow.withGlobalLink(treeTableViewEdit.getId(), RegisterController.class);
+        treeTableViewRemove.setOnMouseClicked((e) -> {
+            if (editableTreeTableView.getSelectionModel().getSelectedItem() != null) {
+                Category category = editableTreeTableView.getSelectionModel().getSelectedItem().getValue();
+                System.out.println(category.getName());
+                if (mapper.deleteByPrimaryKey(category.getCategory_id()) == 1) {
+                    sqlSession.commit();
+                    setupEditableTableView();
+                    MainController.snackbar.show(I18N.get("category.deleted"), 3000);
+                }
+            } else {
+                MainController.snackbar.show(I18N.get("category.no.selected"), 3000);
+            }
+        });
     }
 
-    private void localeText() {
+    public void setLocale() {
+        super.setLocale();
         lblTitle.textProperty().bind(I18N.createStringBinding("label.categories"));
-        searchField.promptTextProperty().bind(I18N.createStringBinding("text.search"));
         categoryIdEditableColumn.textProperty().bind(I18N.createStringBinding("column.id"));
         nameEditableColumn.textProperty().bind(I18N.createStringBinding("column.name"));
-        
+    }
+
+    private void setupEditableTableView() {
+        //set columns styles
+        categoryIdEditableColumn.getStyleClass().add("cell-right");
+        nameEditableColumn.getStyleClass().add("cell-left");
+        //set table columns
+        editableTreeTableView.getColumns().clear();
+        editableTreeTableView.getColumns().addAll(categoryIdEditableColumn, nameEditableColumn);
+        //set cell values
+        categoryIdEditableColumn.setCellValueFactory(new TreeItemPropertyValueFactory<Category, Integer>("category_id"));
+        nameEditableColumn.setCellValueFactory(new TreeItemPropertyValueFactory<Category, String>("name"));
+        // add editors
+        nameEditableColumn.setCellFactory((TreeTableColumn<Category, String> param) -> {
+            return new GenericEditableTreeTableCell<>(
+                    new TextFieldEditorBuilder());
+        });
+        nameEditableColumn.setOnEditCommit(new EventHandler<CellEditEvent<Category, String>>() {
+            @Override
+            public void handle(CellEditEvent<Category, String> t) {
+                if (!t.getNewValue().equals(t.getOldValue())) {
+                    try {
+                        t.getTreeTableView()
+                                .getTreeItem(t.getTreeTablePosition()
+                                        .getRow())
+                                .getValue().setName(t.getNewValue());
+                        Category category = (Category) editableTreeTableView.getSelectionModel().getSelectedItem().getValue();
+                        category.setName(t.getNewValue().toUpperCase());
+                        if (mapper.updateByPrimaryKey(category) == 1) {
+                            sqlSession.commit();
+                            MainController.snackbar.show(I18N.get("category.updated"), 3000);
+                        }
+                    } catch (Exception ex) {
+                        Logger.getLogger(FilmTableViewController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+        });
+        //set data table
+        ObservableList<Category> dataCategory = FXCollections.observableArrayList(mapper.selectByExample(null));
+        editableTreeTableView.setRoot(new RecursiveTreeItem<>(dataCategory, RecursiveTreeObject::getChildren));
+        editableTreeTableView.setShowRoot(false);
+        editableTreeTableView.setEditable(true);
+        editableTreeTableView.prefHeightProperty().bind(root.widthProperty());
+        treeTableViewCount.textProperty().bind(Bindings.createStringBinding(() -> PREFIX + editableTreeTableView.getCurrentItemsCount() + POSTFIX, editableTreeTableView.currentItemsCountProperty()));
+        searchField.textProperty().addListener(setupSearchField(editableTreeTableView));
+    }
+
+    private ChangeListener<String> setupSearchField(final JFXTreeTableView<Category> tableView) {
+        return (o, oldVal, newVal)
+                -> tableView.setPredicate(categoryProp -> {
+                    final Category category = categoryProp.getValue();
+                    return category.getName().contains(newVal);
+                });
     }
 
     private <T> void setupCellValueFactory(JFXTreeTableColumn<Category, T> column, Function<Category, ObservableValue<T>> mapper) {
@@ -146,42 +164,4 @@ public class CategoryTableViewController {
             }
         });
     }
-
-    private void setupEditableTableView() {
-        // mybatis code generator and sakila
-        nameEditableColumn.setCellValueFactory(new TreeItemPropertyValueFactory<Category, String>("name"));
-        
-        // add editors
-        
-
-        // Set Data Table
-        // Mybatis Code Generator Mapper
-        SqlSession sqlSession = MyBatisConnectionFactory.getSqlSessionFactory().openSession();
-        try {
-            CategoryMapper mapper = sqlSession.getMapper(CategoryMapper.class);
-            ObservableList<Category> dataCategory = FXCollections.observableArrayList(mapper.selectByExample(null));
-
-            editableTreeTableView.setRoot(new RecursiveTreeItem<>(dataCategory, RecursiveTreeObject::getChildren));
-            editableTreeTableView.setShowRoot(false);
-            editableTreeTableView.setEditable(true);
-            editableTreeTableViewCount.textProperty()
-                    .bind(Bindings.createStringBinding(() -> PREFIX + editableTreeTableView.getCurrentItemsCount() + POSTFIX,
-                            editableTreeTableView.currentItemsCountProperty()));
-            editableTreeTableView.prefHeightProperty().bind(root.widthProperty());
-//            searchField.textProperty()
-//                    .addListener(setupSearchField(editableTreeTableView));
-        } finally {
-            sqlSession.close();
-        }
-    }
-    //    private ChangeListener<String> setupSearchField(final JFXTreeTableView<Category> tableView) {
-    //        return (o, oldVal, newVal)
-    //                -> tableView.setPredicate(categoryProp -> {
-    //                    final Category category = categoryProp.getValue();
-    //                    return category.firstName.get().contains(newVal)
-    //                            || category.lastName.get().contains(newVal)
-    //                            || Integer.toString(category.mobile.get()).contains(newVal);
-    //                });
-    //    }
-
 }

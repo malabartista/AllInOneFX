@@ -15,8 +15,8 @@
     <VBox spacing="10">
         <children>
             <HBox alignment="CENTER">
-                <Label fx:id="lblTitle" styleClass="title-label" text="%label.customers" />
-                <Label fx:id="editableTreeTableViewCount" styleClass="title-label" />
+                <Label fx:id="lblTitle" styleClass="title-label" text="%label.films" />
+                <Label fx:id="treeTableViewCount" styleClass="title-label" />
                 <JFXButton fx:id="treeTableViewAdd" buttonType="FLAT">
                     <graphic>
                         <MaterialDesignIconView glyphName="PLUS" size="18.0" wrappingWidth="22.0" />
@@ -38,14 +38,7 @@
                     </StackPane>
                 </StackPane>
             </HBox>
-            <JFXTreeTableView fx:id="editableTreeTableView">
-                <columns>
-                    <JFXTreeTableColumn fx:id="firstNameEditableColumn" minWidth="133" text="%column.firstname" styleClass="cell-left"/>
-                    <JFXTreeTableColumn fx:id="lastNameEditableColumn" minWidth="133" text="%column.lastname" styleClass="cell-left"/>
-                    <JFXTreeTableColumn fx:id="emailEditableColumn" minWidth="133" text="%column.email" styleClass="cell-left"/>
-                    <JFXTreeTableColumn fx:id="activeEditableColumn" minWidth="133" text="%column.active"/>
-                </columns>
-            </JFXTreeTableView>
+            <JFXTreeTableView fx:id="editableTreeTableView"></JFXTreeTableView>
         </children>
     </VBox>
     <JFXButton fx:id="addRegister" styleClass="rounded-button" text="+" StackPane.alignment="BOTTOM_RIGHT" />

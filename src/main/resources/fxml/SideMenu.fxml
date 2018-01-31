@@ -10,10 +10,18 @@
         <String fx:value="side-menu"/>
     </styleClass>
     <JFXListView fx:id="sideList">
-        <Label fx:id="jfoenix">
+        <Label fx:id="dashboard">
             <graphic>
                 <StackPane styleClass="custom-jfx-list-view-icon-container">
                     <FontAwesomeIconView glyphName="HOME" size="1.5em" styleClass="custom-jfx-list-view-icon"/>
+                </StackPane>
+            </graphic>
+            Dashboard
+        </Label>
+        <Label fx:id="jfoenix">
+            <graphic>
+                <StackPane styleClass="custom-jfx-list-view-icon-container">
+                    <FontAwesomeIconView glyphName="GITHUB" size="1.5em" styleClass="custom-jfx-list-view-icon"/>
                 </StackPane>
             </graphic>
             JFoenix
@@ -47,7 +55,6 @@
                 Checkbox
             </Label>
         </JFXListView>
-        -->
         <Label fx:id="treetableview">
             <graphic>
                 <StackPane styleClass="custom-jfx-list-view-icon-container">
@@ -56,6 +63,7 @@
             </graphic>
             Table
         </Label>
+        -->
         <Label fx:id="anchorfx">
             <graphic>
                 <StackPane styleClass="custom-jfx-list-view-icon-container">

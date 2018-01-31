@@ -6,6 +6,14 @@
 .jfx-decorator {
     -fx-decorator-color: derive(#5264AE, -20%);
 }
+.custom-background{
+    -fx-background-color: #5264AE;
+}
+.custom-dashboard-pane{
+    -fx-background-color: #5264AE;
+    -fx-background-radius: 4;
+    -fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.1), 6.0, 0.7, 0.0,1.5);
+}
 
 .custom-jfx-list-view-icon,
 .jfx-list-cell:selected .label .custom-jfx-list-view-icon {

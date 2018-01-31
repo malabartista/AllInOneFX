@@ -44,11 +44,7 @@
                         <JFXRippler fx:id="profileRippler" maskType="CIRCLE" style="-fx-ripple-color:WHITE;">
                             <JFXButton fx:id="profileButton" text="admin">
                                 <graphic>
-                                    <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                        <image>
-                                            <Image url="@../icons/profile1.png" />
-                                        </image>
-                                    </ImageView>
+                                    <ImageView fx:id="profileImage" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
                                 </graphic>
                             </JFXButton>
                         </JFXRippler>

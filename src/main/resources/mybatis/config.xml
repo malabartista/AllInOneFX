@@ -4,12 +4,19 @@
     "http://mybatis.org/dtd/mybatis-3-config.dtd">
  
 <configuration>
+    
+    <settings>
+        <setting name="logImpl" value="LOG4J"/>
+    </settings>
+    
     <typeAliases>
         <typeAlias alias="User" type="com.allinonefx.models.User"/>
         <typeAlias alias="Category" type="com.allinonefx.model.Category"/>
         <typeAlias alias="Country" type="com.allinonefx.model.Country"/>
         <typeAlias alias="Customer" type="com.allinonefx.model.Customer"/>
         <typeAlias alias="Film" type="com.allinonefx.model.Film"/>
+        <typeAlias alias="Language" type="com.allinonefx.model.Language"/>
+        <typeAlias alias="Staff" type="com.allinonefx.model.Staff"/>
     </typeAliases>
  
     <environments default="development">
@@ -24,11 +31,15 @@
             </dataSource>
         </environment>
     </environments>
+    
     <mappers>
         <mapper resource="mybatis/mapper/User.xml"/>
         <mapper resource="mybatis/mapper/CategoryMapper.xml"/>
         <mapper resource="mybatis/mapper/CountryMapper.xml"/>
         <mapper resource="mybatis/mapper/CustomerMapper.xml"/>
         <mapper resource="mybatis/mapper/FilmMapper.xml"/>
+        <mapper resource="mybatis/mapper/LanguageMapper.xml"/>
+        <mapper resource="mybatis/mapper/StaffMapper.xml"/>
     </mappers>
+    
 </configuration>

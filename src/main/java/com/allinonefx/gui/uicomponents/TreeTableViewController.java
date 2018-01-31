@@ -2,7 +2,7 @@ package com.allinonefx.gui.uicomponents;
 
 import com.allinonefx.config.I18N;
 import com.allinonefx.controllers.MainController;
-import com.allinonefx.controllers.RegisterController;
+import com.allinonefx.controllers.form.RegisterController;
 import com.allinonefx.mybatis.MyBatisConnectionFactory;
 import com.jfoenix.controls.*;
 import com.jfoenix.controls.cells.editors.IntegerTextFieldEditorBuilder;
@@ -106,7 +106,7 @@ public class TreeTableViewController {
         // setup table
         setupEditableTableView();
         //locale
-        localeText();
+        setLocale();
         // flow: add register
         FlowHandler contentFlowHandler = (FlowHandler) context.getRegisteredObject("ContentFlowHandler");
         Flow contentFlow = (Flow) context.getRegisteredObject("ContentFlow");
@@ -159,7 +159,7 @@ public class TreeTableViewController {
         contentFlow.withGlobalLink(treeTableViewEdit.getId(), RegisterController.class);
     }
 
-    private void localeText() {
+    private void setLocale() {
         lblTitle.textProperty().bind(I18N.createStringBinding("label.users"));
         searchField.promptTextProperty().bind(I18N.createStringBinding("text.search"));
         checkboxEditableColumn.textProperty().bind(I18N.createStringBinding("column.checkbox"));
