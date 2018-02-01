@@ -35,7 +35,10 @@ JavaFX Application with [a curated list of awesome JavaFX libraries, frameworks]
 - [MyBatis](http://www.mybatis.org/mybatis-3/) - MyBatis is a first class persistence framework with support for custom SQL, stored procedures and advanced mappings.
 
 ## Installation 
-Installation is the next section in an effective README. Tell other users how to install your project locally. Optionally, include a gif to make the process even more clear for other people.
+Clone the reposiory in your preferred folder.
+```git
+git clone https://github.com/malabartista/AllInOneFX.git
+```
 
 ## Usage
 The next section is usage, in which you instruct other people on how to use your project after they’ve installed it. This would also be a good place to include screenshots of your project in action.
