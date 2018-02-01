@@ -10,16 +10,13 @@ JavaFX Application with [a curated list of awesome JavaFX libraries, frameworks]
 - [Material Dashboard FX](https://github.com/mlayah/material-dashboard-fx) - Simple dashboard implemented using JavaFX, JFoenix and ControlsFX.
 - [CalendarFX](http://dlsc.com/products/calendarfx/) - CalendarFX is a calendar framework for JavaFX 8. It contains a set of professional custom controls, which can be used to implement a calendar UI for any kind of application.
 - [GMapsFX](http://rterp.github.io/GMapsFX/) - GMapsFX provides a wrapper to the Google Map's Javascript API, allowing you to use and interact with maps using a pure Java API.
-- [SmartCSVFX](https://github.com/frosch95/SmartCSV.fx) - A simple JavaFX application to load, save and edit a CSV file and provide a JSON configuration for columns to check the values in the columns.
 - [LiveDirsFX](https://github.com/TomasMikula/LiveDirsFX) - Directory tree model for JavaFX that watches the filesystem for changes.
-- [ReactFX](https://github.com/TomasMikula/ReactFX) - Reactive event streams, observable values and more for JavaFX.
 - [AnchorFX](https://github.com/alexbodogit/AnchorFX) - Docking framework for JavaFX platform
 - [TilesFX](https://github.com/HanSolo/tilesfx) - A JavaFX library containing tiles for Dashboards.
 
-
 ## Frameworks
 - [DataFX](https://github.com/guigarage/DataFX) - DataFX is a JavaFX frameworks that provides additional features to create MVC based applications in JavaFX by providing routing and a context for CDI.
-- [APX](https://github.com/othreecodes/APX) - A JavaFX Library for Creating and Implementing MVC Type applications
+- [MyBatis](http://www.mybatis.org/mybatis-3/) - MyBatis is a first class persistence framework with support for custom SQL, stored procedures and advanced mappings.
 
 
 ![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
