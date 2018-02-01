@@ -35,7 +35,7 @@ JavaFX Application with [a curated list of awesome JavaFX libraries, frameworks]
 - [MyBatis](http://www.mybatis.org/mybatis-3/) - MyBatis is a first class persistence framework with support for custom SQL, stored procedures and advanced mappings.
 
 ## Installation 
-Clone the reposiory in your preferred folder.
+Clone the repository in your preferred folder.
 ```git
 git clone https://github.com/malabartista/AllInOneFX.git
 ```
