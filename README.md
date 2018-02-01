@@ -34,11 +34,17 @@ JavaFX Application with [a curated list of awesome JavaFX libraries, frameworks]
 - [DataFX](https://github.com/guigarage/DataFX) - DataFX is a JavaFX frameworks that provides additional features to create MVC based applications in JavaFX by providing routing and a context for CDI.
 - [MyBatis](http://www.mybatis.org/mybatis-3/) - MyBatis is a first class persistence framework with support for custom SQL, stored procedures and advanced mappings.
 
+## Requirements
+* Java 8
+* MySQL
+
 ## Installation 
-Clone the repository in your preferred folder.
+Clone the repository in your favorite folder.
 ```git
 git clone https://github.com/malabartista/AllInOneFX.git
 ```
+Open the project in your favorite IDE. You have to config the access to the MySQL database schema
+Clean, build and run the project.
 
 ## Usage
 The next section is usage, in which you instruct other people on how to use your project after they’ve installed it. This would also be a good place to include screenshots of your project in action.
