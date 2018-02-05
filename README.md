@@ -56,6 +56,8 @@ Larger projects often have sections on contributing to their project, in which c
 Include a section for credits in order to highlight and link to the authors of your project.
 
 ## License
-Finally, include a section for the license of your project. For more information on choosing a license, check out GitHub’s licensing guide!
+AllInOneFX is licensed under the MIT License. See the LICENSE file.
+
+AllInOneFX comes with no warranty, malabartista can accept no responsibility for any damages, losses etc.
 
 ![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
