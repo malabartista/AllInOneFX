@@ -6,7 +6,7 @@
 package com.allinonefx.controllers;
 
 import com.allinonefx.config.I18N;
-import com.allinonefx.controllers.form.RegisterController;
+import com.allinonefx.controllers.form.FilmFormController;
 import com.allinonefx.controllers.table.CategoryTableViewController;
 import com.allinonefx.controllers.table.CountryTableViewController;
 import com.allinonefx.controllers.table.CustomerTableViewController;

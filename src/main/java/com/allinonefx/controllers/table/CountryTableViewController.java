@@ -2,7 +2,7 @@ package com.allinonefx.controllers.table;
 
 import com.allinonefx.config.I18N;
 import com.allinonefx.controllers.MainController;
-import com.allinonefx.controllers.form.RegisterController;
+import com.allinonefx.controllers.form.FilmFormController;
 import com.allinonefx.dao.CountryMapper;
 import com.allinonefx.model.Country;
 import com.jfoenix.controls.*;
@@ -53,23 +53,23 @@ public class CountryTableViewController extends TreeTableViewController {
         // flow: add register
         FlowHandler contentFlowHandler = (FlowHandler) context.getRegisteredObject("ContentFlowHandler");
         Flow contentFlow = (Flow) context.getRegisteredObject("ContentFlow");
-        contentFlow.withGlobalLink(treeTableViewAdd.getId(), RegisterController.class);
-        contentFlow.withGlobalLink(treeTableViewEdit.getId(), RegisterController.class);
-        treeTableViewAdd.setOnMouseClicked((e) -> {
+        contentFlow.withGlobalLink(btnTableAdd.getId(), FilmFormController.class);
+        contentFlow.withGlobalLink(btnTableEdit.getId(), FilmFormController.class);
+        btnTableAdd.setOnMouseClicked((e) -> {
             try {
-                contentFlowHandler.handle("treeTableViewAdd");
+                contentFlowHandler.handle("btnTableAdd");
             } catch (VetoException ex) {
                 Logger.getLogger(CountryTableViewController.class.getName()).log(Level.SEVERE, null, ex);
             } catch (FlowException ex) {
                 Logger.getLogger(CountryTableViewController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
-        treeTableViewEdit.setOnMouseClicked((e) -> {
+        btnTableEdit.setOnMouseClicked((e) -> {
             if (editableTreeTableView.getSelectionModel().getSelectedItem() != null) {
                 Country country = editableTreeTableView.getSelectionModel().getSelectedItem().getValue();
                 try {
                     context.register("editCountry", country);
-                    contentFlowHandler.handle("treeTableViewEdit");
+                    contentFlowHandler.handle("btnTableEdit");
                 } catch (VetoException ex) {
                     Logger.getLogger(CountryTableViewController.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (FlowException ex) {
@@ -79,7 +79,7 @@ public class CountryTableViewController extends TreeTableViewController {
                 MainController.snackbar.show(I18N.get("country.no.selected"), 3000);
             }
         });
-        treeTableViewRemove.setOnMouseClicked((e) -> {
+        btnTableRemove.setOnMouseClicked((e) -> {
             if (editableTreeTableView.getSelectionModel().getSelectedItem() != null) {
                 Country country = editableTreeTableView.getSelectionModel().getSelectedItem().getValue();
                 System.out.println(country.getCountry());
@@ -96,7 +96,7 @@ public class CountryTableViewController extends TreeTableViewController {
 
     public void setLocale() {
         super.setLocale();
-        lblTitle.textProperty().bind(I18N.createStringBinding("label.countries"));
+        lblTableTitle.textProperty().bind(I18N.createStringBinding("label.countries"));
         countryIdEditableColumn.textProperty().bind(I18N.createStringBinding("column.id"));
         countryEditableColumn.textProperty().bind(I18N.createStringBinding("column.country"));
     }
@@ -142,9 +142,9 @@ public class CountryTableViewController extends TreeTableViewController {
         editableTreeTableView.setRoot(new RecursiveTreeItem<>(dataCountry, RecursiveTreeObject::getChildren));
         editableTreeTableView.setShowRoot(false);
         editableTreeTableView.setEditable(true);
-        treeTableViewCount.textProperty().bind(Bindings.createStringBinding(() -> PREFIX + editableTreeTableView.getCurrentItemsCount() + POSTFIX, editableTreeTableView.currentItemsCountProperty()));
+        lblTableCount.textProperty().bind(Bindings.createStringBinding(() -> PREFIX + editableTreeTableView.getCurrentItemsCount() + POSTFIX, editableTreeTableView.currentItemsCountProperty()));
         editableTreeTableView.prefHeightProperty().bind(root.widthProperty());
-        searchField.textProperty().addListener(setupSearchField(editableTreeTableView));
+        txtTableSearch.textProperty().addListener(setupSearchField(editableTreeTableView));
     }
 
     private ChangeListener<String> setupSearchField(final JFXTreeTableView<Country> tableView) {

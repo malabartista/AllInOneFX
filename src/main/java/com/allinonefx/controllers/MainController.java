@@ -108,7 +108,7 @@ public final class MainController {
                 PopupVPosition.TOP,
                 PopupHPosition.RIGHT,
                 -12,
-                15));
+                35));
 
         //set language smatcsv
         ViewConfiguration viewConfig = new ViewConfiguration();
@@ -116,11 +116,8 @@ public final class MainController {
         //viewConfig.setResources(ResourceBundle.getBundle("smartcsv", Locale.ENGLISH));
 
         // create the inner flow and content
-//        context = new ViewFlowContext();
         // set the default controller
         Flow innerFlow = new Flow(DashboardController.class, viewConfig);
-
-        //final FlowHandler flowHandler = innerFlow.createHandler(context);
         FlowHandler flowHandler = new FlowHandler(innerFlow, context, viewConfig);
         context.register("ContentFlowHandler", flowHandler);
         context.register("ContentFlow", innerFlow);
@@ -198,42 +195,7 @@ public final class MainController {
 
     private void setLocale() {
 //        red.textProperty().bind(I18N.createStringBinding("label.red"));
-
     }
-//
-//    @Override
-//    protected ResourceBundle getResourceBundle(Locale locale) {
-//        return ResourceBundle.getBundle("lang.message", locale, new UTF8Control());
-//    }
-//
-//    @Override
-//    protected URL getFXMLResource() {
-//        return getClass().getResource("/fxml/Main.fxml");
-//    }
-//
-//    @Override
-//    protected void onSaveState(StateBundle stateBundle) {
-//
-//    }
-//
-//    @Override
-//    protected void onLoadState(I18NController newController, I18NLanguage newLanguage, ResourceBundle resourceBundle, StateBundle stateBundle) {
-//        try {
-//            lblTitle.setText(resourceBundle.getString("window.title"));
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ui/popup/MainPopup.fxml"), resourceBundle);
-//            loader.setController(new InputController());
-//            toolbarPopup = new JFXPopup(loader.load());
-//            loader = new FXMLLoader(getClass().getResource("/fxml/ui/popup/ProfilePopup.fxml"), resourceBundle);
-//            loader.setController(new InputController());
-//            profilePopup = new JFXPopup(loader.load());
-//            loader = new FXMLLoader(getClass().getResource("/fxml/Register.fxml"), resourceBundle);
-//            loader.setController(new RegisterController());
-//            drawer = new JFXDrawer();
-//        } catch (IOException ex) {
-//            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-////        NodeOrientation nodeOrientation = newLanguage.getNodeOrientation();
-//    }
 
     public final class InputController {
 
@@ -261,11 +223,9 @@ public final class MainController {
                 if (profilePopupList.getSelectionModel()
                         .getSelectedIndex() == 0) {
                     switchLanguage(Locale.ENGLISH);
-//                    changeLanguage(AppSettings.Language.ENGLISH);
                 } else if (profilePopupList.getSelectionModel()
                         .getSelectedIndex() == 1) {
                     switchLanguage(new Locale("es", "ES"));
-//                    changeLanguage(AppSettings.Language.SPANISH);
                 } else if (profilePopupList.getSelectionModel().getSelectedIndex() == 2) {
 //                    JFXDialogLayout dialogLayout = new JFXDialogLayout();
 //                    JFXDialog dialog = new JFXDialog(dialogLayout, (StackPane) context.getRegisteredObject("ContentPane"), JFXDialog.DialogTransition.TOP);

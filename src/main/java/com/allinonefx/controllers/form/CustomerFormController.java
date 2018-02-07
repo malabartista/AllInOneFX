@@ -7,7 +7,7 @@ package com.allinonefx.controllers.form;
 
 import com.allinonefx.config.DbHandler;
 import com.allinonefx.config.I18N;
-import com.allinonefx.controllers.AbstractViewController;
+import com.allinonefx.datafx.AbstractViewController;
 import com.allinonefx.controllers.MainController;
 import com.allinonefx.dao.UserDao;
 import static com.allinonefx.gui.uicomponents.DialogController.CONTENT_PANE;
@@ -54,8 +54,8 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.StackPane;
 import javax.annotation.PostConstruct;
 
-@ViewController(value = "/fxml/Register.fxml", title = "Register")
-public class RegisterController extends AbstractViewController {
+@ViewController(value = "/fxml/form/Film.fxml", title = "Film")
+public class CustomerFormController extends AbstractViewController {
 
     @FXML
     private StackPane root;
@@ -142,7 +142,7 @@ public class RegisterController extends AbstractViewController {
     private Connection connection;
     private DbHandler handler;
 
-    // DataFX - Flow    
+    // DataFX - Flow
     @FXMLViewFlowContext
     private ViewFlowContext context;
     private FlowHandler contentFlowHandler;
@@ -336,7 +336,7 @@ public class RegisterController extends AbstractViewController {
             }
         });
     }
-    
+
     private void setProgress() {
         DecimalFormat decimalFormat = new DecimalFormat("###.#");
         decimalFormat.setRoundingMode(RoundingMode.HALF_UP);
@@ -390,7 +390,7 @@ public class RegisterController extends AbstractViewController {
             }
             comboDepartmenT.getItems().addAll(depart_lists);
         } catch (SQLException ex) {
-            Logger.getLogger(RegisterController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CustomerFormController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -540,7 +540,7 @@ public class RegisterController extends AbstractViewController {
         return gdr;
     }
 
-    private void setLocale(){
+    private void setLocale() {
         txtUname.promptTextProperty().bind(I18N.createStringBinding("label.userName"));
         txtPassword.promptTextProperty().bind(I18N.createStringBinding("label.password"));
         txtFname.promptTextProperty().bind(I18N.createStringBinding("label.firstName"));

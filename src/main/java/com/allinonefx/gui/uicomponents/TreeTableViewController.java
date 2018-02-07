@@ -2,7 +2,7 @@ package com.allinonefx.gui.uicomponents;
 
 import com.allinonefx.config.I18N;
 import com.allinonefx.controllers.MainController;
-import com.allinonefx.controllers.form.RegisterController;
+import com.allinonefx.controllers.form.FilmFormController;
 import com.allinonefx.mybatis.MyBatisConnectionFactory;
 import com.jfoenix.controls.*;
 import com.jfoenix.controls.cells.editors.IntegerTextFieldEditorBuilder;
@@ -155,8 +155,8 @@ public class TreeTableViewController {
                 MainController.snackbar.show(I18N.get("user.no.selected"), 3000);
             }
         });
-        contentFlow.withGlobalLink(treeTableViewAdd.getId(), RegisterController.class);
-        contentFlow.withGlobalLink(treeTableViewEdit.getId(), RegisterController.class);
+        contentFlow.withGlobalLink(treeTableViewAdd.getId(), FilmFormController.class);
+        contentFlow.withGlobalLink(treeTableViewEdit.getId(), FilmFormController.class);
     }
 
     private void setLocale() {

@@ -2,9 +2,10 @@ package com.allinonefx.controllers.table;
 
 import com.allinonefx.config.I18N;
 import com.allinonefx.controllers.MainController;
-import com.allinonefx.dao.FilmMapper;
 import com.allinonefx.mybatis.MyBatisConnectionFactory;
 import com.jfoenix.controls.*;
+import io.datafx.controller.flow.Flow;
+import io.datafx.controller.flow.FlowHandler;
 import io.datafx.controller.flow.context.FXMLViewFlowContext;
 import io.datafx.controller.flow.context.ViewFlowContext;
 import javafx.fxml.FXML;
@@ -16,43 +17,43 @@ import org.apache.ibatis.session.SqlSession;
 public class TreeTableViewController {
 
     SqlSession sqlSession = MyBatisConnectionFactory.getSqlSessionFactory().openSession();
-    FilmMapper mapper = sqlSession.getMapper(FilmMapper.class);
+
+    @FXMLViewFlowContext
+    public ViewFlowContext context;
+    public FlowHandler contentFlowHandler;
+    public Flow contentFlow;
 
     public static final String PREFIX = "( ";
     public static final String POSTFIX = " )";
 
-    @FXMLViewFlowContext
-    public ViewFlowContext context;
-
-    // editable table view
     @FXML
     public StackPane root;
     @FXML
-    public Label lblTitle;
+    public Label lblTableTitle;
     @FXML
-    public Label treeTableViewCount;
+    public Label lblTableCount;
     @FXML
-    public JFXButton treeTableViewAdd;
+    public JFXButton btnTableAdd;
     @FXML
-    public JFXButton treeTableViewEdit;
+    public JFXButton btnTableEdit;
     @FXML
-    public JFXButton treeTableViewRemove;
+    public JFXButton btnTableRemove;
     @FXML
-    public JFXTextField searchField;
+    public JFXTextField txtTableSearch;
 
     /**
      * init fxml when loaded.
      */
     @PostConstruct
     public void init() {
-        //title
+        contentFlow = (Flow) context.getRegisteredObject("ContentFlow");
+        contentFlowHandler = (FlowHandler) context.getRegisteredObject("ContentFlowHandler");
         MainController.lblTitle.setText("Tree Table View");
-        //locale
         setLocale();
     }
 
     public void setLocale() {
-        searchField.promptTextProperty().bind(I18N.createStringBinding("text.search"));
+        txtTableSearch.promptTextProperty().bind(I18N.createStringBinding("text.search"));
     }
 
 }

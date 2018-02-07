@@ -2,7 +2,7 @@ package com.allinonefx.controllers.table;
 
 import com.allinonefx.config.I18N;
 import com.allinonefx.controllers.MainController;
-import com.allinonefx.controllers.form.RegisterController;
+import com.allinonefx.controllers.form.FilmFormController;
 import com.allinonefx.dao.CustomerMapperExtend;
 import com.allinonefx.model.Customer;
 import com.jfoenix.controls.*;
@@ -59,24 +59,24 @@ public class CustomerTableViewController extends TreeTableViewController {
         // flow: add register
         FlowHandler contentFlowHandler = (FlowHandler) context.getRegisteredObject("ContentFlowHandler");
         Flow contentFlow = (Flow) context.getRegisteredObject("ContentFlow");
-        contentFlow.withGlobalLink(treeTableViewAdd.getId(), RegisterController.class);
-        contentFlow.withGlobalLink(treeTableViewEdit.getId(), RegisterController.class);
+        contentFlow.withGlobalLink(btnTableAdd.getId(), FilmFormController.class);
+        contentFlow.withGlobalLink(btnTableEdit.getId(), FilmFormController.class);
         // toolbar buttons
-        treeTableViewAdd.setOnMouseClicked((e) -> {
+        btnTableAdd.setOnMouseClicked((e) -> {
             try {
-                contentFlowHandler.handle("treeTableViewAdd");
+                contentFlowHandler.handle("btnTableAdd");
             } catch (VetoException ex) {
                 Logger.getLogger(CustomerTableViewController.class.getName()).log(Level.SEVERE, null, ex);
             } catch (FlowException ex) {
                 Logger.getLogger(CustomerTableViewController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
-        treeTableViewEdit.setOnMouseClicked((e) -> {
+        btnTableEdit.setOnMouseClicked((e) -> {
             if (editableTreeTableView.getSelectionModel().getSelectedItem() != null) {
                 Customer customer = editableTreeTableView.getSelectionModel().getSelectedItem().getValue();
                 try {
                     context.register("editCustomer", customer);
-                    contentFlowHandler.handle("treeTableViewEdit");
+                    contentFlowHandler.handle("btnTableEdit");
                 } catch (VetoException ex) {
                     Logger.getLogger(CustomerTableViewController.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (FlowException ex) {
@@ -86,7 +86,7 @@ public class CustomerTableViewController extends TreeTableViewController {
                 MainController.snackbar.show(I18N.get("customer.no.selected"), 3000);
             }
         });
-        treeTableViewRemove.setOnMouseClicked((e) -> {
+        btnTableRemove.setOnMouseClicked((e) -> {
             if (editableTreeTableView.getSelectionModel().getSelectedItem() != null) {
                 Customer customer = editableTreeTableView.getSelectionModel().getSelectedItem().getValue();
                 System.out.println(customer.getFirst_name());
@@ -103,7 +103,7 @@ public class CustomerTableViewController extends TreeTableViewController {
 
     public void setLocale() {
         super.setLocale();
-        lblTitle.textProperty().bind(I18N.createStringBinding("label.customers"));
+        lblTableTitle.textProperty().bind(I18N.createStringBinding("label.customers"));
         firstNameEditableColumn.textProperty().bind(I18N.createStringBinding("column.firstname"));
         lastNameEditableColumn.textProperty().bind(I18N.createStringBinding("column.lastname"));
         emailEditableColumn.textProperty().bind(I18N.createStringBinding("column.email"));
@@ -237,9 +237,9 @@ public class CustomerTableViewController extends TreeTableViewController {
         editableTreeTableView.setRoot(new RecursiveTreeItem<>(dataCustomer, RecursiveTreeObject::getChildren));
         editableTreeTableView.setShowRoot(false);
         editableTreeTableView.setEditable(true);
-        treeTableViewCount.textProperty().bind(Bindings.createStringBinding(() -> PREFIX + editableTreeTableView.getCurrentItemsCount() + POSTFIX, editableTreeTableView.currentItemsCountProperty()));
+        lblTableCount.textProperty().bind(Bindings.createStringBinding(() -> PREFIX + editableTreeTableView.getCurrentItemsCount() + POSTFIX, editableTreeTableView.currentItemsCountProperty()));
         editableTreeTableView.prefHeightProperty().bind(root.widthProperty());
-        searchField.textProperty().addListener(setupSearchField(editableTreeTableView));
+        txtTableSearch.textProperty().addListener(setupSearchField(editableTreeTableView));
     }
 
     private ChangeListener<String> setupSearchField(final JFXTreeTableView<Customer> tableView) {

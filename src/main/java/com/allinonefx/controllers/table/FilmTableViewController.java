@@ -2,7 +2,7 @@ package com.allinonefx.controllers.table;
 
 import com.allinonefx.config.I18N;
 import com.allinonefx.controllers.MainController;
-import com.allinonefx.controllers.form.RegisterController;
+import com.allinonefx.controllers.form.FilmFormController;
 import com.allinonefx.dao.FilmMapper;
 import com.allinonefx.dao.LanguageMapper;
 import com.allinonefx.model.Film;
@@ -14,9 +14,7 @@ import com.jfoenix.controls.cells.editors.TextFieldEditorBuilder;
 import com.jfoenix.controls.cells.editors.base.GenericEditableTreeTableCell;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import io.datafx.controller.ViewController;
-import io.datafx.controller.flow.Flow;
 import io.datafx.controller.flow.FlowException;
-import io.datafx.controller.flow.FlowHandler;
 import io.datafx.controller.util.VetoException;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -26,7 +24,6 @@ import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.TreeTableCell;
@@ -47,57 +44,62 @@ public class FilmTableViewController extends TreeTableViewController {
     // editable table view
     @FXML
     private JFXTreeTableView<Film> editableTreeTableView;
-    private final JFXTreeTableColumn<Film, ImageView> filmPhotoEditableColumn = new JFXTreeTableColumn();
-    private final JFXTreeTableColumn<Film, String> titleEditableColumn = new JFXTreeTableColumn();
-    private final JFXTreeTableColumn<Film, String> descriptionEditableColumn = new JFXTreeTableColumn();
-    private final JFXTreeTableColumn<Film, Date> releaseYearEditableColumn = new JFXTreeTableColumn();
-    private final JFXTreeTableColumn<Film, String> rentalDurationEditableColumn = new JFXTreeTableColumn();
-    private final JFXTreeTableColumn<Film, BigDecimal> rentalRateEditableColumn = new JFXTreeTableColumn();
-    private final JFXTreeTableColumn<Film, Integer> lengthEditableColumn = new JFXTreeTableColumn();
-    private final JFXTreeTableColumn<Film, String> specialFeaturesEditableColumn = new JFXTreeTableColumn();
-    private final JFXTreeTableColumn<Film, Language> languageEditableColumn = new JFXTreeTableColumn();
+    private final JFXTreeTableColumn<Film, ImageView> filmPhotoEditableColumn;
+    private final JFXTreeTableColumn<Film, String> titleEditableColumn;
+    private final JFXTreeTableColumn<Film, String> descriptionEditableColumn;
+    private final JFXTreeTableColumn<Film, Date> releaseYearEditableColumn;
+    private final JFXTreeTableColumn<Film, String> rentalDurationEditableColumn;
+    private final JFXTreeTableColumn<Film, BigDecimal> rentalRateEditableColumn;
+    private final JFXTreeTableColumn<Film, Integer> lengthEditableColumn;
+    private final JFXTreeTableColumn<Film, String> specialFeaturesEditableColumn;
+    private final JFXTreeTableColumn<Film, Language> languageEditableColumn;
+
+    public FilmTableViewController() {
+        this.languageEditableColumn = new JFXTreeTableColumn();
+        this.specialFeaturesEditableColumn = new JFXTreeTableColumn();
+        this.lengthEditableColumn = new JFXTreeTableColumn();
+        this.rentalRateEditableColumn = new JFXTreeTableColumn();
+        this.rentalDurationEditableColumn = new JFXTreeTableColumn();
+        this.releaseYearEditableColumn = new JFXTreeTableColumn();
+        this.descriptionEditableColumn = new JFXTreeTableColumn();
+        this.titleEditableColumn = new JFXTreeTableColumn();
+        this.filmPhotoEditableColumn = new JFXTreeTableColumn();
+    }
 
     /**
      * init fxml when loaded.
      */
     @PostConstruct
+    @Override
     public void init() {
-        //title
+        super.init();
         MainController.lblTitle.setText("Films");
-        // setup table
         setupEditableTableView();
-        //locale
         setLocale();
         // flow: add register
-        FlowHandler contentFlowHandler = (FlowHandler) context.getRegisteredObject("ContentFlowHandler");
-        Flow contentFlow = (Flow) context.getRegisteredObject("ContentFlow");
-        contentFlow.withGlobalLink(treeTableViewAdd.getId(), RegisterController.class);
-        contentFlow.withGlobalLink(treeTableViewEdit.getId(), RegisterController.class);
-        treeTableViewAdd.setOnMouseClicked((e) -> {
+        contentFlow.withGlobalLink(btnTableAdd.getId(), FilmFormController.class);
+        contentFlow.withGlobalLink(btnTableEdit.getId(), FilmFormController.class);
+        btnTableAdd.setOnMouseClicked((e) -> {
             try {
-                contentFlowHandler.handle("treeTableViewAdd");
-            } catch (VetoException ex) {
-                Logger.getLogger(FilmTableViewController.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (FlowException ex) {
+                contentFlowHandler.handle("btnTableAdd");
+            } catch (VetoException | FlowException ex) {
                 Logger.getLogger(FilmTableViewController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
-        treeTableViewEdit.setOnMouseClicked((e) -> {
+        btnTableEdit.setOnMouseClicked((e) -> {
             if (editableTreeTableView.getSelectionModel().getSelectedItem() != null) {
                 Film film = editableTreeTableView.getSelectionModel().getSelectedItem().getValue();
                 try {
                     context.register("editFilm", film);
-                    contentFlowHandler.handle("treeTableViewEdit");
-                } catch (VetoException ex) {
-                    Logger.getLogger(FilmTableViewController.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (FlowException ex) {
+                    contentFlowHandler.handle("btnTableEdit");
+                } catch (VetoException | FlowException ex) {
                     Logger.getLogger(FilmTableViewController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } else {
                 MainController.snackbar.show(I18N.get("film.no.selected"), 3000);
             }
         });
-        treeTableViewRemove.setOnMouseClicked((e) -> {
+        btnTableRemove.setOnMouseClicked((e) -> {
             if (editableTreeTableView.getSelectionModel().getSelectedItem() != null) {
                 Film film = editableTreeTableView.getSelectionModel().getSelectedItem().getValue();
                 System.out.println(film.getTitle());
@@ -112,9 +114,10 @@ public class FilmTableViewController extends TreeTableViewController {
         });
     }
 
+    @Override
     public void setLocale() {
         super.setLocale();
-        lblTitle.textProperty().bind(I18N.createStringBinding("label.films"));
+        lblTableTitle.textProperty().bind(I18N.createStringBinding("label.films"));
         filmPhotoEditableColumn.textProperty().bind(I18N.createStringBinding("column.photo"));
         titleEditableColumn.textProperty().bind(I18N.createStringBinding("column.title"));
         descriptionEditableColumn.textProperty().bind(I18N.createStringBinding("column.description"));
@@ -127,7 +130,7 @@ public class FilmTableViewController extends TreeTableViewController {
     }
 
     private void setupEditableTableView() {
-        //set columns styles
+        // set columns styles
         titleEditableColumn.getStyleClass().add("cell-left");
         descriptionEditableColumn.getStyleClass().add("cell-left");
         releaseYearEditableColumn.getStyleClass().add("cell-right");
@@ -136,111 +139,49 @@ public class FilmTableViewController extends TreeTableViewController {
         lengthEditableColumn.getStyleClass().add("cell-right");
         specialFeaturesEditableColumn.getStyleClass().add("cell-left");
         languageEditableColumn.getStyleClass().add("cell-left");
-        //set table columns
+        // set table columns
         editableTreeTableView.getColumns().clear();
         editableTreeTableView.getColumns().addAll(titleEditableColumn, descriptionEditableColumn, specialFeaturesEditableColumn, releaseYearEditableColumn, rentalDurationEditableColumn, rentalRateEditableColumn, lengthEditableColumn, languageEditableColumn);
-        //set cell values
-        titleEditableColumn.setCellValueFactory(new TreeItemPropertyValueFactory<Film, String>("title"));
-        descriptionEditableColumn.setCellValueFactory(new TreeItemPropertyValueFactory<Film, String>("description"));
-        releaseYearEditableColumn.setCellValueFactory(new TreeItemPropertyValueFactory<Film, Date>("release_year"));
-        rentalDurationEditableColumn.setCellValueFactory(new TreeItemPropertyValueFactory<Film, String>("rental_duration"));
-        rentalRateEditableColumn.setCellValueFactory(new TreeItemPropertyValueFactory<Film, BigDecimal>("rental_rate"));
-        lengthEditableColumn.setCellValueFactory(new TreeItemPropertyValueFactory<Film, Integer>("length"));
-        specialFeaturesEditableColumn.setCellValueFactory(new TreeItemPropertyValueFactory<Film, String>("special_features"));
-//        languageEditableColumn.setCellValueFactory(new Callback<CellDataFeatures<Film, Language>, ObservableValue<Language>>() {
-//            @Override
-//            public ObservableValue<Language> call(CellDataFeatures<Film, Language> param) {
-//                return new SimpleObjectProperty<Language>(param.getValue().getValue().getLanguage());
-//            }
-//        });
-        languageEditableColumn.setCellValueFactory(new TreeItemPropertyValueFactory<Film, Language>("language"));
-        // language combobox
+        // set cell values
+        titleEditableColumn.setCellValueFactory(new TreeItemPropertyValueFactory<>("title"));
+        descriptionEditableColumn.setCellValueFactory(new TreeItemPropertyValueFactory<>("description"));
+        releaseYearEditableColumn.setCellValueFactory(new TreeItemPropertyValueFactory<>("release_year"));
+        rentalDurationEditableColumn.setCellValueFactory(new TreeItemPropertyValueFactory<>("rental_duration"));
+        rentalRateEditableColumn.setCellValueFactory(new TreeItemPropertyValueFactory<>("rental_rate"));
+        lengthEditableColumn.setCellValueFactory(new TreeItemPropertyValueFactory<>("length"));
+        specialFeaturesEditableColumn.setCellValueFactory(new TreeItemPropertyValueFactory<>("special_features"));
+        languageEditableColumn.setCellValueFactory(new TreeItemPropertyValueFactory<>("language"));
+        // add editors
         Callback<TreeTableColumn<Film, Language>, TreeTableCell<Film, Language>> comboBoxCellFactory
                 = (TreeTableColumn<Film, Language> param) -> new ComboBoxEditingCell();
+        Callback<TreeTableColumn<Film, Date>, TreeTableCell<Film, Date>> dateCellFactory
+                = (TreeTableColumn<Film, Date> param) -> new DateEditingCell();
         languageEditableColumn.setCellFactory(comboBoxCellFactory);
-//        languageEditableColumn.setCellFactory((TreeTableColumn<Film, Language> col) -> {
-//            TreeTableCell<Film, Language> c = new TreeTableCell<>();
-//            final JFXComboBox<Language> comboBox = new JFXComboBox<>(languages);
-//            comboBox.setCellFactory(new Callback<ListView<Language>, ListCell<Language>>() {
-//                @Override
-//                public ListCell<Language> call(ListView<Language> p) {
-//                    final ListCell<Language> cell = new ListCell<Language>() {
-//                        @Override
-//                        protected void updateItem(Language t, boolean bln) {
-//                            super.updateItem(t, bln);
-//                            if (t != null) {
-//                                setText(t.getName());
-//                            } else {
-//                                setText(null);
-//                            }
-//                        }
-//                    };
-//                    return cell;
-//                }
-//            });
-//            StringConverter<Language> converter = new StringConverter<Language>() {
-//                @Override
-//                public String toString(Language language) {
-//                    return language.getName();
-//                }
-//
-//                @Override
-//                public Language fromString(String id) {
-//                    return languages.stream()
-//                            .filter(item -> item.getName().equals(id))
-//                            .collect(Collectors.toList()).get(0);
-//                }
-//            };
-//            comboBox.setConverter(converter);
-//            comboBox.getSelectionModel().selectedItemProperty().addListener((o, ol, nw) -> {
-//                System.out.println(comboBox.getValue().getName());
-//            });
-////            comboBox.valueProperty().addListener((obs, oldValue, newValue) -> {
-////                if (!c.isEmpty() && newValue != null) {
-////                    String lang = editableTreeTableView.getTreeItem(c.getIndex()).getValue().getLanguage().getName();
-//////                    String property = option.getValue().apply(lang);
-//////                    property = newValue;
-////                }
-////            });
-//            c.itemProperty().addListener((obs, oldItem, newItem) -> {
-//                if (!c.isEmpty() && newItem != null) {
-//                    comboBox.setValue(newItem);
-//                }
-//            });
-//            c.graphicProperty().bind(Bindings.when(c.emptyProperty()).then((Node) null).otherwise(comboBox));
-//            return c;
-//        });
-        // add editors
+        releaseYearEditableColumn.setCellFactory(dateCellFactory);
         titleEditableColumn.setCellFactory(
                 (TreeTableColumn<Film, String> param) -> {
                     return new GenericEditableTreeTableCell<>(
                             new TextFieldEditorBuilder());
                 }
         );
-        titleEditableColumn.setOnEditCommit(
-                new EventHandler<CellEditEvent<Film, String>>() {
-            @Override
-            public void handle(CellEditEvent<Film, String> t
-            ) {
-                if (!t.getNewValue().equals(t.getOldValue())) {
-                    try {
-                        t.getTreeTableView()
-                                .getTreeItem(t.getTreeTablePosition()
-                                        .getRow())
-                                .getValue().setTitle(t.getNewValue());
-                        Film film = (Film) editableTreeTableView.getSelectionModel().getSelectedItem().getValue();
-                        film.setTitle(t.getNewValue().toUpperCase());
-                        if (mapper.updateByPrimaryKey(film) == 1) {
-                            sqlSession.commit();
-                            MainController.snackbar.show(I18N.get("film.updated"), 3000);
-                        }
-                    } catch (Exception ex) {
-                        Logger.getLogger(FilmTableViewController.class.getName()).log(Level.SEVERE, null, ex);
+        titleEditableColumn.setOnEditCommit((CellEditEvent<Film, String> t) -> {
+            if (!t.getNewValue().equals(t.getOldValue())) {
+                try {
+                    t.getTreeTableView()
+                            .getTreeItem(t.getTreeTablePosition()
+                                    .getRow())
+                            .getValue().setTitle(t.getNewValue());
+                    Film film = (Film) editableTreeTableView.getSelectionModel().getSelectedItem().getValue();
+                    film.setTitle(t.getNewValue().toUpperCase());
+                    if (mapper.updateByPrimaryKey(film) == 1) {
+                        sqlSession.commit();
+                        MainController.snackbar.show(I18N.get("film.updated"), 3000);
                     }
+                } catch (Exception ex) {
+                    Logger.getLogger(FilmTableViewController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-        }
-        );
+        });
         rentalRateEditableColumn.setCellFactory(
                 (TreeTableColumn<Film, BigDecimal> param) -> {
                     return new GenericEditableTreeTableCell<>(
@@ -293,18 +234,13 @@ public class FilmTableViewController extends TreeTableViewController {
         );
         // set data table
         ObservableList<Film> dataFilm = FXCollections.observableArrayList(mapper.selectByExampleWithLanguage(null));
-
-        editableTreeTableView.setRoot(
-                new RecursiveTreeItem<>(dataFilm, RecursiveTreeObject::getChildren));
-        editableTreeTableView.setShowRoot(
-                false);
-        editableTreeTableView.setEditable(
-                true);
-        treeTableViewCount.textProperty()
+        editableTreeTableView.setRoot(new RecursiveTreeItem<>(dataFilm, RecursiveTreeObject::getChildren));
+        editableTreeTableView.setShowRoot(false);
+        editableTreeTableView.setEditable(true);
+        editableTreeTableView.prefHeightProperty().bind(root.widthProperty());
+        lblTableCount.textProperty()
                 .bind(Bindings.createStringBinding(() -> PREFIX + editableTreeTableView.getCurrentItemsCount() + POSTFIX, editableTreeTableView.currentItemsCountProperty()));
-        editableTreeTableView.prefHeightProperty()
-                .bind(root.widthProperty());
-        searchField.textProperty()
+        txtTableSearch.textProperty()
                 .addListener(setupSearchField(editableTreeTableView));
 
     }

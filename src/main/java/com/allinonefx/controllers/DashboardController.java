@@ -350,7 +350,6 @@ public class DashboardController {
         box.getChildren().addAll(addBtn, closeButton);
 
         dialogLayout.setActions(box);
-
         dialog.show();
     }
 

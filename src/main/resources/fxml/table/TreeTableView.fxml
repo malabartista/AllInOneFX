@@ -15,26 +15,26 @@
     <VBox spacing="10">
         <children>
             <HBox alignment="CENTER">
-                <Label fx:id="lblTitle" styleClass="title-label" text="%label.films" />
-                <Label fx:id="treeTableViewCount" styleClass="title-label" />
-                <JFXButton fx:id="treeTableViewAdd" buttonType="FLAT">
+                <Label fx:id="lblTableTitle" styleClass="title-label" text="%label.films" />
+                <Label fx:id="lblTableCount" styleClass="title-label" />
+                <JFXButton fx:id="btnTableAdd" buttonType="FLAT">
                     <graphic>
                         <MaterialDesignIconView glyphName="PLUS" size="18.0" wrappingWidth="22.0" />
                     </graphic>
                 </JFXButton>
-                <JFXButton fx:id="treeTableViewRemove" buttonType="FLAT">
+                <JFXButton fx:id="btnTableRemove" buttonType="FLAT">
                     <graphic>
                         <MaterialDesignIconView glyphName="MINUS" size="18.0" wrappingWidth="22.0" />
                     </graphic>
                 </JFXButton>
-                <JFXButton fx:id="treeTableViewEdit" buttonType="FLAT">
+                <JFXButton fx:id="btnTableEdit" buttonType="FLAT">
                     <graphic>
                         <MaterialDesignIconView glyphName="PENCIL" size="18.0" wrappingWidth="22.0" />
                     </graphic>
                 </JFXButton>
                 <StackPane HBox.hgrow="ALWAYS">
                     <StackPane maxWidth="200" StackPane.alignment="CENTER_RIGHT">
-                        <JFXTextField fx:id="searchField" promptText="%text.search" />
+                        <JFXTextField fx:id="txtTableSearch" promptText="%text.search" />
                     </StackPane>
                 </StackPane>
             </HBox>
