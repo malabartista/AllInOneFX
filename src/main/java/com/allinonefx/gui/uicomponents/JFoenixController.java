@@ -7,6 +7,9 @@ package com.allinonefx.gui.uicomponents;
 
 import com.allinonefx.controllers.MainController;
 import static com.allinonefx.gui.uicomponents.DialogController.CONTENT_PANE;
+import com.github.plushaze.traynotification.notification.Notification;
+import com.github.plushaze.traynotification.notification.Notifications;
+import com.github.plushaze.traynotification.notification.TrayNotification;
 import com.jfoenix.controls.JFXBadge;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
@@ -27,15 +30,11 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 import javax.annotation.PostConstruct;
-import org.controlsfx.control.Notifications;
 
 @ViewController(value = "/fxml/ui/JFoenix.fxml", title = "Material Design Example")
 public class JFoenixController {
@@ -160,26 +159,37 @@ public class JFoenixController {
     }
     
     private void notification(Pos pos) {
-        final Image SMALL_GRAPHIC = 
-            new Image("controlsfx-logo.png");
+        // ControlsFX
+//        final Image SMALL_GRAPHIC = 
+//            new Image("controlsfx-logo.png");
+//        
+//        String text = "Hello World " + (count++) + "!";
+//        
+//        Node graphic = new ImageView(SMALL_GRAPHIC);
+//        
+//        Notifications notificationBuilder = Notifications.create()
+//                .title("Title Text")
+//                .text(text)
+//                .graphic(graphic)
+//                .hideAfter(Duration.seconds(10))
+//                .position(pos)
+//                .onAction(new EventHandler<ActionEvent>() {
+//                    @Override public void handle(ActionEvent arg0) {
+//                        System.out.println("Notification clicked on!");
+//                    }
+//                });
+//        
+//        notificationBuilder.show();
         
-        String text = "Hello World " + (count++) + "!";
-        
-        Node graphic = new ImageView(SMALL_GRAPHIC);
-        
-        Notifications notificationBuilder = Notifications.create()
-                .title("Title Text")
-                .text(text)
-                .graphic(graphic)
-                .hideAfter(Duration.seconds(10))
-                .position(pos)
-                .onAction(new EventHandler<ActionEvent>() {
-                    @Override public void handle(ActionEvent arg0) {
-                        System.out.println("Notification clicked on!");
-                    }
-                });
-        
-        notificationBuilder.show();
-        
+
+        // Tray Notification
+        String title = "Congratulations sir";
+        String message = "You've successfully created your first Tray Notification";
+        Notification notification = Notifications.SUCCESS;
+        TrayNotification tray = new TrayNotification();
+        tray.setTitle(title);
+        tray.setMessage(message);
+        tray.setNotification(notification);
+        tray.showAndWait();
     }
 }

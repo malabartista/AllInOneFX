@@ -1,37 +1,35 @@
 package com.allinonefx.controllers;
 
-import com.allinonefx.MainDemo;
 import com.allinonefx.config.I18N;
 import com.allinonefx.datafx.ExtendedAnimatedFlowContainer;
 import com.allinonefx.model.Staff;
 import com.allinonefx.utils.ImageUtils;
 import com.jfoenix.controls.*;
-import com.jfoenix.controls.JFXPopup.PopupHPosition;
-import com.jfoenix.controls.JFXPopup.PopupVPosition;
 import io.datafx.controller.ViewConfiguration;
 import io.datafx.controller.ViewController;
 import io.datafx.controller.flow.Flow;
+import io.datafx.controller.flow.FlowException;
 import io.datafx.controller.flow.FlowHandler;
-import static io.datafx.controller.flow.container.ContainerAnimations.SWIPE_LEFT;
+import static io.datafx.controller.flow.container.ContainerAnimations.FADE;
 import io.datafx.controller.flow.context.FXMLViewFlowContext;
 import io.datafx.controller.flow.context.ViewFlowContext;
+import io.datafx.controller.util.VetoException;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.animation.Transition;
-import javafx.application.Platform;
-import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
+import static javafx.scene.input.MouseEvent.MOUSE_PRESSED;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 import javax.annotation.PostConstruct;
@@ -40,28 +38,44 @@ import javax.imageio.ImageIO;
 @ViewController(value = "/fxml/Main.fxml", title = "Material Design Example")
 public final class MainController {
 
+    // datafx - flow
     @FXMLViewFlowContext
     private ViewFlowContext context;
+    private FlowHandler contentFlowHandler;
+    public Flow contentFlow;
+
     @FXML
-    private StackPane root;
+    public static StackPane root;
+    @FXML
+    public static Label lblTitle;
+    @FXML
+    private ImageView btnHome;
+    @FXML
+    private StackPane btnDrawerLeft;
+    @FXML
+    private StackPane btnDrawerRight;
+    @FXML
+    private StackPane btnCalendar;
+    @FXML
+    private StackPane btnGMaps;
+    @FXML
+    private JFXButton btnProfile;
+    @FXML
+    private ImageView profileImage;
     @FXML
     private StackPane titleBurgerContainer;
     @FXML
     private JFXHamburger titleBurger;
     @FXML
-    private StackPane optionsBurger;
-    @FXML
-    private JFXButton profileButton;
-    @FXML
-    private ImageView profileImage;
+    private StackPane btnOptions;
     @FXML
     private JFXRippler optionsRippler;
     @FXML
-    private JFXDrawer drawer;
+    private JFXDrawersStack drawersStack;
     @FXML
-    public static Label lblTitle;
+    private JFXDrawer drawerLeft;
     @FXML
-    private Label red;
+    private JFXDrawer drawerRight;
     @FXML
     private JFXBadge badgeNotification;
     @FXML
@@ -72,66 +86,109 @@ public final class MainController {
 
     /**
      * init fxml when loaded.
+     *
+     * @throws java.lang.Exception
      */
     @PostConstruct
     public void init() throws Exception {
         //sets
-        loadLanguage(Locale.ENGLISH);
-        setLocale();
+        setFlow();
+        setToolbarActions();
+        setNotifications();
         setProfileButton();
-//        lblTitle.bind(I18N.createStringBinding("window.title"));
+    }
 
-        // init the title hamburger icon
-        drawer.setOnDrawerOpening(e -> {
+    private void setFlow() throws FlowException {
+        ViewConfiguration viewConfig = new ViewConfiguration();
+        viewConfig.setResources(ResourceBundle.getBundle("lang.message", I18N.getLocale()));
+        contentFlow = new Flow(DashboardController.class, viewConfig);
+        contentFlowHandler = new FlowHandler(contentFlow, context, viewConfig);
+        context.register("ContentFlowHandler", contentFlowHandler);
+        context.register("ContentFlow", contentFlow);
+        final Duration containerAnimationDuration = Duration.millis(320);
+        drawersStack.setContent(contentFlowHandler.start(new ExtendedAnimatedFlowContainer(containerAnimationDuration, FADE)));
+        context.register("ContentPane", drawersStack.getContent());
+        // side controller will add links to the content flow
+        Flow sideMenuFlow = new Flow(SideMenuController.class);
+        final FlowHandler sideMenuFlowHandler = sideMenuFlow.createHandler(context);
+        drawerLeft.setSidePane(sideMenuFlowHandler.start(new ExtendedAnimatedFlowContainer(containerAnimationDuration,
+                FADE)));
+        drawerRight.setSidePane(sideMenuFlowHandler.start(new ExtendedAnimatedFlowContainer(containerAnimationDuration,
+                FADE)));
+        setFlowLinks();
+    }
+
+    private void setFlowLinks() {
+
+    }
+
+    private void setToolbarActions() {
+        btnDrawerLeft.addEventHandler(MOUSE_PRESSED, e -> drawersStack.toggle(drawerLeft));
+        btnDrawerRight.addEventHandler(MOUSE_PRESSED, e -> drawersStack.toggle(drawerRight));
+        btnHome.setOnMouseClicked(e -> {
+            try {
+                contentFlowHandler.handle("dashboard");
+            } catch (VetoException | FlowException ex) {
+                Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        btnCalendar.setOnMouseClicked(e -> {
+            try {
+                contentFlowHandler.handle("calendarfx");
+            } catch (VetoException | FlowException ex) {
+                Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        btnGMaps.setOnMouseClicked(e -> {
+            try {
+                contentFlowHandler.handle("gmapsfx");
+            } catch (VetoException | FlowException ex) {
+                Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        btnProfile.setOnMouseClicked((e) -> {
+            ResourceBundle bundle = ResourceBundle.getBundle("lang.message", I18N.getLocale());
+            FXMLLoader loader = new FXMLLoader(MainController.class.getResource("/fxml/ui/popup/ProfilePopup.fxml"), bundle);
+            loader.setController(new ToolbarPopupController());
+            try {
+                profilePopup = new JFXPopup(loader.load());
+                profilePopup.show(btnProfile,
+                        JFXPopup.PopupVPosition.TOP,
+                        JFXPopup.PopupHPosition.RIGHT,
+                        0,
+                        45);
+            } catch (IOException ex) {
+                Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        btnOptions.setOnMouseClicked((e) -> {
+            ResourceBundle bundle = ResourceBundle.getBundle("lang.message", I18N.getLocale());
+            FXMLLoader loader = new FXMLLoader(MainController.class.getResource("/fxml/ui/popup/MainPopup.fxml"), bundle);
+            loader.setController(new ToolbarPopupController());
+            try {
+                toolbarPopup = new JFXPopup(loader.load());
+                toolbarPopup.show(btnOptions,
+                        JFXPopup.PopupVPosition.TOP,
+                        JFXPopup.PopupHPosition.RIGHT,
+                        -12,
+                        15);
+            } catch (IOException ex) {
+                Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        drawerLeft.setOnDrawerOpening(e -> {
             final Transition animation = titleBurger.getAnimation();
             animation.setRate(1);
             animation.play();
         });
-        drawer.setOnDrawerClosing(e -> {
+        drawerLeft.setOnDrawerClosing(e -> {
             final Transition animation = titleBurger.getAnimation();
             animation.setRate(-1);
             animation.play();
         });
-        titleBurgerContainer.setOnMouseClicked(e -> {
-            if (drawer.isHidden() || drawer.isHiding()) {
-                drawer.open();
-            } else {
-                drawer.close();
-            }
-        });
-        optionsBurger.setOnMouseClicked(e -> toolbarPopup.show(optionsBurger,
-                PopupVPosition.TOP,
-                PopupHPosition.RIGHT,
-                -12,
-                15));
-        profileButton.setOnMouseClicked(e -> profilePopup.show(profileButton,
-                PopupVPosition.TOP,
-                PopupHPosition.RIGHT,
-                -12,
-                35));
+    }
 
-        //set language smatcsv
-        ViewConfiguration viewConfig = new ViewConfiguration();
-        viewConfig.setResources(ResourceBundle.getBundle("lang.message", I18N.getLocale()));
-        //viewConfig.setResources(ResourceBundle.getBundle("smartcsv", Locale.ENGLISH));
-
-        // create the inner flow and content
-        // set the default controller
-        Flow innerFlow = new Flow(DashboardController.class, viewConfig);
-        FlowHandler flowHandler = new FlowHandler(innerFlow, context, viewConfig);
-        context.register("ContentFlowHandler", flowHandler);
-        context.register("ContentFlow", innerFlow);
-        final Duration containerAnimationDuration = Duration.millis(320);
-        drawer.setContent(flowHandler.start(new ExtendedAnimatedFlowContainer(containerAnimationDuration, SWIPE_LEFT)));
-        context.register("ContentPane", drawer.getContent().get(0));
-
-        // side controller will add links to the content flow
-        Flow sideMenuFlow = new Flow(SideMenuController.class);
-        final FlowHandler sideMenuFlowHandler = sideMenuFlow.createHandler(context);
-        drawer.setSidePane(sideMenuFlowHandler.start(new ExtendedAnimatedFlowContainer(containerAnimationDuration,
-                SWIPE_LEFT)));
-
-        // notifications
+    private void setNotifications() {
         snackbar.registerSnackbarContainer(root);
         badgeNotification.setOnMouseClicked((click) -> {
             int value = Integer.parseInt(badgeNotification.getText());
@@ -166,76 +223,10 @@ public final class MainController {
 
     public void setProfileButton() throws IOException {
         Staff staff = (Staff) context.getRegisteredObject("User");
-        profileButton.setText(staff.getFirst_name() + " " + staff.getLast_name());
+        btnProfile.setText(staff.getFirst_name() + " " + staff.getLast_name());
         InputStream in = new ByteArrayInputStream(staff.getPicture());
         BufferedImage imageRounded = ImageUtils.makeRoundedCorner(ImageIO.read(in), 160);
         Image image = SwingFXUtils.toFXImage(imageRounded, null);
         profileImage.setImage(image);
-    }
-
-    public void loadLanguage(Locale locale) throws IOException {
-        ResourceBundle bundle = ResourceBundle.getBundle("lang.message", I18N.getLocale());
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ui/popup/MainPopup.fxml"), bundle);
-        loader.setController(new InputController());
-        toolbarPopup = new JFXPopup(loader.load());
-        loader = new FXMLLoader(getClass().getResource("/fxml/ui/popup/ProfilePopup.fxml"), bundle);
-        loader.setController(new InputController());
-        profilePopup = new JFXPopup(loader.load());
-    }
-
-    /**
-     * sets the given Locale in the I18N class and keeps count of the number of
-     * switches.
-     *
-     * @param locale the new local to set
-     */
-    private void switchLanguage(Locale locale) {
-        I18N.setLocale(locale);
-    }
-
-    private void setLocale() {
-//        red.textProperty().bind(I18N.createStringBinding("label.red"));
-    }
-
-    public final class InputController {
-
-        @FXML
-        private JFXListView<?> toolbarPopupList;
-        @FXML
-        private JFXListView<?> profilePopupList;
-
-        // close application
-        @FXML
-        private void submit() throws IOException {
-            Scene scene = root.getScene();
-            final ObservableList<String> stylesheets = scene.getStylesheets();
-            if (toolbarPopupList != null) {
-                if (toolbarPopupList.getSelectionModel().getSelectedIndex() == 0) {
-                    stylesheets.removeAll(MainDemo.class.getResource("/css/theme-red.css").toExternalForm());
-                    stylesheets.addAll(MainDemo.class.getResource("/css/theme-blue.css").toExternalForm());
-                } else if (toolbarPopupList.getSelectionModel().getSelectedIndex() == 1) {
-                    stylesheets.removeAll(MainDemo.class.getResource("/css/theme-blue.css").toExternalForm());
-                    stylesheets.addAll(MainDemo.class.getResource("/css/theme-red.css").toExternalForm());
-                }
-            }
-
-            if (profilePopupList != null) {
-                if (profilePopupList.getSelectionModel()
-                        .getSelectedIndex() == 0) {
-                    switchLanguage(Locale.ENGLISH);
-                } else if (profilePopupList.getSelectionModel()
-                        .getSelectedIndex() == 1) {
-                    switchLanguage(new Locale("es", "ES"));
-                } else if (profilePopupList.getSelectionModel().getSelectedIndex() == 2) {
-//                    JFXDialogLayout dialogLayout = new JFXDialogLayout();
-//                    JFXDialog dialog = new JFXDialog(dialogLayout, (StackPane) context.getRegisteredObject("ContentPane"), JFXDialog.DialogTransition.TOP);
-//                    dialog.setTransitionType(JFXDialog.DialogTransition.CENTER);
-//                    dialog.show((StackPane) context.getRegisteredObject("ContentPane"));
-                } else if (profilePopupList.getSelectionModel().getSelectedIndex() == 3) {
-                    Platform.exit();
-                }
-                profilePopup.hide();
-            }
-        }
     }
 }

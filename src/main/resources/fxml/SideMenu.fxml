@@ -96,6 +96,14 @@
             </graphic>
             ControlsFX
         </Label>
+        <Label fx:id="dockfx">
+            <graphic>
+                <StackPane styleClass="custom-jfx-list-view-icon-container">
+                    <FontAwesomeIconView glyphName="WINDOWS" size="1.5em" styleClass="custom-jfx-list-view-icon"/>
+                </StackPane>
+            </graphic>
+            DockFX
+        </Label>
         <Label fx:id="glyphsbrowser">
             <graphic>
                 <StackPane styleClass="custom-jfx-list-view-icon-container">

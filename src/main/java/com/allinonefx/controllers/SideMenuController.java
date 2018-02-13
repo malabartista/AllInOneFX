@@ -5,6 +5,7 @@ import com.allinonefx.gui.uicomponents.AnchorFXController;
 import com.allinonefx.gui.uicomponents.BootstrapFXController;
 import com.allinonefx.gui.uicomponents.CalendarFXController;
 import com.allinonefx.gui.uicomponents.ControlsFXController;
+import com.allinonefx.gui.uicomponents.DockFXController;
 import com.allinonefx.gui.uicomponents.GMapsFXController;
 import com.allinonefx.gui.uicomponents.GlyphsBrowserController;
 import com.allinonefx.gui.uicomponents.JFoenixController;
@@ -106,6 +107,9 @@ public class SideMenuController {
     @ActionTrigger("controlsfx")
     private Label controlsfx;
     @FXML
+    @ActionTrigger("dockfx")
+    private Label dockfx;
+    @FXML
     @ActionTrigger("glyphsbrowser")
     private Label glyphsbrowser;
     @FXML
@@ -181,6 +185,7 @@ public class SideMenuController {
         bindNodeToController(bootstrapfx, BootstrapFXController.class, contentFlow, contentFlowHandler);
         bindNodeToController(calendarfx, CalendarFXController.class, contentFlow, contentFlowHandler);
         bindNodeToController(controlsfx, ControlsFXController.class, contentFlow, contentFlowHandler);
+        bindNodeToController(dockfx, DockFXController.class, contentFlow, contentFlowHandler);
         bindNodeToController(glyphsbrowser, GlyphsBrowserController.class, contentFlow, contentFlowHandler);
         bindNodeToController(gmapsfx, GMapsFXController.class, contentFlow, contentFlowHandler);
         bindNodeToController(livedirsfx, LiveDirsFXController.class, contentFlow, contentFlowHandler);

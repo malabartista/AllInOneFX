@@ -15,13 +15,13 @@
             <VBox spacing="20">
                 <JFXToolbar>
                     <leftItems>
-                        <ImageView fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="btnHome" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../icons/logo.png" />
                             </image>
                         </ImageView>
                         <JFXRippler maskType="CIRCLE" style="-fx-ripple-color:WHITE;">
-                            <StackPane fx:id="titleBurgerContainer">
+                            <StackPane fx:id="btnDrawerLeft">
                                 <JFXHamburger fx:id="titleBurger">
                                     <HamburgerBackArrowBasicTransition/>
                                 </JFXHamburger>
@@ -35,21 +35,22 @@
                                 <FontAwesomeIconView glyphName="BELL" size="1.5em" styleClass="icon, icon-toolbar" />
                             </StackPane>
                         </JFXBadge>
-                        <StackPane>
-                            <FontAwesomeIconView glyphName="TH_LIST" size="1.5em" styleClass="icon, icon-toolbar" />
+                        <StackPane fx:id="btnCalendar">
+                            <FontAwesomeIconView glyphName="CALENDAR" size="1.5em" styleClass="icon, icon-toolbar" />
                         </StackPane>
-                        <StackPane>
+                        <StackPane fx:id="btnGMaps">
                             <FontAwesomeIconView glyphName="MAP_MARKER" size="1.5em" styleClass="icon, icon-toolbar" />
                         </StackPane>
-                        <JFXRippler fx:id="profileRippler" maskType="CIRCLE" style="-fx-ripple-color:WHITE;">
-                            <JFXButton fx:id="profileButton" text="admin">
-                                <graphic>
-                                    <ImageView fx:id="profileImage" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
-                                </graphic>
-                            </JFXButton>
-                        </JFXRippler>
+                        <StackPane fx:id="btnDrawerRight">
+                            <FontAwesomeIconView glyphName="TH_LIST" size="1.5em" styleClass="icon, icon-toolbar" />
+                        </StackPane>
+                        <JFXButton fx:id="btnProfile" text="admin">
+                            <graphic>
+                                <ImageView fx:id="profileImage" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+                            </graphic>
+                        </JFXButton>
                         <JFXRippler fx:id="optionsRippler" maskType="CIRCLE" style="-fx-ripple-color:WHITE;">
-                            <StackPane fx:id="optionsBurger" style="-fx-padding: 0.0, 10.0">
+                            <StackPane fx:id="btnOptions" style="-fx-padding: 0.0, 10.0">
                                 <!--<JFXHamburger styleClass="jfx-options-burger"></JFXHamburger>-->
                                 <FontAwesomeIconView glyphName="TINT" size="1.5em" styleClass="custom-jfx-list-view-icon"/>
                             </StackPane>
@@ -61,11 +62,15 @@
 
         <!-- Content Area -->
         <center>
-            <JFXDrawer fx:id="drawer" defaultDrawerSize="250" direction="LEFT">
-                <styleClass>
-                    <String fx:value="body"/>
-                </styleClass>
-            </JFXDrawer>
+            <JFXDrawersStack fx:id="drawersStack">
+                <JFXDrawer fx:id="drawerLeft" defaultDrawerSize="250" direction="LEFT">
+                    <styleClass>
+                        <String fx:value="body"/>
+                    </styleClass>
+                </JFXDrawer>
+                <JFXDrawer fx:id="drawerRight" defaultDrawerSize="250" direction="RIGHT">
+                </JFXDrawer>
+            </JFXDrawersStack>
         </center>
     </BorderPane>
     <JFXSnackbar fx:id="snackbar" />

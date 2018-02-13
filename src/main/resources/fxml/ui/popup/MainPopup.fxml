@@ -4,19 +4,19 @@
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.StackPane?>
-<JFXListView fx:id="toolbarPopupList" styleClass="option-list-view"
-             onMouseClicked="#submit" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-    <Label fx:id="blue" text="%label.blue">
+
+<JFXListView fx:id="toolbarPopupList" onMouseClicked="#submit" styleClass="option-list-view" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+    <Label text="%label.blue">
         <graphic>
             <StackPane styleClass="custom-jfx-list-view-icon-container">
-                <FontAwesomeIconView glyphName="EYEDROPPER" size="1.5em" styleClass="custom-jfx-list-view-icon" />
+                <FontAwesomeIconView glyphName="EYEDROPPER" size="1.5em" styleClass="icon-blue" />
             </StackPane>
         </graphic>
     </Label>
-    <Label fx:id="red" text="%label.red">
+    <Label text="%label.red">
         <graphic>
             <StackPane styleClass="custom-jfx-list-view-icon-container">
-                <FontAwesomeIconView glyphName="EYEDROPPER" size="1.5em" styleClass="custom-jfx-list-view-icon" />
+                <FontAwesomeIconView glyphName="EYEDROPPER" size="1.5em" styleClass="icon-red" />
             </StackPane>
         </graphic>
     </Label>

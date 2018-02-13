@@ -3,6 +3,10 @@
  * Theme Red		                                                       *
  *                                                                             *
  ******************************************************************************/
+.theme-color{
+    -fx-background-color: #5264AE;
+}
+
 .jfx-decorator {
     -fx-decorator-color: derive(#5264AE, -20%);
 }
@@ -32,4 +36,11 @@
     -fx-min-height: 60px;  
     -fx-max-width: 60px;  
     -fx-max-height: 60px;
+}
+
+.pane-totals:pressed {
+/*    -fx-background-color: derive(#5264AE, -20%);*/
+    -fx-background-color: derive(#5264AE, -20%),
+                           linear-gradient(to bottom,derive(#5264AE, -20%),derive(#5264AE, +20%));
+     -fx-background-insets: 0,1;
 }

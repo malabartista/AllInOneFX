@@ -1,41 +1,115 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXListView?>
-<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
-<JFXListView fx:id="profilePopupList" styleClass="option-list-view"
-             onMouseClicked="#submit" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-    <Label text="%label.english">
-        <graphic>
-            <StackPane styleClass="custom-jfx-list-view-icon-container">
-                <FontAwesomeIconView glyphName="FLAG" size="1.5em" styleClass="custom-jfx-list-view-icon" />
-            </StackPane>
-        </graphic>
-    </Label>
-    <Label text="%label.spanish">
-        <graphic>
-            <StackPane styleClass="custom-jfx-list-view-icon-container">
-                <FontAwesomeIconView glyphName="FLAG" size="1.5em" styleClass="custom-jfx-list-view-icon" />
-            </StackPane>
-        </graphic>
-    </Label>
-    <Label>
-        Contact Us
-        <graphic>
-            <StackPane styleClass="custom-jfx-list-view-icon-container">
-                <FontAwesomeIconView glyphName="USER" size="1.5em"
-                                     styleClass="custom-jfx-list-view-icon"/>
-            </StackPane>
-        </graphic>
-    </Label>
-    <Label>
-        Exit
-        <graphic>
-            <StackPane styleClass="custom-jfx-list-view-icon-container">
-                <FontAwesomeIconView glyphName="REPLY" size="1.5em"
-                                     styleClass="custom-jfx-list-view-icon"/>
-            </StackPane>
-        </graphic>
-    </Label>
-</JFXListView>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<StackPane fx:id="profileStackPane" minWidth="300.0" style="-fx-background-color: white; -fx-background-radius: 3; -fx-border-radius: 3; -fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5);" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <VBox>
+            <children>
+                <Pane style="-fx-background-radius: 4 4 0 0;" styleClass="theme-color">
+                    <children>
+                        <Circle layoutX="55.0" layoutY="64.0" radius="41.0" stroke="#a49f9f" strokeType="INSIDE">
+                            <fill>
+                                <LinearGradient endX="1.0" endY="1.0">
+                                    <stops>
+                                        <Stop color="#8a765a" />
+                                        <Stop color="WHITE" offset="1.0" />
+                                    </stops>
+                                </LinearGradient>
+                            </fill>
+                        </Circle>
+                        <ImageView fx:id="imgProfile" fitHeight="80.0" fitWidth="80.0" layoutX="15.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label fx:id="lblProfileName" layoutX="108.0" layoutY="23.0" prefHeight="30.0" prefWidth="116.0" text="Jonh Doe" textFill="#fffefe">
+                            <font>
+                                <Font name="Roboto Medium" size="18.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="108.0" layoutY="53.0" prefHeight="25.0" prefWidth="124.0" text="Logged user" textFill="WHITE">
+                            <font>
+                                <Font name="Roboto Medium" size="14.0" />
+                            </font>
+                        </Label>
+                    </children>
+                    <padding>
+                        <Insets bottom="20.0" />
+                    </padding>
+                </Pane>
+                <VBox spacing="20.0">
+                    <children>
+                        <HBox alignment="CENTER_LEFT" spacing="0">
+                            <Label styleClass="custom-jfx-list-view-icon-container">
+                                <graphic>
+                                    <MaterialDesignIconView glyphName="FLAG" size="17.0" styleClass="custom-jfx-list-view-icon" />
+                                </graphic>
+                            </Label>
+                            <JFXComboBox fx:id="cmbLanguage" style="-fx-font-size: 14;">
+                                <items>
+                                    <FXCollections fx:factory="observableArrayList">
+                                        <Label fx:id="lblEnglish" text="%label.english" />
+                                        <Label fx:id="lblSpanish" text="%label.spanish" />
+                                    </FXCollections>
+                                </items>
+                            </JFXComboBox>
+                        </HBox>
+                        <Label fx:id="lblProfileSubname" style="-fx-font-size: 14; -fx-text-fill: #6a7d9a;" text="John Doe">
+                            <graphic>
+                                <MaterialDesignIconView glyphName="ACCOUNT" size="17.0" styleClass="custom-jfx-list-view-icon" />
+                            </graphic>
+                        </Label>
+                        <Label fx:id="lblProfileEmail" style="-fx-font-size: 14; -fx-text-fill: #6a7d9a;" text="johndoe@mail.com">
+                            <graphic>
+                                <MaterialDesignIconView glyphName="EMAIL" size="17.0" styleClass="custom-jfx-list-view-icon" />
+                            </graphic>
+                        </Label>
+                        <Label fx:id="lblProfileAddress" style="-fx-font-size: 14; -fx-text-fill: #6a7d9a;" text="+254717160344">
+                            <graphic>
+                                <MaterialDesignIconView glyphName="MAP_MARKER" size="17.0" styleClass="custom-jfx-list-view-icon" />
+                            </graphic>
+                        </Label>
+                        <Label fx:id="lblProfileLastUpdate" style="-fx-font-size: 14; -fx-text-fill: #6a7d9a;" text="Last activity:18-08-2012 1348hrs">
+                            <graphic>
+                                <MaterialDesignIconView glyphName="CLOCK_START" size="17.0" styleClass="custom-jfx-list-view-icon" />
+                            </graphic>
+                        </Label>
+                        <Label fx:id="lblContact" style="-fx-font-size: 14; -fx-text-fill: #6a7d9a;" styleClass="cursor" text="%label.contactus">
+                            <graphic>
+                                <MaterialDesignIconView glyphName="ACCOUNT" size="17.0" styleClass="custom-jfx-list-view-icon" />
+                            </graphic>
+                        </Label>
+                        <Label fx:id="lblExit" style="-fx-font-size: 14; -fx-text-fill: #6a7d9a;" styleClass="cursor" text="%label.exit">
+                            <graphic>
+                                <MaterialDesignIconView glyphName="REPLY" size="17.0" styleClass="custom-jfx-list-view-icon" />
+                            </graphic>
+                        </Label>
+                    </children>
+                    <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                    </padding>
+                </VBox>
+            </children>
+        </VBox>
+        <JFXButton mnemonicParsing="false" styleClass="rounded-mini-button, theme-color" StackPane.alignment="BOTTOM_RIGHT">
+            <graphic>
+                <MaterialDesignIconView fill="WHITE" glyphName="BORDER_COLOR" size="18" />
+            </graphic>
+            <StackPane.margin>
+                <Insets bottom="10.0" right="10.0" />
+            </StackPane.margin>
+        </JFXButton>
+    </children>
+</StackPane>
